@@ -1,0 +1,57 @@
+{
+  "builders": [
+    {
+      "name": "centos7-x86_64",
+      "type": "qemu",
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/bin/qemu-system-x86_64",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "disk_cache": "none",
+      "qemuargs": [[ "-m", "2048M" ],[ "-smp", "2" ]],
+      "ssh_wait_timeout": "30m",
+      "http_directory": "./",
+      "ssh_username": "root",
+      "ssh_password": "testtest",
+      "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
+      "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
+      "iso_checksum_type": "sha256",
+      "boot_wait": "40s",
+      "boot_command": [
+        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7-kickstart.cfg<enter><wait>"
+      ],
+      "disk_size": "10240",
+      "headless": "true",
+      "http_directory": ".",
+      "shutdown_command": "sudo /usr/sbin/shutdown -h now",
+      "output_directory": "artifacts/qemu"
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "inline": [
+        "yum -y install epel-release",
+        "yum -y install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/playbook.yml",
+      "playbook_dir": "ansible"
+    },
+    {
+      "type": "shell",
+      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "inline": [
+        "yum -y autoremove ansible",
+        "yum -y --enablerepo='*' clean all",
+	"rm -f /core*",
+	"rm -rf /tmp/*"
+      ]
+    }
+  ]
+}

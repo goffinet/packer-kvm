@@ -1,0 +1,30 @@
+---
+- name: Add local pub key to authorized_keys
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+    state: present
+
+- name: Tweak sshd_config
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ".*UseDNS.*"
+    line: "UseDNS no"
+
+- name: Configure GRUB to enable serial console
+  copy:
+    src: grub
+    dest: /etc/default/grub
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
+
+- name: Regenerate GRUB configuration
+  command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
+
+- name: Install common packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ common_packages }}"

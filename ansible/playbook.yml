@@ -1,0 +1,6 @@
+---
+- name: Configure KVM base image
+  hosts: localhost
+
+  roles:
+    - common
