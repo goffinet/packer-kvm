@@ -1,4 +1,4 @@
-# packer-kvm-centos
+# packer-kvm
 
 Create VM templates for usage with libvirt/KVM virtualization
 
@@ -7,6 +7,9 @@ Create VM templates for usage with libvirt/KVM virtualization
  * libvirt/KVM
  * Packer (in /opt/packer)
 
+## Distributions
+
+* Centos 7.6
 
 ## Build
 
