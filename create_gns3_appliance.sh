@@ -1,14 +1,14 @@
 #!/bin/bash
 
-packer_image=$1
-name=$2
-version=$3
+packer_image="artifacts/qemu/centos7-x86_64"
+name="centos"
+version="7.6"
 
-cp ${packer_image} /tmp/${name}${version}.qcow2
-md5sum_image=$(md5sum /tmp/${name}${version}.qcow2 | cut -d' ' -f1)
-size_image=$(stat -c %s /tmp/${name}${version}.qcow2)
+mv ${packer_image} artifacts/qemu/${name}${version}.qcow2
+md5sum_image=$(md5sum artifacts/qemu/${name}${version}.qcow2 | cut -d' ' -f1)
+size_image=$(stat -c %s artifacts/qemu/${name}${version}.qcow2)
 
-cat << EOF > ${name}${version}.gns3a
+cat << EOF > artifacts/qemu/${name}${version}.gns3a
 {
     "name": "${name}${version}",
     "category": "guest",
