@@ -72,15 +72,15 @@
 "post-processors": [
     {
         "type":"shell-local",
-        "inline": ["bash -x create_gns3_appliance.sh centos 7.6"]
+        "inline": ["bash -x create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]
     },
     {
         "type":"shell-local",
-        "inline": ["scp -r artifacts/qemu/centos7.6/centos7.6.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
+        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
     },
     {
         "type":"shell-local",
-        "inline": ["scp -r artifacts/qemu/centos7.6/centos7.6.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
+        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
     }
   ]
 }
