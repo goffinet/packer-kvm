@@ -10,7 +10,9 @@
       "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
       "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
       "headless": "true",
-      "config_file": "centos7-kickstart.cfg"
+      "config_file": "centos7-kickstart.cfg",
+      "ssh_username": "root",
+      "ssh_password": "testtest"
     },
   "builders": [
     {
@@ -25,8 +27,8 @@
       "qemuargs": [[ "-m", "{{user `ram`}}" ],[ "-smp", "{{user `ncpu`}}" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": "./",
-      "ssh_username": "root",
-      "ssh_password": "testtest",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
