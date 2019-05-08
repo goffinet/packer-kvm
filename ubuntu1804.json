@@ -17,7 +17,7 @@
       "iso_urls": "http://releases.ubuntu.com/18.04/ubuntu-18.04.2-live-server-amd64.iso",
       "iso_checksum": "ea6ccb5b57813908c006f42f7ac8eaa4fc603883a2d07876cf9ed74610ba2f53",
       "iso_checksum_type": "sha256",
-      "boot_wait": "40s",
+      "boot_wait": "10s",
       "boot_command": [
         "<enter><wait>",
         "<f6><esc>",
