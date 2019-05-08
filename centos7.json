@@ -24,7 +24,7 @@
       "net_device": "virtio-net",
       "disk_interface": "virtio",
       "disk_cache": "none",
-      "qemuargs": [[ "-m", "{{user `ram`}}" ],[ "-smp", "{{user `ncpu`}}" ]],
+      "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `ncpu`}}" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": "./",
       "ssh_username": "{{user `ssh_username`}}",
@@ -45,7 +45,6 @@
       "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
     }
   ],
-
   "provisioners": [
     {
       "type": "shell",
@@ -71,7 +70,7 @@
       ]
     }
   ],
-"post-processors": [
+  "post-processors": [
     {
         "type":"shell-local",
         "inline": ["bash -x create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]

@@ -1,7 +1,22 @@
 {
+    "variables":
+    {
+      "ncpu": "2",
+      "ram": "2048",
+      "name": "ubuntu",
+      "disk_size": "40000",
+      "version": "1804",
+      "iso_checksum_type": "sha256",
+      "iso_urls": "http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-server-amd64.iso",
+      "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
+      "headless": "true",
+      "config_file": "ubuntu1804-preseed.cfg",
+      "ssh_username": "root",
+      "ssh_password": "testtest"
+    },
   "builders": [
     {
-      "name": "ubuntu1804-x86_64",
+      "name": "{{user `name`}}{{user `version`}}",
       "type": "qemu",
       "format": "qcow2",
       "accelerator": "kvm",
@@ -9,18 +24,18 @@
       "net_device": "virtio-net",
       "disk_interface": "virtio",
       "disk_cache": "none",
-      "qemuargs": [[ "-m", "2048M" ],[ "-smp", "2" ]],
+      "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "2" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": "./",
       "http_port_min": 10082,
       "http_port_max": 10089,
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
-      "ssh_username": "root",
-      "ssh_password": "testtest",
-      "iso_urls": "http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-server-amd64.iso",
-      "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
-      "iso_checksum_type": "sha256",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "iso_urls": "{{user `iso_urls`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "boot_wait": "15s",
       "boot_command": [
         "<esc><wait>",
@@ -39,21 +54,20 @@
                 " keyboard-configuration/layout=USA<wait>",
                 " keyboard-configuration/variant=USA<wait>",
                 " locale=en_US<wait>",
-                " netcfg/get_hostname=ubuntu1804<wait>",
-                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ubuntu1804-preseed.cfg ",
+                " netcfg/get_hostname={{user `name`}}{{user `version`}}<wait>",
+                " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `config_file`}} ",
                 " -- <wait>",
                 "<enter><wait>"
       ],
-      "disk_size": "10240",
+      "disk_size": "{{user `disk_size`}}",
       "disk_discard": "unmap",
       "disk_compression": true,
-      "headless": "true",
+      "headless": "{{user `headless`}}",
       "http_directory": ".",
-      "shutdown_command": "echo 'testtest' | sudo -S shutdown -P now",
-      "output_directory": "artifacts/qemu/ubuntu1804-x86_64"
+      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S shutdown -P now",
+      "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
     }
   ],
-
   "provisioners": [
     {
       "type": "shell",
@@ -75,6 +89,20 @@
         "sudo apt -y remove ansible",
         "sudo apt -y clean"
       ]
+    }
+  ],
+  "post-processors": [
+    {
+        "type":"shell-local",
+        "inline": ["bash -x create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]
+    },
+    {
+        "type":"shell-local",
+        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
+    },
+    {
+        "type":"shell-local",
+        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
     }
   ]
 }
