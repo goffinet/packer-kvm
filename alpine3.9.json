@@ -4,7 +4,7 @@
       "cpu": "1",
       "ram": "512",
       "name": "alpine",
-      "disk_size": "1000",
+      "disk_size": "8000",
       "version": "9.3",
       "iso_checksum_type": "sha256",
       "iso_urls": "https://nl.alpinelinux.org/alpine/latest-stable/releases/x86_64/alpine-virt-3.9.3-x86_64.iso",
