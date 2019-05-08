@@ -72,7 +72,7 @@
 "post-processors": [
     {
         "type":"shell-local",
-        "inline": ["bash -x create_gns3_appliance.sh"]
+        "inline": ["bash -x create_gns3_appliance.sh centos 7.6"]
     },
     {
         "type":"shell-local",

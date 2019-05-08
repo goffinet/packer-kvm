@@ -1,8 +1,14 @@
 # packer-kvm
 
-Create VM templates for usage with libvirt/KVM virtualization
+Create VM templates for usage with libvirt/KVM virtualization.
 
-Only for education purposes
+Only for education purposes.
+
+Packer Proof of Concept with :
+
+* qemu/kvm as builder
+* shell and ansible-local as provisionners
+* shell-local as post-processor
 
 ## Pre-requisites
 
@@ -24,27 +30,6 @@ packer build ubuntu1804.json
 ## Credits
 
 [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
-
-## Packing
-
-Builder :
-
-* Qemu
-* Qcow2 compresed
-* headless
-
-
-Provisioners :
-
-* shell : install epel-release ansible
-* ansible-local: ansible/playbook.yml
-* shell : cleaning
-
-Post-processors :
-
-* shell-local
-  * create gns3a appliance file
-  * upload to my server
 
 ## Notes
 
