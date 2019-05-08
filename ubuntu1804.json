@@ -87,6 +87,7 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
+        "export DEBIAN_FRONTEND=noninteractive",
         "sudo apt -y remove ansible",
         "sudo apt -y autoremove",
         "sudo apt -y clean"
