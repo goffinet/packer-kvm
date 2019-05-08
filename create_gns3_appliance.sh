@@ -1,6 +1,6 @@
 #!/bin/bash
 
-packer_image="artifacts/qemu/centos7-x86_64/centos7-x86_64"
+packer_image="artifacts/qemu/centos7-x86_64/packer-centos7-x86_64"
 name="centos"
 version="7.6"
 output_path="artifacts/qemu"
