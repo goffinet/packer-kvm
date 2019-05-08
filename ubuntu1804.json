@@ -35,7 +35,7 @@
       "disk_size": "10240",
       "disk_discard": "unmap",
       "disk_compression": true,
-      "headless": "true",
+      "headless": "false",
       "http_directory": ".",
       "shutdown_command": "echo 'testtest' | sudo -S shutdown -P now",
       "output_directory": "artifacts/qemu/ubuntu1804-x86_64"
