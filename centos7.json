@@ -29,15 +29,15 @@
       "ssh_password": "testtest",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}},
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "boot_wait": "40s",
       "boot_command": [
-        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7-kickstart.cfg<enter><wait>"
+        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `config_file`}}<enter><wait>"
       ],
-      "disk_size": {{user `disk_size`}}",
+      "disk_size": "{{user `disk_size`}}",
       "disk_discard": "unmap",
       "disk_compression": true,
-      "headless": "true",
+      "headless": "{{user `headless`}}",
       "http_directory": ".",
       "shutdown_command": "sudo /usr/sbin/shutdown -h now",
       "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
