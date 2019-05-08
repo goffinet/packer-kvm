@@ -1,15 +1,14 @@
 #!/bin/bash
 
-packer_image="artifacts/qemu/centos7-x86_64/packer-centos7-x86_64"
-name="centos"
-version="7.6"
-output_path="artifacts/qemu"
+name=$1
+version=$2
+image="artifacts/qemu/${name}${version}/packer-${name}${version}"
 
-mv ${packer_image} ${output_path}/${name}${version}.qcow2
-md5sum_image=$(md5sum ${output_path}/${name}${version}.qcow2 | cut -d' ' -f1)
-size_image=$(stat -c %s ${output_path}/${name}${version}.qcow2)
+mv ${image} ${image}.qcow2
+md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
+size_image=$(stat -c %s ${image}.qcow2)
 
-cat << EOF > ${output_path}/${name}${version}.gns3a
+cat << EOF > ${image}.gns3a
 {
     "name": "${name}${version}",
     "category": "guest",
