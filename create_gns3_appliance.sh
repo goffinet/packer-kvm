@@ -3,12 +3,12 @@
 name=$1
 version=$2
 image="artifacts/qemu/${name}${version}/packer-${name}${version}"
+new_image="artifacts/qemu/${name}${version}/${name}${version}"
+mv ${image} ${new_image}.qcow2
+md5sum_image=$(md5sum ${new_image}.qcow2 | cut -d' ' -f1)
+size_image=$(stat -c %s ${new_image}.qcow2)
 
-mv ${image} ${image}.qcow2
-md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
-size_image=$(stat -c %s ${image}.qcow2)
-
-cat << EOF > ${image}.gns3a
+cat << EOF > ${new_image}.gns3a
 {
     "name": "${name}${version}",
     "category": "guest",
@@ -36,7 +36,7 @@ cat << EOF > ${image}.gns3a
             "filename": "${name}${version}.qcow2",
             "version": "${version}",
             "md5sum": "${md5sum_image}",
-            "filesize": $size_image,
+            "filesize": ${size_image},
             "download_url": "https://get.goffinet.org/kvm/",
             "direct_download_url": "https://get.goffinet.org/kvm/${name}${version}.qcow2"
         }
