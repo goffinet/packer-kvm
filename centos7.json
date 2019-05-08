@@ -22,6 +22,8 @@
         "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos7-kickstart.cfg<enter><wait>"
       ],
       "disk_size": "10240",
+      "disk_discard": "unmap",
+      "disk_compression": true,
       "headless": "true",
       "http_directory": ".",
       "shutdown_command": "sudo /usr/sbin/shutdown -h now",
