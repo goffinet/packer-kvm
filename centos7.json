@@ -73,7 +73,7 @@
   "post-processors": [
     {
         "type":"shell-local",
-        "inline": ["./create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]
+        "inline": ["chmod +x create_gns3_appliance.sh && ./create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]
     },
     {
         "type":"shell-local",
