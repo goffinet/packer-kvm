@@ -10,7 +10,7 @@ Packer Proof of Concept with :
 * shell and ansible-local as provisionners
 * shell-local as post-processor
 
-Optionnal
+Optionnal :
 
 * inside a docker container
 
