@@ -12,7 +12,7 @@
       "qemuargs": [[ "-m", "2048M" ],[ "-smp", "2" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": "./",
-      "ssh_username": "user",
+      "ssh_username": "root",
       "ssh_password": "testtest",
       "iso_urls": "http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-server-amd64.iso",
       "iso_checksum": "a2cb36dc010d98ad9253ea5ad5a07fd6b409e3412c48f1860536970b073c98f5",
