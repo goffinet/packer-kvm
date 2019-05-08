@@ -1,15 +1,9 @@
 #!/bin/bash
 
-if $1 == "help" ; then
-echo "help !"
-fi 
-
-if $1 == "centos" ; then
 packer_image="artifacts/qemu/centos7-x86_64/packer-centos7-x86_64"
 name="centos"
 version="7.6"
 output_path="artifacts/qemu"
-fi
 
 mv ${packer_image} ${output_path}/${name}${version}.qcow2
 md5sum_image=$(md5sum ${output_path}/${name}${version}.qcow2 | cut -d' ' -f1)
