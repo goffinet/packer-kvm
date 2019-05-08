@@ -10,12 +10,12 @@ size_image=$(stat -c %s /tmp/${name}${version}.qcow2)
 
 cat << EOF > ${name}${version}.gns3a
 {
-    "name": "${name}",
+    "name": "${name}${version}",
     "category": "guest",
     "description": "${name} ${version} image",
-    "vendor_name": "centos",
+    "vendor_name": "${name}",
     "vendor_url": "https://get.goffinet.org/kvm",
-    "product_name": "centos",
+    "product_name": "${name}",
     "registry_version": 1,
     "status": "stable",
     "maintainer": "goffinet@goffinet.org",
