@@ -12,7 +12,8 @@
       "headless": "true",
       "config_file": "ubuntu1804-preseed.cfg",
       "ssh_username": "root",
-      "ssh_password": "testtest"
+      "ssh_password": "testtest",
+      "destination_server": "get.goffinet.org"
     },
   "builders": [
     {
@@ -101,11 +102,19 @@
     },
     {
         "type":"shell-local",
-        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
+        "inline": ["md5sum artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 > artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2.md5"]
     },
     {
         "type":"shell-local",
-        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
+        "inline": ["sha1sum artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 > artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2.sha1"]
+    },
+    {
+        "type":"shell-local",
+        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2* root@{{user `destination_server`}}:/var/www/html/kvm/"]
+    },
+    {
+        "type":"shell-local",
+        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@{{user `destination_server`}}:/var/www/html/gns3a/"]
     }
   ]
 }
