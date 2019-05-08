@@ -5,7 +5,7 @@ name=$2
 version=$3
 
 cp ${packer_image} /tmp/${name}${version}.qcow2
-md5sum_image=$(md5sum -c /tmp/${name}${version}.qcow2)
+md5sum_image=$(md5sum /tmp/${name}${version}.qcow2 | cut -d' ' -f1)
 size_image=$(stat -c %s /tmp/${name}${version}.qcow2)
 
 cat << EOF > ${name}${version}.gns3a
