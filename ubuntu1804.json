@@ -87,6 +87,7 @@
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
         "sudo apt -y remove ansible",
+        "sudo apt autoremove",
         "sudo apt -y clean"
       ]
     }
@@ -98,11 +99,11 @@
     },
     {
         "type":"shell-local",
-        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
+        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 root@get.goffinet.org:/var/www/html/kvm/"]
     },
     {
         "type":"shell-local",
-        "inline": ["scp -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
+        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@get.goffinet.org:/var/www/html/gns3a/"]
     }
   ]
 }
