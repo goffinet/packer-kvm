@@ -19,12 +19,14 @@
     owner: root
     group: root
     backup: no
+  when: ansible_distribution == 'CentOS'
 
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
+  when: ansible_distribution == 'CentOS'
 
 - name: Install common packages
-  yum:
+  package:
     name: "{{ item }}"
     state: latest
   with_items: "{{ common_packages }}"

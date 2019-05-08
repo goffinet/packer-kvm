@@ -25,7 +25,7 @@
       "headless": "true",
       "http_directory": ".",
       "shutdown_command": "sudo /usr/sbin/shutdown -h now",
-      "output_directory": "artifacts/qemu"
+      "output_directory": "artifacts/qemu/centos7-x86_64"
     }
   ],
 
