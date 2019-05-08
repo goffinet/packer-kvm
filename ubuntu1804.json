@@ -31,7 +31,7 @@
       "disk_size": "10240",
       "headless": "false",
       "http_directory": ".",
-      "shutdown_command": "sudo /usr/sbin/shutdown -h now",
+      "shutdown_command": "echo 'testtest' | sudo -S shutdown -P now",
       "output_directory": "artifacts/qemu/ubuntu1804-x86_64"
     }
   ],
