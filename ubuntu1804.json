@@ -39,7 +39,7 @@
         "<enter>"
       ],
       "disk_size": "10240",
-      "headless": "true",
+      "headless": "false",
       "http_directory": ".",
       "shutdown_command": "sudo /usr/sbin/shutdown -h now",
       "output_directory": "artifacts/qemu/ubuntu1804-x86_64"
