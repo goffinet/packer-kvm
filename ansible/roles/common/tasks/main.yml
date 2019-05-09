@@ -49,15 +49,15 @@
     backup: no
   when: ansible_distribution == 'Ubuntu'
 
-#- name: Configure SYSLINUX to enable serial console
-#  copy:
-#    src: extlinux.conf.alpine
-#    dest: /etc/update-extlinux.conf
-#    mode: '0644'
-#    owner: root
-#    group: root
-#    backup: no
-#  when: ansible_distribution == 'Alpine'
+- name: Configure SYSLINUX to enable serial console
+  copy:
+    src: extlinux.conf.alpine
+    dest: /etc/update-extlinux.conf
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
+  when: ansible_distribution == 'Alpine'
 
 - name: Install common packages
   package:
