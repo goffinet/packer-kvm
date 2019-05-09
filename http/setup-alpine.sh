@@ -25,6 +25,7 @@ rc-update --quiet add urandom boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
+extlinux --install /mnt/boot
 sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
 
 reboot
