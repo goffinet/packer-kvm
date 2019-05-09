@@ -54,3 +54,8 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ common_packages }}"
+
+- command: grep -v '^\#|^\$' /etc/update-extlinux.conf
+  register: output
+- debug:
+    msg: "{{ output.stdout }}"
