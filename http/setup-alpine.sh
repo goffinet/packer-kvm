@@ -16,6 +16,7 @@ setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
 rc-update --quiet add sshd default
+openssh-keygen
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 apk add --quiet syslinux
@@ -29,4 +30,6 @@ rc-update --quiet add qemu-guest-agent boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
-reboot
+cat /etc/update-extlinux.conf
+
+#reboot
