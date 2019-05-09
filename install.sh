@@ -32,6 +32,12 @@ rc-update --quiet add networking boot
 rc-update --quiet add urandom boot
 rc-update --quiet add qemu-guest-agent boot
 
+setup-alpine -f alpine-answers <<EOF
+$ROOT_PASSWORD
+$ROOT_PASSWORD
+y
+EOF
+
 # remount the device, change networking, install our ssh key
 mount /dev/vda3 /mnt
 echo "write someting in the FS"
