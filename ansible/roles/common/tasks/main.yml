@@ -40,10 +40,13 @@
   when: ansible_distribution == 'Ubuntu'
 
 - name: Tweak netplan config
-  lineinfile:
+  copy:
+    src: 01-netcfg.yaml
     dest: /etc/netplan/01-netcfg.yaml
-    regexp: "ens.*"
-    line: "    eth0:"
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install common packages
