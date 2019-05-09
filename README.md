@@ -84,7 +84,7 @@ docker build -t packer-qemu .
   ```
   sudo ./define-guest-images.sh c1 centos7
   sudo ./define-guest-images.sh u1 ubuntu1804
-```
+  ```
 
 4. Enjoy
 
