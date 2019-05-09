@@ -1,9 +1,0 @@
-overwrite=1
-vesa_menu=0
-default_kernel_opts="console=ttyS0,9600 rootfstype=ext4"
-modules=sd-mod,usb-storage,ext4
-verbose=1
-hidden=0
-timeout=3
-default=hardened
-serial_baud=9600
