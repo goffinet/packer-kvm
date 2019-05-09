@@ -32,7 +32,4 @@ rc-update --quiet add qemu-guest-agent boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
-grep 'console' /etc/update-extlinux.conf
-grep 'serial' /etc/update-extlinux.conf
-
-#reboot
+reboot
