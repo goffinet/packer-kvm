@@ -92,6 +92,10 @@ docker build -t packer-qemu .
   sudo virsh console u1
   ```
 
+  ```
+  ssh $(dig @192.168.122.1 +short u1)
+  ```
+
 ## Credits
 
 * [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
