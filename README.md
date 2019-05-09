@@ -4,7 +4,7 @@ Create VM templates for usage with libvirt/KVM virtualization.
 
 Only for education and learning purposes.
 
-Packer Proof of Concept with :
+This is a Packer Proof of Concept/sample with :
 
 * qemu/kvm as builder
 * shell and ansible-local as provisionners
@@ -29,22 +29,27 @@ packer build centos7.json
 packer build ubuntu1804.json
 ```
 
-goffinet/packer-qemu is a Docker image for building qemu images with packer
-
 ## Build with Docker qemu based image
 
-goffinet/packer-qemu is a Docker image for building qemu images with packer
+`goffinet/packer-qemu` is a Docker image for building qemu images with packer
+
 
 ```bash
-docker run --rm                                                                    \
-  -e PACKER_LOG=1                                                                  \
-  -e PACKER_LOG_PATH="packer-docker.log"                                           \
-  -it                                                                              \
-  --privileged                                                                     \
-  --cap-add=ALL -v /lib/modules:/lib/modules                                       \
-  -v `pwd`:/opt/                                                                   \
-  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa                                           \
+docker run --rm                                     \
+  -e PACKER_LOG=1                                   \
+  -e PACKER_LOG_PATH="packer-docker.log"            \
+  -it                                               \
+  --privileged                                      \
+  --cap-add=ALL -v /lib/modules:/lib/modules        \
+  -v `pwd`:/opt/                                    \
+  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa            \
   -w /opt/ goffinet/packer-qemu build centos7.json
+```
+
+To build the image localy with the [Dockerfile](Dockerfile) :
+
+```shell
+docker build -t packer-qemu .
 ```
 
 ## Exploit with Libvirt

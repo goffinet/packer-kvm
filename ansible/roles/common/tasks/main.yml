@@ -13,7 +13,7 @@
 
 - name: Configure GRUB to enable serial console
   copy:
-    src: grub
+    src: grub.centos
     dest: /etc/default/grub
     mode: '0644'
     owner: root
@@ -24,6 +24,20 @@
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
   when: ansible_distribution == 'CentOS'
+
+- name: Configure GRUB to enable serial console
+  copy:
+    src: grub.ubuntu
+    dest: /etc/default/grub
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Regenerate GRUB configuration
+  command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Install common packages
   package:
