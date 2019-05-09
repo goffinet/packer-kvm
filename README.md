@@ -65,6 +65,7 @@ docker build -t packer-qemu .
    To download :
 
    ```
+   sudo apt update && apt -y install curl
    sudo curl -o /var/lib/libvirt/images/centos7.qcow2 https://get.goffinet.org/kvm/centos7.6.qcow2
    sudo curl -o /var/lib/libvirt/images/ubuntu1804.qcow2 https://get.goffinet.org/kvm/ubuntu1804.qcow2
    ```
@@ -72,20 +73,23 @@ docker build -t packer-qemu .
 2. Clone virt-scripts repo and prepare the machine
 
   ```
-  ./autoprep.sh
+  sudo apt update && apt -y install git
+  git clone https://github.com/goffinet/virt-scripts
+  cd virt-scripts
+  sudo ./autoprep.sh
   ```
 
 3. Launch two new machines
 
   ```
-  ./define-guest-images.sh c1 centos7
-  ./define-guest-images.sh u1 ubuntu1804
+  sudo ./define-guest-images.sh c1 centos7
+  sudo ./define-guest-images.sh u1 ubuntu1804
 ```
 
 4. Enjoy
 
   ```
-  virsh console u1
+  sudo virsh console u1
   ```
 
 ## Credits
