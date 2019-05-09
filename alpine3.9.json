@@ -37,7 +37,7 @@
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "boot_wait": "30s",
+      "boot_wait": "40s",
       "boot_command": [
         "root<enter><wait>",
         "ip link set eth0 up && udhcpc -i eth0 &&<enter>",
