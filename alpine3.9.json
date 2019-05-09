@@ -41,7 +41,7 @@
       "boot_command": [
         "root<enter><wait>",
         "ip link set eth0 up && udhcpc -i eth0 &&<enter>",
-        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `config_file`}} &&<enter>",
+        "wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}} &&<enter>",
         "chmod +x {{user `config_file`}} && ./{{user `config_file`}}<enter>"
       ],
       "disk_size": "{{user `disk_size`}}",

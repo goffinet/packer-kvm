@@ -35,7 +35,7 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "boot_wait": "40s",
       "boot_command": [
-        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `config_file`}}<enter><wait>"
+        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}}<enter><wait>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "disk_discard": "unmap",

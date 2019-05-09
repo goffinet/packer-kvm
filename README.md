@@ -8,7 +8,7 @@ This is a Packer Proof of Concept/sample with :
 
 * qemu/kvm as builder
 * shell and ansible-local as provisionners
-* shell-local as post-processor
+* shell-local as post-processor to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
 
 Optionnal :
 
@@ -51,6 +51,10 @@ To build the image localy with the [Dockerfile](Dockerfile) :
 ```shell
 docker build -t packer-qemu .
 ```
+
+## Packing monitoring
+
+...
 
 ## Exploit with Libvirt
 
