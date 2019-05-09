@@ -15,11 +15,13 @@ echo "root:testtest" | chpasswd
 setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
-rc-update --quiet add sshd boot
+rc-update --quiet add sshd default
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 /etc/init.d/sshd start && /etc/init.d/sshd stop
 
 apk add --quiet syslinux
+sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
+
 apk add --quiet qemu-guest-agent python
 
 rc-update --quiet add networking boot
