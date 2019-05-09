@@ -4,12 +4,14 @@
     user: root
     key: "{{ lookup('file', 'id_rsa.pub') }}"
     state: present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
 
 - name: Tweak sshd_config
   lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: ".*UseDNS.*"
     line: "UseDNS no"
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
 
 - name: Configure GRUB to enable serial console
   copy:
@@ -64,8 +66,4 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ common_packages }}"
-
-- command: grep -v '^\#|^\$' /etc/update-extlinux.conf
-  register: output
-- debug:
-    msg: "{{ output.stdout }}"
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'

@@ -1,13 +1,5 @@
 #!/bin/sh
 
-rc-update --quiet add sshd default
-apk add --quiet syslinux
-sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
-apk add --quiet qemu-guest-agent python
-rc-update --quiet add networking boot
-rc-update --quiet add urandom boot
-rc-update --quiet add qemu-guest-agent boot
-
 cat > alpine-answers <<EOF
 KEYMAPOPTS="us us"
 HOSTNAMEOPTS="-n alpine"
@@ -31,6 +23,14 @@ $ROOT_PASSWORD
 $ROOT_PASSWORD
 y
 EOF
+
+rc-update --quiet add sshd default
+apk add --quiet syslinux
+sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
+apk add --quiet qemu-guest-agent python
+rc-update --quiet add networking boot
+rc-update --quiet add urandom boot
+rc-update --quiet add qemu-guest-agent boot
 
 # remount the device, change networking, install our ssh key
 mount /dev/vda3 /mnt
