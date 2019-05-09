@@ -12,7 +12,7 @@ EOF
 
 echo "root:testtest" | chpasswd
 
-setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.6/main
+setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
 rc-update --quiet add sshd default
