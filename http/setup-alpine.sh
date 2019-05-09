@@ -16,8 +16,8 @@ setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
 rc-update --quiet add sshd default
-/etc/init.d/sshd start
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+/etc/init.d/sshd start
 
 apk add --quiet syslinux
 sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
