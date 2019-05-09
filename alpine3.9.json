@@ -18,9 +18,9 @@
    "builders": [
     {
     	"type": "qemu",
-	    "iso_url": "http://dl-cdn.alpinelinux.org/alpine/v3.4/releases/x86_64/alpine-3.4.3-x86_64.iso",
-	    "iso_checksum": "ee899a5ad7c3189597e18130cd1dee4a81df94b812fb678b6b513dfa27bee5c6",
-	    "iso_checksum_type": "sha256",
+	    "iso_url": "{{user `iso_urls`}}",
+	    "iso_checksum": "{{user `iso_checksum`}}",
+	    "iso_checksum_type": "{{user `iso_checksum_type`}}",
 	    "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}",
 	    "shutdown_command": "poweroff",
 	    "disk_size": "{{user `disk_size`}}",
@@ -33,7 +33,7 @@
 	    "ssh_password": "{{user `ssh_password`}}",
 	    "ssh_port": 22,
 	    "ssh_wait_timeout": "5m",
-    	"vm_name": "alpine-kernel-dev",
+    	"vm_name": "{{user `name`}}{{user `version`}}",
 	    "net_device": "virtio-net",
 	    "disk_interface": "virtio",
 	    "boot_wait": "70s",
