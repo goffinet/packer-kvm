@@ -21,8 +21,11 @@ echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 apk add --quiet syslinux
 sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
 
+apk add --quiet qemu-guest-agent
+
 rc-update --quiet add networking boot
 rc-update --quiet add urandom boot
+rc-update --quiet add qemu-guest-agent boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
