@@ -19,10 +19,10 @@ rc-update --quiet add sshd default
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 /etc/init.d/sshd start
 
-apk add --quiet syslinux
-sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
-sed -i 's/.*serial_port.*/serial_port=0/g' /etc/update-extlinux.conf
-sed -i 's/.*serial_baud.*/serial_baud=9600/g' /etc/update-extlinux.conf
+apk del --quiet syslinux
+apk add --quiet grub grub-bios
+grub-install /dev/vda
+grub-mkconfig -o /boot/grub/grub.cfg
 
 apk add --quiet qemu-guest-agent
 
@@ -32,4 +32,6 @@ rc-update --quiet add qemu-guest-agent boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
-reboot
+cat /etc/default/grub
+
+#reboot
