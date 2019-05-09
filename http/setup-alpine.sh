@@ -15,7 +15,7 @@ echo "root:testtest" | chpasswd
 setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
-rc-update --quiet add sshd default
+rc-update --quiet add sshd boot
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 /etc/init.d/sshd start && /etc/init.d/sshd stop
 
