@@ -56,7 +56,20 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["echo build done"]
+      "inline": [
+        "apk add ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/playbook.yml",
+      "playbook_dir": "ansible"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "apk del ansible"
+      ]
     }
   ]
 }
