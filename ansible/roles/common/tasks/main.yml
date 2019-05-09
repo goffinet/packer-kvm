@@ -43,7 +43,7 @@
   lineinfile:
     dest: /etc/netplan/01-netcfg.yaml
     regexp: "ens.*"
-    line: "eth0:"
+    line: "    eth0:"
   when: ansible_distribution == 'Ubuntu'
 
 - name: Install common packages
