@@ -27,7 +27,7 @@
       "disk_cache": "none",
       "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
       "ssh_wait_timeout": "30m",
-      "http_directory": "http",
+      "http_directory": "http/",
       "http_port_min": 10082,
       "http_port_max": 10089,
       "ssh_host_port_min": 2222,
