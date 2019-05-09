@@ -75,7 +75,6 @@
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
         "sudo apt update",
-        "apt-get upgrade --yes --force-yes -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold'",
         "sudo apt -y install ansible"
       ]
     },

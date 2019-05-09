@@ -39,6 +39,13 @@
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
   when: ansible_distribution == 'Ubuntu'
 
+- name: Tweak netplan config
+  lineinfile:
+    dest: /etc/netplan/01-netcfg.yaml
+    regexp: "ens.*"
+    line: "eth0:"
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Install common packages
   package:
     name: "{{ item }}"
