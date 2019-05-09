@@ -16,11 +16,13 @@ setup-apkrepos http://dl-cdn.alpinelinux.org/alpine/v3.9/main
 
 apk add --quiet openssh
 rc-update --quiet add sshd default
-openssh-keygen
+/etc/init.d/sshd start
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 apk add --quiet syslinux
 sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
+sed -i 's/.*serial_port.*/serial_port=0/g' /etc/update-extlinux.conf
+sed -i 's/.*serial_baud.*/serial_baud=9600/g' /etc/update-extlinux.conf
 
 apk add --quiet qemu-guest-agent
 
@@ -30,6 +32,7 @@ rc-update --quiet add qemu-guest-agent boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
 
-cat /etc/update-extlinux.conf
+grep 'console' /etc/update-extlinux.conf
+grep 'serial' /etc/update-extlinux.conf
 
 #reboot
