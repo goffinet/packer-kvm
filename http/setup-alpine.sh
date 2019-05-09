@@ -19,12 +19,13 @@ rc-update --quiet add sshd default
 echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 
 apk add --quiet syslinux
-extlinux --install /boot
-sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
 
 rc-update --quiet add networking boot
 rc-update --quiet add urandom boot
 
 ERASE_DISKS=/dev/vda setup-disk -s 0 -m sys /dev/vda
+
+extlinux --install /boot
+sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
 
 reboot
