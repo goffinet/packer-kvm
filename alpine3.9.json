@@ -18,6 +18,7 @@
    "builders": [
     {
     	"type": "qemu",
+      "qemu_binary": "/usr/bin/qemu-system-x86_64",
 	    "iso_url": "{{user `iso_urls`}}",
 	    "iso_checksum": "{{user `iso_checksum`}}",
 	    "iso_checksum_type": "{{user `iso_checksum_type`}}",
