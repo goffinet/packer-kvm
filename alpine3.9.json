@@ -36,7 +36,7 @@
     	"vm_name": "{{user `name`}}{{user `version`}}",
 	    "net_device": "virtio-net",
 	    "disk_interface": "virtio",
-	    "boot_wait": "40s",
+	    "boot_wait": "60s",
 	    "boot_command":
 	    [
       "root<enter>",
