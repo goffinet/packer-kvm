@@ -24,7 +24,7 @@ sed -i 's/quiet/console=ttyS0,9600/g' /etc/update-extlinux.conf
 sed -i 's/.*serial_port.*/serial_port=0/g' /etc/update-extlinux.conf
 sed -i 's/.*serial_baud.*/serial_baud=9600/g' /etc/update-extlinux.conf
 
-apk add --quiet qemu-guest-agent
+apk add --quiet qemu-guest-agent python
 
 rc-update --quiet add networking boot
 rc-update --quiet add urandom boot
