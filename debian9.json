@@ -68,8 +68,8 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "sudo apt update",
-        "sudo apt -y install ansible"
+        "apt update",
+        "apt -y install ansible"
       ]
     },
     {
@@ -82,7 +82,7 @@
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
       "inline": [
-        "sudo apt -y remove ansible"
+        "apt -y remove ansible"
       ]
     }
   ],

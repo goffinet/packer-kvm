@@ -4,14 +4,14 @@
     user: root
     key: "{{ lookup('file', 'id_rsa.pub') }}"
     state: present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Tweak sshd_config
   lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: ".*UseDNS.*"
     line: "UseDNS no"
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Blacklist modules
   copy:
@@ -29,6 +29,7 @@
     enabled: no
     masked: no
     state: stopped
+  when: ansible_distribution == 'CentOS'
 
 - name: Configure GRUB to enable serial console
   copy:
@@ -52,11 +53,11 @@
     owner: root
     group: root
     backup: no
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
 - name: Tweak netplan config
   copy:
@@ -73,4 +74,4 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ common_packages }}"
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
