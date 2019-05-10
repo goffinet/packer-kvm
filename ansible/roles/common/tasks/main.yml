@@ -5,7 +5,6 @@
     key: "{{ lookup('file', 'id_rsa.pub') }}"
     state: present
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-
 - name: Tweak sshd_config
   lineinfile:
     dest: /etc/ssh/sshd_config
@@ -22,7 +21,6 @@
     group: root
     backup: no
   when: ansible_distribution == 'CentOS'
-
 - name: disable, mask and stop kdump service
   systemd:
     name: kdump
@@ -30,7 +28,6 @@
     masked: no
     state: stopped
   when: ansible_distribution == 'CentOS'
-
 - name: Configure GRUB to enable serial console
   copy:
     src: grub.centos
@@ -40,7 +37,6 @@
     group: root
     backup: no
   when: ansible_distribution == 'CentOS'
-
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
   when: ansible_distribution == 'CentOS'
@@ -54,7 +50,6 @@
     group: root
     backup: no
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
@@ -73,5 +68,5 @@
   package:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ common_packages }}"
+  loop: "{{ common_packages }}"
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
