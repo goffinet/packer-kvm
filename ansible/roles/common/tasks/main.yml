@@ -33,10 +33,10 @@
       systemd:
         name: NetworkManager
         enabled: yes
-    - name: disable network service
-      systemd:
-        name: network
-        enabled: no
+#    - name: disable network service
+#      systemd:
+#        name: network
+#        enabled: no
   when: ansible_distribution == 'CentOS'
 
 - name: Configure GRUB to enable serial console
