@@ -66,11 +66,13 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
       "inline": [
-        "apt update",
-        "apt -y install ansible"
-      ]
+        "apt-get -y update",
+        "DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" install python-pip",
+        "pip install ansible"
+        ]
     },
     {
       "type": "ansible-local",
@@ -79,10 +81,10 @@
     },
     {
       "type": "shell",
-      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "execute_command": "{{{.Vars}} bash '{{.Path}}'",
       "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
       "inline": [
-        "apt -y remove ansible"
+        "pip uninstall -y ansible httplib2 Jinja2 paramiko PyYAML six"
       ]
     }
   ],
