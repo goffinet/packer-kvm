@@ -1,8 +1,10 @@
 # packer-kvm
 
-Create VM templates for usage with libvirt/KVM virtualization.
+Create VM templates with packer for usage with libvirt/KVM virtualization : centos 7, ubuntu 1804, debian 9.
 
 Only for education and learning purposes.
+
+## Introduction
 
 This is a Packer Proof of Concept/sample with :
 
@@ -71,14 +73,14 @@ docker build -t packer-qemu .
 
 2. Build or download images
 
-  To download :
+  Put builded images in `/var/lib/libvirt/images` or download them :
 
   ```bash
   sudo ./download-images.sh
   ```
   ```raw
   Please provide the image name :
-  centos7 ubuntu1804
+  centos7 ubuntu1804 debian9
   ```
 
 3. Launch two new machines
