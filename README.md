@@ -101,6 +101,7 @@ docker build -t packer-qemu .
 ## Credits
 
 * [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
+* [https://github.com/jakobadam/packer-qemu-templates](https://github.com/jakobadam/packer-qemu-templates)
 * [https://github.com/leonkyneur/packer-qemu](https://github.com/leonkyneur/packer-qemu)
 
 ## Notes

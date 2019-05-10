@@ -3,14 +3,14 @@
     {
       "cpu": "2",
       "ram": "2048",
-      "name": "centos",
+      "name": "debian",
       "disk_size": "40000",
-      "version": "7",
+      "version": "9",
       "iso_checksum_type": "sha256",
-      "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-      "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
+      "iso_urls": "https://cdimage.debian.org/debian-cd/9.9.0/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
+      "iso_checksum": "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
       "headless": "true",
-      "config_file": "centos7-kickstart.cfg",
+      "config_file": "debian9-preseed.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
       "destination_server": "get.goffinet.org"
@@ -28,21 +28,42 @@
       "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": "http",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "ssh_host_port_min": 2222,
+      "ssh_host_port_max": 2229,
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "boot_wait": "40s",
+      "boot_wait": "15s",
+      "builders": [
+    {
+      "accelerator": "kvm",
       "boot_command": [
-        "<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}}<enter><wait>"
+                "<esc><wait>",
+                "auto <wait>",
+                "console-keymaps-at/keymap=us <wait>",
+                "console-setup/ask_detect=false <wait>",
+                "debconf/frontend=noninteractive <wait>",
+                "debian-installer=en_US <wait>",
+                "fb=false <wait>",
+                "install <wait>",
+                "kbd-chooser/method=us <wait>",
+                "keyboard-configuration/xkb-keymap=us <wait>",
+                "locale=en_US <wait>",
+                "netcfg/get_hostname={{user `name`}}{{user `version`}} <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}} ",
+                "-- <wait>",
+                "<enter><wait>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "disk_discard": "unmap",
       "disk_compression": true,
       "headless": "{{user `headless`}}",
       "http_directory": ".",
-      "shutdown_command": "sudo /usr/sbin/shutdown -h now",
+      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S shutdown -P now",
       "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
     }
   ],
@@ -51,8 +72,8 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "yum -y install epel-release",
-        "yum -y install ansible"
+        "sudo apt update",
+        "sudo apt -y install ansible"
       ]
     },
     {
@@ -63,11 +84,9 @@
     {
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
       "inline": [
-        "yum -y autoremove ansible",
-        "yum -y --enablerepo='*' clean all",
-	      "rm -f /core*",
-	      "rm -rf /tmp/*"
+        "sudo apt -y remove ansible"
       ]
     }
   ],
