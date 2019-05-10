@@ -1,14 +1,27 @@
 #!/bin/bash
 
-name=$1
-version=$2
-image="artifacts/qemu/${name}${version}/packer-${name}${version}"
-new_image="artifacts/qemu/${name}${version}/${name}${version}"
-mv ${image} ${new_image}.qcow2
-md5sum_image=$(md5sum ${new_image}.qcow2 | cut -d' ' -f1)
-size_image=$(stat -c %s ${new_image}.qcow2)
+# set variables
 
-cat << EOF > ${new_image}.gns3a
+name=$IMAGE_NAME
+version=$IMAGE_VERSION
+path_image="artifacts/qemu/${name}${version}"
+image="${name}${version}"
+
+# go to the artifact folder
+
+cd ${path_image}
+
+# rename the image, check the size, compute md5 and sha1 sum
+
+mv packer-${image} ${image}.qcow2
+md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
+size_image=$(stat -c %s ${image}.qcow2)
+md5sum ${path_image}/${image}.qcow2 > ${path_image}/${image}.qcow2.md5
+sha1sum ${path_image}/${image}.qcow2 > ${path_image}/${image}.qcow2.sha1
+
+# create a https://gns3.com appliance file
+
+cat << EOF > ${path}/${image}.gns3a
 {
     "name": "${name}${version}",
     "category": "guest",
@@ -51,3 +64,8 @@ cat << EOF > ${new_image}.gns3a
     ]
 }
 EOF
+
+# Push the images by SCP
+
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${path_image}/${image}.qcow2* root@$DESTINATION_SERVER:/var/www/html/kvm/
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${path_image}/${image}.gns3a root@$DESTINATION_SERVER:/var/www/html/gns3a/

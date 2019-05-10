@@ -73,24 +73,11 @@
   ],
   "post-processors": [
     {
-        "type":"shell-local",
-        "inline": ["chmod +x scripts/create_gns3_appliance.sh && ./scripts/create_gns3_appliance.sh {{user `name`}} {{user `version`}}"]
-    },
-    {
-        "type":"shell-local",
-        "inline": ["md5sum artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 > artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2.md5"]
-    },
-    {
-        "type":"shell-local",
-        "inline": ["sha1sum artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2 > artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2.sha1"]
-    },
-    {
-        "type":"shell-local",
-        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.qcow2* root@{{user `destination_server`}}:/var/www/html/kvm/"]
-    },
-    {
-        "type":"shell-local",
-        "inline": ["scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r artifacts/qemu/{{user `name`}}{{user `version`}}/{{user `name`}}{{user `version`}}.gns3a root@{{user `destination_server`}}:/var/www/html/gns3a/"]
+        "type": "shell",
+	      "script": "push-image.sh",
+	      "environment_vars": ["IMAGE_NAME={{user `name`}}",
+				                     "IMAGE_VERSION={{user `version`}}",
+                             "DESTINATION_SERVER={{user `destination_server`}}"]
     }
   ]
 }
