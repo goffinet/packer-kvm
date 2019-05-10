@@ -67,5 +67,5 @@ EOF
 
 # Push the images by SCP
 
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${path_image}/${image}.qcow2* root@$DESTINATION_SERVER:/var/www/html/kvm/
-scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${path_image}/${image}.gns3a root@$DESTINATION_SERVER:/var/www/html/gns3a/
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${image}.qcow2* root@$DESTINATION_SERVER:/var/www/html/kvm/
+scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${image}.gns3a root@$DESTINATION_SERVER:/var/www/html/gns3a/
