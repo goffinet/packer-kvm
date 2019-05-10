@@ -73,7 +73,7 @@
   ],
   "post-processors": [
     {
-        "type": "shell",
+        "type": "shell-local",
 	      "script": "push-image.sh",
 	      "environment_vars": ["IMAGE_NAME={{user `name`}}",
 				                     "IMAGE_VERSION={{user `version`}}",
