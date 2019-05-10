@@ -66,7 +66,7 @@ docker build -t packer-qemu .
 
    ```
    sudo apt update && apt -y install curl
-   sudo curl -o /var/lib/libvirt/images/centos7.qcow2 https://get.goffinet.org/kvm/centos7.6.qcow2
+   sudo curl -o /var/lib/libvirt/images/centos7.6.qcow2 https://get.goffinet.org/kvm/centos7.6.qcow2
    sudo curl -o /var/lib/libvirt/images/ubuntu1804.qcow2 https://get.goffinet.org/kvm/ubuntu1804.qcow2
    ```
 
@@ -82,7 +82,7 @@ docker build -t packer-qemu .
 3. Launch two new machines
 
   ```
-  sudo ./define-guest-images.sh c1 centos7
+  sudo ./define-guest-images.sh c1 centos7.6
   sudo ./define-guest-images.sh u1 ubuntu1804
   ```
 
