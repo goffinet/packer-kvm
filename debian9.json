@@ -84,7 +84,7 @@
       "execute_command": "{{.Vars}} bash '{{.Path}}'",
       "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
       "inline": [
-        "pip uninstall -y ansible httplib2 Jinja2 paramiko PyYAML six"
+        "pip uninstall -y ansible"
       ]
     }
   ],
