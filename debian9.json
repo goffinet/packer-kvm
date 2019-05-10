@@ -26,7 +26,7 @@
       "disk_interface": "virtio",
       "disk_cache": "none",
       "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
-      "ssh_wait_timeout": "45m",
+      "ssh_wait_timeout": "30m",
       "http_directory": "http",
       "http_port_min": 10082,
       "http_port_max": 10089,
