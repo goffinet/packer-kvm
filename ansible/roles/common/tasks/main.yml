@@ -13,6 +13,16 @@
     line: "UseDNS no"
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu'
 
+- name: Blacklist modules
+  copy:
+    src: blacklist.conf
+    dest: /etc/modprobe.d/blacklist.conf
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
+  when: ansible_distribution == 'CentOS'
+
 - name: Configure GRUB to enable serial console
   copy:
     src: grub.centos
