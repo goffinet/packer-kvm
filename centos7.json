@@ -59,16 +59,6 @@
       "type": "ansible-local",
       "playbook_file": "ansible/playbook.yml",
       "playbook_dir": "ansible"
-    },
-    {
-      "type": "shell",
-      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
-      "inline": [
-        "yum -y autoremove ansible",
-        "yum -y --enablerepo='*' clean all",
-	      "rm -f /core*",
-	      "rm -rf /tmp/*"
-      ]
     }
   ],
   "post-processors": [

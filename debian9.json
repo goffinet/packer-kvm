@@ -78,14 +78,6 @@
       "type": "ansible-local",
       "playbook_file": "ansible/playbook.yml",
       "playbook_dir": "ansible"
-    },
-    {
-      "type": "shell",
-      "execute_command": "{{.Vars}} bash '{{.Path}}'",
-      "environment_vars": ["DEBIAN_FRONTEND=noninteractive"],
-      "inline": [
-        "pip uninstall -y ansible"
-      ]
     }
   ],
   "post-processors": [

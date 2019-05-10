@@ -1,44 +1,42 @@
 ---
-- name: Add local pub key to authorized_keys
-  authorized_key:
-    user: root
-    key: "{{ lookup('file', 'id_rsa.pub') }}"
-    state: present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-- name: Tweak sshd_config
-  lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: ".*UseDNS.*"
-    line: "UseDNS no"
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-
-- name: Blacklist modules
-  copy:
-    src: blacklist.conf.centos
-    dest: /etc/modprobe.d/blacklist.conf
-    mode: '0644'
-    owner: root
-    group: root
-    backup: no
-  when: ansible_distribution == 'CentOS'
-- name: disable, mask and stop kdump service
-  systemd:
-    name: kdump
-    enabled: no
-    masked: no
-    state: stopped
-  when: ansible_distribution == 'CentOS'
-- name: Configure GRUB to enable serial console
-  copy:
-    src: grub.centos
-    dest: /etc/default/grub
-    mode: '0644'
-    owner: root
-    group: root
-    backup: no
-  when: ansible_distribution == 'CentOS'
-- name: Regenerate GRUB configuration
-  command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
+- name: Centos Tweaking
+  block:
+    - name: Blacklist modules
+      copy:
+        src: blacklist.conf.centos
+        dest: /etc/modprobe.d/blacklist.conf
+        mode: '0644'
+        owner: root
+        group: root
+        backup: no
+    - name: disable, mask and stop kdump service
+      systemd:
+        name: kdump
+        enabled: no
+        masked: no
+        state: stopped
+    - name: Configure GRUB to enable serial console
+      copy:
+        src: grub.centos
+        dest: /etc/default/grub
+        mode: '0644'
+        owner: root
+        group: root
+        backup: no
+    - name: Regenerate GRUB configuration
+      command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
+    - name: Install NetworkManager
+      package:
+        name: NetworkManager-tui
+        state: latest
+    - name: enable NetworkManager service
+      systemd:
+        name: NetworkManager
+        enabled: yes
+    - name: disable network service
+      systemd:
+        name: network
+        enabled: no
   when: ansible_distribution == 'CentOS'
 
 - name: Configure GRUB to enable serial console
@@ -53,22 +51,6 @@
 - name: Regenerate GRUB configuration
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-
-- name: Install NetworkManager
-  package:
-    name: NetworkManager-tui
-    state: latest
-  when: ansible_distribution == 'CentOS'
-- name: enable NetworkManager service
-  systemd:
-    name: NetworkManager
-    enabled: yes
-  when: ansible_distribution == 'CentOS'
-- name: disable network service
-  systemd:
-    name: network
-    enabled: no
-  when: ansible_distribution == 'CentOS'
 
 - name: Tweak Ubuntu netplan config
   copy:
@@ -90,9 +72,19 @@
     backup: no
   when: ansible_distribution == 'Debian'
 
+- name: Add local pub key to authorized_keys
+  authorized_key:
+    user: root
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+    state: present
+- name: Tweak sshd_config
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: ".*UseDNS.*"
+    line: "UseDNS no"
+
 - name: Install common packages
   package:
     name: "{{ item }}"
     state: latest
   loop: "{{ common_packages }}"
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
