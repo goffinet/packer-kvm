@@ -67,7 +67,7 @@
 - name: disable network service
   systemd:
     name: network
-    enabled: yes
+    enabled: no
   when: ansible_distribution == 'CentOS'
 
 - name: Tweak Ubuntu netplan config
