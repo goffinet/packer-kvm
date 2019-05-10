@@ -14,7 +14,7 @@
 
 - name: Blacklist modules
   copy:
-    src: blacklist.conf
+    src: blacklist.conf.centos
     dest: /etc/modprobe.d/blacklist.conf
     mode: '0644'
     owner: root
@@ -54,15 +54,25 @@
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
-- name: Tweak netplan config
+- name: Tweak Ubuntu netplan config
   copy:
-    src: 01-netcfg.yaml
+    src: 01-netcfg.yaml.ubuntu
     dest: /etc/netplan/01-netcfg.yaml
     mode: '0644'
     owner: root
     group: root
     backup: no
   when: ansible_distribution == 'Ubuntu'
+
+- name: Tweak Debian network config
+  copy:
+    src: interfaces.debian
+    dest: /etc/network/interfaces
+    mode: '0644'
+    owner: root
+    group: root
+    backup: no
+  when: ansible_distribution == 'Debian'
 
 - name: Install common packages
   package:
