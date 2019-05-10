@@ -23,6 +23,13 @@
     backup: no
   when: ansible_distribution == 'CentOS'
 
+- name: disable, mask and stop kdump service
+  systemd:
+    name: kdump
+    enabled: no
+    masked: no
+    state: stopped
+
 - name: Configure GRUB to enable serial console
   copy:
     src: grub.centos
