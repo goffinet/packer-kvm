@@ -9,7 +9,7 @@
       "iso_checksum_type": "sha256",
       "iso_urls": "https://cdimage.debian.org/debian-cd/9.9.0/amd64/iso-cd/debian-9.9.0-amd64-netinst.iso",
       "iso_checksum": "d4a22c81c76a66558fb92e690ef70a5d67c685a08216701b15746586520f6e8e",
-      "headless": "false",
+      "headless": "true",
       "config_file": "debian9-preseed.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
