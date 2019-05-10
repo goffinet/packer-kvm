@@ -54,6 +54,22 @@
   command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
 
+- name: Install NetworkManager
+  package:
+    name: NetworkManager-tui
+    state: latest
+  when: ansible_distribution == 'CentOS'
+- name: enable NetworkManager service
+  systemd:
+    name: NetworkManager
+    enabled: yes
+  when: ansible_distribution == 'CentOS'
+- name: disable network service
+  systemd:
+    name: network
+    enabled: yes
+  when: ansible_distribution == 'CentOS'
+
 - name: Tweak Ubuntu netplan config
   copy:
     src: 01-netcfg.yaml.ubuntu
