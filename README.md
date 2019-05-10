@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with packer for usage with libvirt/KVM virtualization : centos 7, ubuntu 1804, debian 9.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, ubuntu 1804, debian 9.
 
 Only for education and learning purposes.
 
