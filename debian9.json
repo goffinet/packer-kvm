@@ -1,5 +1,5 @@
 {
-    "variables":
+  "variables":
     {
       "cpu": "2",
       "ram": "2048",
@@ -38,9 +38,6 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "boot_wait": "15s",
-      "builders": [
-    {
-      "accelerator": "kvm",
       "boot_command": [
                 "<esc><wait>",
                 "auto <wait>",
