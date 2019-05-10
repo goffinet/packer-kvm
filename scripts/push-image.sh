@@ -16,12 +16,12 @@ cd ${path_image}
 mv packer-${image} ${image}.qcow2
 md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
 size_image=$(stat -c %s ${image}.qcow2)
-md5sum ${path_image}/${image}.qcow2 > ${path_image}/${image}.qcow2.md5
-sha1sum ${path_image}/${image}.qcow2 > ${path_image}/${image}.qcow2.sha1
+md5sum ${image}.qcow2 > ${image}.qcow2.md5
+sha1sum ${image}.qcow2 > ${image}.qcow2.sha1
 
 # create a https://gns3.com appliance file
 
-cat << EOF > ${path}/${image}.gns3a
+cat << EOF > ${image}.gns3a
 {
     "name": "${name}${version}",
     "category": "guest",
