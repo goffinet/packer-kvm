@@ -78,13 +78,13 @@ docker build -t packer-qemu .
   ```
   ```raw
   Please provide the image name :
-  centos7.6 ubuntu1804
+  centos7 ubuntu1804
   ```
 
 3. Launch two new machines
 
   ```bash
-  sudo ./define-guest-images.sh c1 centos7.6
+  sudo ./define-guest-images.sh c1 centos7
   sudo ./define-guest-images.sh u1 ubuntu1804
   ```
 
