@@ -1,6 +1,18 @@
 ---
 - name: Centos Tweaking
   block:
+    - name: Install NetworkManager-tui
+      package:
+        name: NetworkManager-tui
+        state: latest
+    - name: enable NetworkManager service
+      systemd:
+        name: NetworkManager
+        enabled: yes
+#    - name: disable network service
+#      systemd:
+#        name: network
+#        enabled: no
     - name: Blacklist modules
       copy:
         src: blacklist.conf.centos
@@ -25,25 +37,13 @@
         backup: no
     - name: Regenerate GRUB configuration
       command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
-    - name: Install NetworkManager
-      package:
-        name: NetworkManager-tui
-        state: latest
-    - name: enable NetworkManager service
-      systemd:
-        name: NetworkManager
-        enabled: yes
-#    - name: disable network service
-#      systemd:
-#        name: network
-#        enabled: no
     - name: upgrade all packages
       yum:
         name: '*'
         state: latest
   when: ansible_distribution == 'CentOS'
 
-- name: Configure GRUB to enable serial console
+- name: Configure GRUB to enable serial console on Debian/Ubuntu
   copy:
     src: grub.ubuntu
     dest: /etc/default/grub
