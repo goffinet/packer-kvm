@@ -51,7 +51,6 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "yum -y install epel-release",
         "yum -y install ansible"
       ]
     },

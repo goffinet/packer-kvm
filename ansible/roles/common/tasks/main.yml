@@ -37,6 +37,10 @@
 #      systemd:
 #        name: network
 #        enabled: no
+    - name: upgrade all packages
+      yum:
+        name: '*'
+        state: latest
   when: ansible_distribution == 'CentOS'
 
 - name: Configure GRUB to enable serial console
