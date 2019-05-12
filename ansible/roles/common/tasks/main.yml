@@ -91,8 +91,8 @@
 - name: Add local pub key to authorized_keys
   authorized_key:
     user: root
-#    key: "{{ lookup('file', 'id_rsa.pub') }}" file must exist
-    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+#    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
     state: present
 - name: Tweak sshd_config
   lineinfile:
