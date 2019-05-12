@@ -87,7 +87,7 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "sudo apt -y remove ansible"
+        "sudo apt -y remove ansible",
         "sudo apt-get clean",
         "sudo apt-get autoremove --purge"
       ]
