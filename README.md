@@ -37,14 +37,15 @@ packer build ubuntu1804.json
 
 
 ```bash
-docker run --rm                                     \
-  -e PACKER_LOG=1                                   \
-  -e PACKER_LOG_PATH="packer-docker.log"            \
-  -it                                               \
-  --privileged                                      \
-  --cap-add=ALL -v /lib/modules:/lib/modules        \
-  -v `pwd`:/opt/                                    \
-  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa            \
+docker run --rm                                      \
+  -e PACKER_LOG=1                                    \
+  -e PACKER_LOG_PATH="centos-packer-docker.log" \
+  -it                                                \
+  --privileged                                       \
+  --cap-add=ALL -v /lib/modules:/lib/modules         \
+  -v `pwd`:/opt/                                     \
+  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa             \
+  -v $HOME/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub     \
   -w /opt/ goffinet/packer-qemu build centos7.json
 ```
 
@@ -52,6 +53,12 @@ To build the image localy with the [Dockerfile](Dockerfile) :
 
 ```shell
 docker build -t packer-qemu .
+```
+
+The script `build.sh` do it with the template name as first argument.
+
+```bash
+./build.sh centos7.json
 ```
 
 ## Packing monitoring
