@@ -74,7 +74,7 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "sudo apt update && sudo apt -y upgrade && sudo apt -y dist-upgrade",
+        "sudo apt update",
         "sudo apt -y install ansible"
       ]
     },
