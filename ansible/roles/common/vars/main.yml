@@ -3,5 +3,5 @@
 common_packages: []
 centos7:
 ubuntu1804:
-  fullupgrade: True
+  fullupgrade: False
 debian9:
