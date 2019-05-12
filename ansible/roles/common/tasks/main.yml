@@ -57,7 +57,7 @@
     - name: Remove dependencies that are no longer required
       apt:
         autoremove: yes
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_distribution == 'Ubuntu' and ubuntu1804.fullupgrade|default(False) == True
 
 - name: Configure GRUB to enable serial console on Debian/Ubuntu
   copy:
