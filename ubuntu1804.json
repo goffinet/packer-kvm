@@ -82,6 +82,14 @@
       "type": "ansible-local",
       "playbook_file": "ansible/playbook.yml",
       "playbook_dir": "ansible"
+    },
+    {
+      "type": "shell",
+      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "inline": [
+        "sudo apt-get clean",
+        "sudo apt-get autoremove --purge"
+      ]
     }
   ],
   "post-processors": [
