@@ -100,6 +100,10 @@ docker build -t packer-qemu .
   ssh $(dig @192.168.122.1 +short u1)
   ```
 
+## ToDo
+
+* Remove swap post-processing
+
 ## Credits
 
 * [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
@@ -109,20 +113,3 @@ docker build -t packer-qemu .
 * [https://github.com/bramford/packer-debian9](https://github.com/bramford/packer-debian9)
 * [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
 * [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
-
-## Notes
-
-Ubuntu 18.04
-
-```json
-      "boot_command": [
-        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "/install/vmlinuz ",
-        "initrd=/install/initrd.gz ",
-        "net.ifnames=0 ",
-        "auto-install/enable=true ",
-        "debconf/priority=critical ",
-        "preseed/url=http://{{.HTTPIP}}:{{.HTTPPort}}/ubuntu1804-preseed.cfg",
-        "<enter>"
-      ],
-```
