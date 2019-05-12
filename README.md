@@ -108,6 +108,7 @@ docker build -t packer-qemu .
 * [https://github.com/kaorimatz/packer-templates](https://github.com/kaorimatz/packer-templates)
 * [https://github.com/bramford/packer-debian9](https://github.com/bramford/packer-debian9)
 * [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
+* [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
 
 ## Notes
 
