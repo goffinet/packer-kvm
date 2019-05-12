@@ -9,5 +9,5 @@ docker run --rm                                     \
   --privileged                                      \
   --cap-add=ALL -v /lib/modules:/lib/modules        \
   -v `pwd`:/opt/                                    \
-  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa            \
+  -v $HOME/.ssh:/root/.ssh                          \
   -w /opt/ goffinet/packer-qemu build ${template}
