@@ -1,6 +1,10 @@
-[all]
+[ubuntu]
 ubuntu
+
+[centos]
 centos
+
+[debian]
 debian
 
 [ubuntu:vars]
@@ -12,7 +16,6 @@ ansible_sudo_pass=testtest
 [centos:vars]
 ansible_ssh_user=root
 ansible_ssh_pass=testtest
-ansible_become=true
 
 [debian:vars]
 ansible_ssh_user=root
