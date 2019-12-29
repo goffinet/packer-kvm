@@ -65,9 +65,9 @@
   "post-processors": [
     {
         "type": "shell-local",
-	      "script": "scripts/push-image.sh",
-	      "environment_vars": ["IMAGE_NAME={{user `name`}}",
-				                     "IMAGE_VERSION={{user `version`}}",
+        "script": "scripts/push-image.sh",
+        "environment_vars": ["IMAGE_NAME={{user `name`}}",
+                             "IMAGE_VERSION={{user `version`}}",
                              "DESTINATION_SERVER={{user `destination_server`}}"]
     }
   ]

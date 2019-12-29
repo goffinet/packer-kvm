@@ -39,7 +39,7 @@ packer build ubuntu1804.json
 ```bash
 docker run --rm                                      \
   -e PACKER_LOG=1                                    \
-  -e PACKER_LOG_PATH="centos-packer-docker.log" \
+  -e PACKER_LOG_PATH="centos-packer-docker.log"      \
   -it                                                \
   --privileged                                       \
   --cap-add=ALL -v /lib/modules:/lib/modules         \
