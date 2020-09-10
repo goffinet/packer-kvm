@@ -1,8 +1,8 @@
 #cloud-config
 autoinstall:
   version: 1
-  identity: {hostname: focal, password: $6$Y5.p4dUVlVHA1Hw1$czEhm5rYxPv/oUTId9nnD.A1APC61FD0rKoLgeNctaLQsGX7/oJQhPaqml7kNOFa3PGyDKm/nHuG3MRUKIzAc.,
-    realname: user, username: user}
+  identity: {hostname: focal, password: $6$.H/q8qEwTUx4IbG2$lak9X.8myLPcrlGPM7qolBFWtY/vTIQghB7puDu.ApUEArDHXo7zCUtkpSvF1ttadbqBogqXhMcv6TqLRWkCt1,
+    realname: ubuntu, username: ubuntu}
   keyboard: {layout: us, toggle: null, variant: ''}
   locale: en_US
   network:

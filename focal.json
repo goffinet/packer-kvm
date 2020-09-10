@@ -11,8 +11,8 @@
       "iso_checksum": "443511f6bf12402c12503733059269a2e10dec602916c0a75263e5d990f6bb93",
       "headless": "true",
       "config_file": "focal",
-      "ssh_username": "root",
-      "ssh_password": "testtest",
+      "ssh_username": "ubuntu",
+      "ssh_password": "ubuntu",
       "destination_server": "get.goffinet.org"
     },
   "builders": [
@@ -30,8 +30,6 @@
       "http_directory": ".",
       "http_port_min": 10082,
       "http_port_max": 10089,
-      "ssh_username": "ubuntu",
-      "ssh_password": "ubuntu",
       "ssh_handshake_attempts": "20",
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
