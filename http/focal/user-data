@@ -1,14 +1,6 @@
 #cloud-config
 autoinstall:
   version: 1
-  apt:
-    geoip: true
-    preserve_sources_list: false
-    primary:
-    - arches: [amd64, i386]
-      uri: http://fr.archive.ubuntu.com/ubuntu
-    - arches: [default]
-      uri: http://ports.ubuntu.com/ubuntu-ports
   identity: {hostname: focal, password: $6$Y5.p4dUVlVHA1Hw1$czEhm5rYxPv/oUTId9nnD.A1APC61FD0rKoLgeNctaLQsGX7/oJQhPaqml7kNOFa3PGyDKm/nHuG3MRUKIzAc.,
     realname: user, username: user}
   keyboard: {layout: us, toggle: null, variant: ''}
@@ -21,7 +13,6 @@ autoinstall:
     version: 2
   ssh:
     allow-pw: true
-    authorized-keys: []
     install-server: true
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
