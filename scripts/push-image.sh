@@ -96,10 +96,10 @@ aws_access_key_id=$AWS_ACCESS_KEY
 aws_secret_access_key=$AWS_SECRET_KEY
 EOF
 # Push the files
-aws s3 rm ${image}.qcow2 s3://$DESTINATION_SERVER/kvm/
-aws s3 rm ${image}.qcow2.md5sum s3://$DESTINATION_SERVER/kvm/
-aws s3 rm ${image}.qcow2.sha256sum s3://$DESTINATION_SERVER/kvm/
-aws s3 rm ${image}.gns3a s3://$DESTINATION_SERVER/gns3a/
+aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2
+aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2.md5sum
+aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2.sha256sum
+aws s3 rm s3://$DESTINATION_SERVER/gns3a/${image}.gns3a
 aws s3 cp ${image}.qcow2 s3://$DESTINATION_SERVER/kvm/
 aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2 --acl public-read
 aws s3 cp ${image}.qcow2.md5sum s3://$DESTINATION_SERVER/kvm/
