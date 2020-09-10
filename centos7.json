@@ -41,7 +41,6 @@
       "disk_discard": "unmap",
       "disk_compression": true,
       "headless": "{{user `headless`}}",
-      "http_directory": ".",
       "shutdown_command": "sudo /usr/sbin/shutdown -h now",
       "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
     }
