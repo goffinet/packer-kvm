@@ -39,7 +39,7 @@
       "boot_wait": "3s",
       "boot_command": [
         "<enter><enter><f6><esc><wait>",
-        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs>",
         "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
         "--- <enter>"
       ],
