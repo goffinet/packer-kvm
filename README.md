@@ -67,6 +67,12 @@ packer build bionic.json
 
 ## Build with Docker qemu based image
 
+To build the image localy with the [Dockerfile](Dockerfile) :
+
+```shell
+docker build -t goffinet/packer-qemu .
+```
+
 `goffinet/packer-qemu` is a Docker image for building qemu images with packer
 
 
@@ -81,12 +87,6 @@ docker run --rm \
   -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
   -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
   -w /opt/ goffinet/packer-qemu build centos7.json
-```
-
-To build the image localy with the [Dockerfile](Dockerfile) :
-
-```shell
-docker build -t packer-qemu .
 ```
 
 The script `build.sh` do it with the template name as first argument.
