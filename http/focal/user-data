@@ -16,6 +16,9 @@ autoinstall:
   ssh:
     allow-pw: true
     install-server: true
+  storage:
+    layout:
+      name: lvm
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
