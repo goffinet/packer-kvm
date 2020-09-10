@@ -68,7 +68,9 @@ EOF
 # Push image to S3 bucket
 
 # Install python3-pip
+if [ -f /etc/debian_version ]; then
 apt update && apt -y install python3-pip
+fi
 pip3 install awscli
 pip3 install awscli-plugin-endpoint
 # Configure parameters and credits
