@@ -38,9 +38,8 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "boot_wait": "3s",
       "boot_command": [
-        "<esc><esc><esc><enter><wait>",
-        "/casper/vmlinuz root=/dev/sr0 initrd=/casper/initrd autoinstall ",
-        "ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
+        "<enter><enter><f6><esc><wait> ",
+        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
         "<enter>"
       ],
       "disk_size": "{{user `disk_size`}}",
