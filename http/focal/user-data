@@ -23,27 +23,6 @@ autoinstall:
     allow-pw: true
     authorized-keys: []
     install-server: true
-  storage:
-    config:
-    - {ptable: gpt, path: /dev/vda, wipe: superblock, preserve: false, name: '', grub_device: true,
-      type: disk, id: disk-vda}
-    - {device: disk-vda, size: 1048576, flag: bios_grub, number: 1, preserve: false,
-      type: partition, id: partition-0}
-    - {device: disk-vda, size: 1073741824, wipe: superblock, flag: '', number: 2,
-      preserve: false, type: partition, id: partition-1}
-    - {fstype: ext4, volume: partition-1, preserve: false, type: format, id: format-0}
-    - {device: disk-vda, size: 41872785408, wipe: superblock, flag: '', number: 3,
-      preserve: false, type: partition, id: partition-2}
-    - name: ubuntu-vg
-      devices: [partition-2]
-      preserve: false
-      type: lvm_volgroup
-      id: lvm_volgroup-0
-    - {name: ubuntu-lv, volgroup: lvm_volgroup-0, size: 21474836480B, preserve: false,
-      type: lvm_partition, id: lvm_partition-0}
-    - {fstype: ext4, volume: lvm_partition-0, preserve: false, type: format, id: format-1}
-    - {device: format-1, path: /, type: mount, id: mount-1}
-    - {device: format-0, path: /boot, type: mount, id: mount-0}
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
