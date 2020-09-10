@@ -14,8 +14,7 @@ autoinstall:
   storage:
     layout:
       name: lvm
-      match:
-        path: /dev/vda
+      match: {}
   identity:
     hostname: focal
     username: user
