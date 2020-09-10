@@ -30,16 +30,15 @@
       "http_directory": ".",
       "http_port_min": 10082,
       "http_port_max": 10089,
-      "ssh_handshake_attempts": "20",
       "ssh_host_port_min": 2222,
       "ssh_host_port_max": 2229,
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "boot_wait": "2s",
+      "boot_wait": "3s",
       "boot_command": [
-        "<enter><enter><f6><esc><wait> ",
+        "<esc><esc><esc><enter><wait>",
         "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
         "<enter>"
       ],
