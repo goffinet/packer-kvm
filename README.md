@@ -71,15 +71,15 @@ packer build bionic.json
 
 
 ```bash
-docker run --rm                                      \
-  -e PACKER_LOG=1                                    \
-  -e PACKER_LOG_PATH="centos-packer-docker.log"      \
-  -it                                                \
-  --privileged                                       \
-  --cap-add=ALL -v /lib/modules:/lib/modules         \
-  -v `pwd`:/opt/                                     \
-  -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa             \
-  -v $HOME/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub     \
+docker run --rm \
+  -e PACKER_LOG=1 \
+  -e PACKER_LOG_PATH="packer-docker.log" \
+  -it \
+  --privileged \
+  --cap-add=ALL -v /lib/modules:/lib/modules \
+  -v `pwd`:/opt/ \
+  -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
+  -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
   -w /opt/ goffinet/packer-qemu build centos7.json
 ```
 
