@@ -6,6 +6,9 @@ name=$IMAGE_NAME
 version=$IMAGE_VERSION
 path_image="artifacts/qemu/${name}${version}"
 image="${name}${version}"
+BUCKET=$DESTINATION_SERVER
+AWS_ACCESS_KEY=$AWS_ACCESS_KEY
+AWS_SECRET_KEY=$AWS_SECRET_KEY
 
 # go to the artifact folder
 
@@ -98,15 +101,15 @@ aws_access_key_id=$AWS_ACCESS_KEY
 aws_secret_access_key=$AWS_SECRET_KEY
 EOF
 # Push the files
-aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2
-aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2.md5sum
-aws s3 rm s3://$DESTINATION_SERVER/kvm/${image}.qcow2.sha256sum
-aws s3 rm s3://$DESTINATION_SERVER/gns3a/${image}.gns3a
-aws s3 cp ${image}.qcow2 s3://$DESTINATION_SERVER/kvm/
-aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2 --acl public-read
-aws s3 cp ${image}.qcow2.md5sum s3://$DESTINATION_SERVER/kvm/
-aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2.md5sum --acl public-read
-aws s3 cp ${image}.qcow2.sha256sum s3://$DESTINATION_SERVER/kvm/
-aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2.sha256sum --acl public-read
-aws s3 cp ${image}.gns3a s3://$DESTINATION_SERVER/gns3a/
-aws s3api put-object-acl --bucket $DESTINATION_SERVER --key gns3a/${image}.gns3a --acl public-read
+aws s3 rm s3://$BUCKET/kvm/${image}.qcow2
+aws s3 rm s3://$BUCKET/kvm/${image}.qcow2.md5sum
+aws s3 rm s3://$BUCKET/kvm/${image}.qcow2.sha256sum
+aws s3 rm s3://$BUCKET/gns3a/${image}.gns3a
+aws s3 cp ${image}.qcow2 s3://$BUCKET/kvm/
+aws s3api put-object-acl --bucket $BUCKET --key kvm/${image}.qcow2 --acl public-read
+aws s3 cp ${image}.qcow2.md5sum s3://$BUCKET/kvm/
+aws s3api put-object-acl --bucket $BUCKET --key kvm/${image}.qcow2.md5sum --acl public-read
+aws s3 cp ${image}.qcow2.sha256sum s3://$BUCKET/kvm/
+aws s3api put-object-acl --bucket $BUCKET --key kvm/${image}.qcow2.sha256sum --acl public-read
+aws s3 cp ${image}.gns3a s3://$BUCKET/gns3a/
+aws s3api put-object-acl --bucket $BUCKET --key gns3a/${image}.gns3a --acl public-read
