@@ -40,7 +40,7 @@
       "boot_command": [
         "<enter><enter><f6><esc><wait> ",
         "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
-        "<enter>"
+        "<wait><enter>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "disk_discard": "ignore",
