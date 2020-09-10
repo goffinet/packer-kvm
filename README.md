@@ -19,7 +19,16 @@ Optionnal :
 ## Pre-requisites
 
 * libvirt/KVM and Packer
+* aws s3 cli
 * Docker
+
+### AWS S3
+
+```bash
+echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.profile
+echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY"> >> ~/.profile
+source ~/.profile
+```
 
 ### Libvirt
 
