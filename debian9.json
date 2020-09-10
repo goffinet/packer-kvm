@@ -58,6 +58,7 @@
       "disk_discard": "unmap",
       "disk_compression": true,
       "headless": "{{user `headless`}}",
+      "http_directory": ".",
       "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S shutdown -P now",
       "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
     }
