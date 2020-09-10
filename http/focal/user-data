@@ -1,19 +1,26 @@
-#cloud-config
 autoinstall:
   version: 1
-  interactive-sections:
-    - network
-    - storage
-  locale: en_US.UTF-8
+  locale: en_US
   keyboard:
-    layout: us
+    layout: en
+    variant: us
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens33:
+          dhcp4: true
+  storage:
+    layout:
+      name: lvm
   identity:
     hostname: focal
     username: user
-    plain_text_passwd: 'testtest'
+    password: $6$rounds=4096$vuL0T1Ukj7$o0AHQK0bnND1iIzS8KDr9RmYMHqtXtKsKVPYAeQQIIlToK26/y3rN5vkHqMcXkIcawMOKKfNtA64Fqi7ktHP.1
   ssh:
-    allow-pw: true
-    install-server: true
+    install-server: yes
+  user-data:
+    disable_root: false
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
