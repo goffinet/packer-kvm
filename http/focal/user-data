@@ -7,7 +7,7 @@ autoinstall:
   locale: en_US
   network:
     ethernets:
-      ens3:
+      enp1s0:
         dhcp4: true
         dhcp-identifier: mac
     version: 2
