@@ -8,11 +8,14 @@ autoinstall:
     network:
       version: 2
       ethernets:
-        ens33:
+        ens3:
           dhcp4: true
+          dhcp6: yes
   storage:
     layout:
       name: lvm
+      match:
+        path: /dev/vda
   identity:
     hostname: focal
     username: user
