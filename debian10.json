@@ -1,16 +1,16 @@
 {
-    "variables":
+  "variables":
     {
       "cpu": "2",
       "ram": "2048",
-      "name": "ubuntu",
+      "name": "debian",
       "disk_size": "40000",
-      "version": "1804",
+      "version": "10",
       "iso_checksum_type": "sha256",
-      "iso_urls": "http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/mini.iso",
-      "iso_checksum": "bed8a55ae2a657f8349fe3271097cff3a5b8c3d1048cf258568f1601976fa30d",
+      "iso_urls": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.5.0-amd64-netinst.iso",
+      "iso_checksum": "93863e17ac24eeaa347dfb91dddac654f214c189e0379d7c28664a306e0301e7",
       "headless": "true",
-      "config_file": "ubuntu1804-preseed.cfg",
+      "config_file": "debian9-preseed.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
       "destination_server": "get.goffinet.org"
@@ -26,7 +26,7 @@
       "disk_interface": "virtio",
       "disk_cache": "none",
       "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
-      "ssh_wait_timeout": "45m",
+      "ssh_wait_timeout": "30m",
       "http_directory": ".",
       "http_port_min": 10082,
       "http_port_max": 10089,
@@ -38,11 +38,20 @@
       "iso_checksum": "{{user `iso_checksum`}}",
       "boot_wait": "15s",
       "boot_command": [
-        "<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
-        "net.ifnames=0 biosdevname=0 fb=false hostname={{user `name`}}{{user `version`}} locale=en_US ",
-        "console-keymaps-at/keymap=us console-setup/ask_detect=false ",
-        "console-setup/layoutcode=us keyboard-configuration/layout=USA keyboard-configuration/variant=USA ",
-        "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}} <enter><wait>"
+                "<esc><wait>",
+                "auto <wait>",
+                "console-keymaps-at/keymap=us <wait>",
+                "console-setup/ask_detect=false <wait>",
+                "debconf/frontend=noninteractive <wait>",
+                "debian-installer=en_US <wait>",
+                "fb=false <wait>",
+                "install <wait>",
+                "kbd-chooser/method=us <wait>",
+                "keyboard-configuration/xkb-keymap=us <wait>",
+                "locale=en_US <wait>",
+                "netcfg/get_hostname={{user `name`}}{{user `version`}} <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}} <wait>",
+                "<enter><wait>"
       ],
       "disk_size": "{{user `disk_size`}}",
       "disk_discard": "unmap",
@@ -55,14 +64,14 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
       "inline": [
-        "sudo apt-get update",
-        "sudo apt-get -y install software-properties-common",
-        "sudo apt-add-repository --yes --update ppa:ansible/ansible",
-        "sudo apt update",
-        "sudo apt -y install ansible"
-      ]
+        "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main\" >> /etc/apt/sources.list",
+        "apt -y install dirmngr",
+        "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367",
+        "apt-get update",
+        "apt -y install ansible"
+        ]
     },
     {
       "type": "ansible-local",
@@ -71,11 +80,11 @@
     },
     {
       "type": "shell",
-      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
       "inline": [
-        "sudo apt -y remove ansible",
-        "sudo apt-get clean",
-        "sudo apt-get -y autoremove --purge"
+        "apt -y remove ansible",
+        "apt-get clean",
+        "apt-get -y autoremove --purge"
       ]
     }
   ],
