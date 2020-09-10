@@ -7,7 +7,7 @@ autoinstall:
   locale: en_US
   network:
     ethernets:
-      enp1s0:
+      eth0:
         dhcp4: true
         dhcp-identifier: mac
     version: 2
@@ -20,4 +20,8 @@ autoinstall:
     - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
     - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
   packages:
+    - bc
+    - curl
+    - wget
+    - openssh-server
     - qemu-guest-agent
