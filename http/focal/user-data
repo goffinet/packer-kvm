@@ -1,6 +1,9 @@
 #cloud-config
 autoinstall:
   version: 1
+  interactive-sections:
+    - network
+    - storage
   locale: en_US.UTF-8
   keyboard:
     layout: us
@@ -8,18 +11,9 @@ autoinstall:
     hostname: focal
     username: user
     plain_text_passwd: 'testtest'
-  sudo:
-    - ALL=(ALL) NOPASSWD:AL
   ssh:
     allow-pw: true
     install-server: true
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
-  packages:
-    - openssh-server
-    - sudo
-    - qemu-guest-agent
-    - wget
-    - vim
-    - cloud-init
