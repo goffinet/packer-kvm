@@ -17,7 +17,7 @@ mv packer-${image} ${image}.qcow2
 md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
 size_image=$(stat -c %s ${image}.qcow2)
 md5sum ${image}.qcow2 > ${image}.qcow2.md5sum
-sha1sum ${image}.qcow2 > ${image}.qcow2.sha1sum
+sha256sum ${image}.qcow2 > ${image}.qcow2.sha256sum
 
 # create a https://gns3.com appliance file
 
@@ -98,13 +98,13 @@ EOF
 # Push the files
 aws s3 rm ${image}.qcow2 s3://$DESTINATION_SERVER/kvm/
 aws s3 rm ${image}.qcow2.md5sum s3://$DESTINATION_SERVER/kvm/
-aws s3 rm ${image}.qcow2.sha1sum s3://$DESTINATION_SERVER/kvm/
+aws s3 rm ${image}.qcow2.sha256sum s3://$DESTINATION_SERVER/kvm/
 aws s3 rm ${image}.gns3a s3://$DESTINATION_SERVER/gns3a/
 aws s3 cp ${image}.qcow2 s3://$DESTINATION_SERVER/kvm/
 aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2 --acl public-read
 aws s3 cp ${image}.qcow2.md5sum s3://$DESTINATION_SERVER/kvm/
 aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2.md5sum --acl public-read
-aws s3 cp ${image}.qcow2.sha1sum s3://$DESTINATION_SERVER/kvm/
-aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2.sha1sum --acl public-read
+aws s3 cp ${image}.qcow2.sha256sum s3://$DESTINATION_SERVER/kvm/
+aws s3api put-object-acl --bucket $DESTINATION_SERVER --key kvm/${image}.qcow2.sha256sum --acl public-read
 aws s3 cp ${image}.gns3a s3://$DESTINATION_SERVER/gns3a/
 aws s3api put-object-acl --bucket $DESTINATION_SERVER --key gns3a/${image}.gns3a --acl public-read
