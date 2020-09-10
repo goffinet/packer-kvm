@@ -1,28 +1,49 @@
+#cloud-config
 autoinstall:
   version: 1
+  apt:
+    geoip: true
+    preserve_sources_list: false
+    primary:
+    - arches: [amd64, i386]
+      uri: http://fr.archive.ubuntu.com/ubuntu
+    - arches: [default]
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  identity: {hostname: focal, password: $6$Y5.p4dUVlVHA1Hw1$czEhm5rYxPv/oUTId9nnD.A1APC61FD0rKoLgeNctaLQsGX7/oJQhPaqml7kNOFa3PGyDKm/nHuG3MRUKIzAc.,
+    realname: user, username: user}
+  keyboard: {layout: us, toggle: null, variant: ''}
   locale: en_US
-  keyboard:
-    layout: en
-    variant: us
   network:
-    network:
-      version: 2
-      ethernets:
-        ens3:
-          dhcp4: true
-          dhcp6: yes
-  storage:
-    layout:
-      name: lvm
-      match: {}
-  identity:
-    hostname: focal
-    username: user
-    password: $6$rounds=4096$vuL0T1Ukj7$o0AHQK0bnND1iIzS8KDr9RmYMHqtXtKsKVPYAeQQIIlToK26/y3rN5vkHqMcXkIcawMOKKfNtA64Fqi7ktHP.1
+    ethernets:
+      ens3:
+        dhcp4: true
+        dhcp6: yes
+    version: 2
   ssh:
-    install-server: yes
-  user-data:
-    disable_root: false
+    allow-pw: true
+    authorized-keys: []
+    install-server: true
+  storage:
+    config:
+    - {ptable: gpt, path: /dev/vda, wipe: superblock, preserve: false, name: '', grub_device: true,
+      type: disk, id: disk-vda}
+    - {device: disk-vda, size: 1048576, flag: bios_grub, number: 1, preserve: false,
+      type: partition, id: partition-0}
+    - {device: disk-vda, size: 1073741824, wipe: superblock, flag: '', number: 2,
+      preserve: false, type: partition, id: partition-1}
+    - {fstype: ext4, volume: partition-1, preserve: false, type: format, id: format-0}
+    - {device: disk-vda, size: 41872785408, wipe: superblock, flag: '', number: 3,
+      preserve: false, type: partition, id: partition-2}
+    - name: ubuntu-vg
+      devices: [partition-2]
+      preserve: false
+      type: lvm_volgroup
+      id: lvm_volgroup-0
+    - {name: ubuntu-lv, volgroup: lvm_volgroup-0, size: 21474836480B, preserve: false,
+      type: lvm_partition, id: lvm_partition-0}
+    - {fstype: ext4, volume: lvm_partition-0, preserve: false, type: format, id: format-1}
+    - {device: format-1, path: /, type: mount, id: mount-1}
+    - {device: format-0, path: /boot, type: mount, id: mount-0}
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
