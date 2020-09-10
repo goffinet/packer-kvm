@@ -35,6 +35,7 @@
       "ssh_host_port_max": 2229,
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
+      "ssh_handshake_attempts": 500,
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "boot_wait": "3s",
