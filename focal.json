@@ -37,7 +37,7 @@
       "ssh_password": "{{user `ssh_password`}}",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "boot_wait": "3s",
+      "boot_wait": "5s",
       "boot_command": [
         "<enter><enter><f6><esc><wait> ",
         "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{ user `config_file` }}/",
