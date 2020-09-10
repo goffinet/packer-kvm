@@ -10,7 +10,7 @@
       "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso",
       "iso_checksum": "47ab14778c823acae2ee6d365d76a9aed3f95bb8d0add23a06536b58bb5293c0",
       "headless": "true",
-      "config_file": "centos7-kickstart.cfg",
+      "config_file": "centos8-kickstart.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
       "destination_server": "get.goffinet.org"
