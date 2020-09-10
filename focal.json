@@ -37,7 +37,7 @@
       "ssh_password": "{{user `ssh_password`}}",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "boot_wait": "6s",
+      "boot_wait": "3s",
       "boot_command": [
         "<esc><esc><esc><enter><wait>",
         "/casper/vmlinuz root=/dev/sr0 initrd=/casper/initrd autoinstall ",
