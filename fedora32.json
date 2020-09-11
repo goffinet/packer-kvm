@@ -11,7 +11,7 @@
       "iso_checksum": "cd2aefdbe1b5042865a39c49d32f5d21a9537c719aa87dde34d08ca06bc6681c",
       "headless": "true",
       "config_file": "fedora32-kickstart.cfg",
-      "ssh_username": "root",
+      "ssh_username": "user",
       "ssh_password": "testtest",
       "destination_server": "get.goffinet.org"
     },
