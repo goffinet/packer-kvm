@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, bioinc (ubuntu 1804), debian 10 (stable).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, bionic (ubuntu 1804), focal (ubuntu 2004) debian 10 (stable).
 
 Only for education and learning purposes.
 
@@ -8,19 +8,19 @@ Only for education and learning purposes.
 
 This is a Packer Proof of Concept/sample with :
 
-* qemu/kvm as builder
+* qemu/kvm as image builder (qcow2)
 * shell and ansible-local as provisionners
 * shell-local as post-processor to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
 
 Optionnal :
 
-* inside a docker container
+* run this inside a docker container
 
 ## Pre-requisites
 
 * libvirt/KVM and Packer
 * aws s3 cli
-* Docker
+* Docker (to run the build inside a container)
 
 ### AWS S3
 
@@ -108,7 +108,7 @@ The script `build.sh` do it with the template name as first argument.
 
 ...
 
-## Exploit with Libvirt
+## Enjoy with Libvirt
 
 [https://github.com/goffinet/virt-scripts](https://github.com/goffinet/virt-scripts)
 
@@ -150,7 +150,9 @@ The script `build.sh` do it with the template name as first argument.
   ssh $(dig @192.168.122.1 +short u1)
   ```
 
-## Exploit with Terraform and Libvirt Provider
+## Enjoy with Terraform (with libvirt)
+
+[https://github.com/goffinet/terraform-libvirt](https://github.com/goffinet/terraform-libvirt)
 
 ```bash
 echo "security_driver = \"none\"" >> /etc/libvirt/qemu.conf
@@ -166,9 +168,16 @@ mkdir -p ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvir
 cp -r terraform-provider-libvirt ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.2/linux_amd64/
 ```
 
-...
+```bash
+git clone https://github.com/goffinet/terraform-libvirt
+cd terraform-libvirt/ubuntu
+terraform plan
+cd ../count
+terraform plan
+```
 
 ## ToDo
+
 
 * Remove swap post-processing
 
