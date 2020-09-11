@@ -9,6 +9,5 @@ docker run --rm \
   --privileged \
   --cap-add=ALL -v /lib/modules:/lib/modules \
   -v `pwd`:/opt/ \
-  -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
-  -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
+  -v $HOME/.profile:/root/.profile
   -w /opt/ goffinet/packer-qemu build ${template}
