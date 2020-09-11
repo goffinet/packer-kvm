@@ -35,7 +35,7 @@ source ~/.profile
 ```bash
 if [ -f /etc/debian_version ]; then
 apt-get update && apt-get -y upgrade
-apt-get -y install qemu-kvm libvirt-dev virtinst virt-viewer libguestfs-tools virt-manager uuid-runtime curl linux-source
+apt-get -y install qemu-kvm libvirt-dev virtinst virt-viewer libguestfs-tools virt-manager uuid-runtime curl linux-source libosinfo-bin
 virsh net-start default
 virsh net-autostart default
 elif [ -f /etc/redhat-release ]; then
