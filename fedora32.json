@@ -30,6 +30,7 @@
       "http_directory": ".",
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
+      "ssh_private_key_file": "/root/.ssh/id_rsa",
       "iso_urls": "{{user `iso_urls`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "boot_wait": "40s",
