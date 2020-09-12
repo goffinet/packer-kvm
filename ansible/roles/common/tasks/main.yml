@@ -52,6 +52,8 @@
       yum:
         name: '*'
         state: latest
+    - name: yum clean all
+      command: yum clean all
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
 
 - name: Ubuntu latest packages update/upgrade and clean
