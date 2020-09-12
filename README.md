@@ -30,13 +30,15 @@ The run this project with success, you need a virtualization server and some sof
 * aws s3 cli
 * Docker (to run the build inside a container)
 
+Use `./setup.sh` for a quick setup.
+
 ### AWS S3
 
 Configure your S3 credits :
 
 ```bash
 echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.profile
-echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY"> >> ~/.profile
+echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY"> >> ~/.profile
 source ~/.profile
 ```
 
