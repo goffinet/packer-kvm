@@ -178,7 +178,6 @@ terraform plan
 
 ## ToDo
 
-
 * Remove swap post-processing
 
 ## Credits
@@ -190,3 +189,11 @@ terraform plan
 * [https://github.com/bramford/packer-debian9](https://github.com/bramford/packer-debian9)
 * [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
 * [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
+
+## Notes
+
+To generate ssh keys :
+
+```bash
+ssh-keygen -q -t rsa -N '' -C 'packer-kvm-default-key' -f sshkeys/id_rsa
+```
