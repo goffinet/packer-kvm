@@ -192,8 +192,22 @@ terraform plan
 
 ## Notes
 
+### SSH keys
+
 To generate ssh keys :
 
 ```bash
 ssh-keygen -q -t rsa -N '' -C 'packer-kvm-default-key' -f sshkeys/id_rsa
+```
+
+To get the default ssh private key :
+
+```bash
+curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa
+```
+
+To get the default ssh public key :
+
+```bash
+curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa.pub
 ```
