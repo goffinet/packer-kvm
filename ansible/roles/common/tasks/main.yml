@@ -37,7 +37,7 @@
       dnf:
         name: epel-release
         state: latest
-      when: ansible_facts['distribution_major_version'] == '8'
+      when: ansible_facts['distribution_major_version'] == '8' or ansible_distribution == 'Fedora'
     - name: Enable EPEL Repository on CentOS 7
       yum:
         name: epel-release
@@ -51,7 +51,7 @@
       yum:
         name: '*'
         state: latest
-  when: ansible_distribution == 'CentOS'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Fedora'
 
 - name: Ubuntu latest packages update/upgrade and clean
   block:
