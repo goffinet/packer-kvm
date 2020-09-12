@@ -128,7 +128,7 @@ The script `build.sh` do it with the template name as first argument.
 
 ## Packing monitoring
 
-Packer use VNC to launch a temporary VM, you can check this windows with a VNC client like `vinagre`.
+Packer use VNC to launch a temporary VM, you can check this window with a VNC client like `vinagre`.
 
 You can have more details from Packet with the env var `PACKER_LOG=1`.
 
@@ -198,7 +198,7 @@ Compose your libvirt infrastructure :
 
 ```bash
 git clone https://github.com/goffinet/terraform-libvirt
-cd terraform-libvirt/ubuntu
+cd terraform-libvirt/basics/ubuntu
 terraform plan
 cd ../count
 terraform plan
