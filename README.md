@@ -6,23 +6,33 @@ Only for education and learning purposes.
 
 ## Introduction
 
-This is a Packer Proof of Concept/sample with :
+This is a Packer "Proof of Concept" with :
 
 * qemu/kvm as image builder (qcow2)
-* shell and ansible-local as provisionners
-* shell-local as post-processor to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
+* "shell" and "ansible-local" as provisionners
+* "shell-local" as post-processor to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
 
 Optionnal :
 
 * run this inside a docker container
+* build your own container
+
+Enjoy those images with :
+
+* Libvirt native tools
+* Terraform as IaC tool with a third party Libvirtd Provider plugin
 
 ## Pre-requisites
 
-* libvirt/KVM and Packer
+The run this project with success, you need a virtualization server and some softwares installed :
+
+* Libvirt/KVM and Packer
 * aws s3 cli
 * Docker (to run the build inside a container)
 
 ### AWS S3
+
+Configure your S3 credits :
 
 ```bash
 echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.profile
@@ -31,6 +41,8 @@ source ~/.profile
 ```
 
 ### Libvirt
+
+Install Livirt/KVM on your server :
 
 ```bash
 if [ -f /etc/debian_version ]; then
@@ -48,6 +60,8 @@ fi
 
 ### Packer
 
+Install the Packer binary :
+
 ```bash
 sudo yum -y install wget unzip || sudo apt update && sudo apt -y install wget unzip
 latest=$(curl -L -s https://releases.hashicorp.com/packer | grep 'packer_' | sed 's/^.*<.*\">packer_\(.*\)<\/a>/\1/' | head -1)
@@ -59,19 +73,27 @@ sudo mv packer /usr/local/bin/
 
 ### Docker
 
+Get Docker :
+
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 ```
 
 ## Build with Packer
 
+Each JSON file is a template for a distribution :
+
+* bionic.json
+* centos7.json
+* centos8.json
+* debian10.json
+* fedora32.json
+* focal.json
+
+For example :
 
 ```bash
 packer build centos7.json
-```
-
-```bash
-packer build bionic.json
 ```
 
 ## Build with Docker qemu based image
@@ -82,7 +104,7 @@ To build the image localy with the [Dockerfile](Dockerfile) :
 docker build -t goffinet/packer-qemu .
 ```
 
-`goffinet/packer-qemu` is a Docker image for building qemu images with packer
+`goffinet/packer-qemu` is a Docker image for building qemu images with packer and is avaible on Docker Hub.
 
 
 ```bash
@@ -106,7 +128,9 @@ The script `build.sh` do it with the template name as first argument.
 
 ## Packing monitoring
 
-...
+Packer use VNC to launch a temporary VM, you can check this windows with a VNC client like `vinagre`.
+
+You can have more details from Packet with the env var `PACKER_LOG=1`.
 
 ## Enjoy with Libvirt
 
@@ -154,6 +178,8 @@ The script `build.sh` do it with the template name as first argument.
 
 [https://github.com/goffinet/terraform-libvirt](https://github.com/goffinet/terraform-libvirt)
 
+Install Terraform 0.13 with a third party Libvirt provider plugin :
+
 ```bash
 echo "security_driver = \"none\"" >> /etc/libvirt/qemu.conf
 systemctl restart libvirtd
@@ -168,6 +194,8 @@ mkdir -p ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvir
 cp -r terraform-provider-libvirt ~/.local/share/terraform/plugins/registry.terraform.io/dmacvicar/libvirt/0.6.2/linux_amd64/
 ```
 
+Compose your libvirt infrastructure :
+
 ```bash
 git clone https://github.com/goffinet/terraform-libvirt
 cd terraform-libvirt/ubuntu
@@ -179,8 +207,9 @@ terraform plan
 ## ToDo
 
 * Remove swap post-processing
+* docker-compose
 
-## Credits
+## Initials credits
 
 * [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
 * [https://github.com/jakobadam/packer-qemu-templates](https://github.com/jakobadam/packer-qemu-templates)
