@@ -23,6 +23,7 @@
         enabled: no
         masked: no
         state: stopped
+      when: ansible_distribution == 'CentOS'
     - name: Configure GRUB to enable serial console
       copy:
         src: grub.centos
