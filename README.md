@@ -65,20 +65,26 @@ fi
 Install the Packer binary :
 
 ```bash
-sudo yum -y install wget unzip || sudo apt update && sudo apt -y install wget unzip
+yum -y install wget unzip || apt update && apt -y install wget unzip
 latest=$(curl -L -s https://releases.hashicorp.com/packer | grep 'packer_' | sed 's/^.*<.*\">packer_\(.*\)<\/a>/\1/' | head -1)
 wget https://releases.hashicorp.com/packer/${latest}/packer_${latest}_linux_amd64.zip
 unzip packer*.zip
 chmod +x packer
-sudo mv packer /usr/local/bin/
+mv packer /usr/local/bin/
 ```
 
 ### Docker
 
-Get Docker :
+Get Docker et docker-compose :
 
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+if [ -f /etc/debian_version ]; then
+apt-get update && apt-get -y install python3-pip
+elif [ -f /etc/redhat-release ]; then
+yum -y install python3-pip
+fi
+pip3 install docker-compose
 ```
 
 ## Build with Packer
@@ -100,12 +106,6 @@ packer build centos7.json
 
 ## Build with Docker qemu based image
 
-To build the image localy with the [Dockerfile](Dockerfile) :
-
-```shell
-docker build -t goffinet/packer-qemu .
-```
-
 `goffinet/packer-qemu` is a Docker image for building qemu images with packer and is avaible on Docker Hub.
 
 
@@ -122,10 +122,16 @@ docker run --rm \
   -w /opt/ goffinet/packer-qemu build centos7.json
 ```
 
-The script `build.sh` do it with the template name as first argument.
+The script `build.sh` do it with the template filename as first argument.
 
 ```bash
 ./build.sh centos7.json
+```
+
+To build the image localy with the [Dockerfile](Dockerfile) :
+
+```shell
+docker build -t packer-qemu .
 ```
 
 ## Packing monitoring

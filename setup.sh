@@ -35,16 +35,5 @@ mv packer /usr/local/bin/
 cd $currentd
 }
 
-3_docker_docker-compose_installation () {
-curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
-if [ -f /etc/debian_version ]; then
-apt-get update && apt-get -y install python3-pip
-elif [ -f /etc/redhat-release ]; then
-yum -y install python3-pip
-fi
-pip3 install docker-compose
-}
-
 1_virtualization_installation
 2_packer_installation
-3_docker_docker-compose_installation
