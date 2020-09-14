@@ -33,3 +33,5 @@ autoinstall:
     - wget
     - openssh-server
     - qemu-guest-agent
+  package_update: true
+  package_upgrade: true
