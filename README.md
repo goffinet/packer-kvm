@@ -2,15 +2,33 @@
 
 Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, bionic (ubuntu 1804), focal (ubuntu 2004), debian 10 (stable) and Fedora (32).
 
-Only for education and learning purposes.
+Only for education and learning purposes. Do not use it in production.
 
-## Introduction
+## Packer Concepts
+
+Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration.[^1]
+
+Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, etc. Packer comes with many builders by default, and can also be extended to add new builders.[^2]
+
+Provisioners use builtin and third-party software to install and configure the machine image after booting.[^3]
+
+Post-processors run after the image is built by the builder and provisioned by the provisioner(s).[^4]
+
+[^1]: [Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer)
+
+[^2]: [Builders](https://www.packer.io/docs/builders)
+
+[^3]: [Provisioners](https://www.packer.io/docs/provisioners)
+
+[^4]: [Post-Processors](https://www.packer.io/docs/post-processors)
+
+## Proof of Concept to generate Linux qemu images
 
 This is a Packer "Proof of Concept" with :
 
-* qemu/kvm as image builder (qcow2)
-* "shell" and "ansible-local" as provisionners
-* "shell-local" as post-processor to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
+* qemu/kvm as image builder[^2] (qcow2)
+* "shell" and "ansible-local" as provisionners[^3]
+* "shell-local" as post-processor[^4] to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
 
 Optionnal :
 
@@ -22,15 +40,20 @@ Enjoy those images with :
 * Libvirt native tools
 * Terraform as IaC tool with a third party Libvirtd Provider plugin
 
+The built images are intended to be published on a S3 bucket.
+
 ## Pre-requisites
 
 The run this project with success, you need a virtualization server and some softwares installed :
 
-* Libvirt/KVM and Packer
-* aws s3 cli
+* Libvirt/KVM, Packer and aws s3 cli
 * Docker (to run the build inside a container)
 
-Use `./setup.sh` for a quick setup.
+Use `./setup.sh` for a quick setup of Libvirt/KVM, Packer and `aws s3 cli` but please read before the following manual instructions.
+
+For Docker usage, install it and put your aws S3 credits in your `~/.profile`.
+
+Anyway, you can remove the post-processor in your image JSON template to avoid S3 upload attemps.
 
 ### AWS S3
 
@@ -42,7 +65,7 @@ echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY"> >> ~/.profile
 source ~/.profile
 ```
 
-### Libvirt
+### Libvirt and Packer
 
 Install Livirt/KVM on your server :
 
@@ -59,8 +82,6 @@ yum -y group install "Virtualization Host"
 yum -y install virt-manager libvirt virt-install qemu-kvm xauth dejavu-lgc-sans-fonts virt-top libguestfs-tools virt-viewer virt-manager curl
 fi
 ```
-
-### Packer
 
 Install the Packer binary :
 
@@ -151,15 +172,24 @@ I build images for qemu/KVM with this project and publish them for use in these 
 - [focal.qcow2 (http://get.goffinet.org/kvm/Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
 - [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 
-You can easily download them with this script :
+You can easily download them to `/var/lib/libvirt/images` with this script :
 
 ```bash
-curl -o /usr/local/bin/download-images.sh https://raw.githubusercontent.com/goffinet/virt-scripts/master/download-images.sh
+curl -s -o /usr/local/bin/download-images.sh https://raw.githubusercontent.com/goffinet/virt-scripts/master/download-images.sh
 chmod +x /usr/local/bin/download-images.sh
 download-images.sh
 ```
 
-## Enjoy with Libvirt
+## How to exploit those built images
+
+How to exploit those built images?
+
+- In the old way with Libvirt and some bash scripts
+- In a beter way with a tool like Terraform
+
+This is always beter to know how Libvirt is working. Can you read fundamentals about [KVM virtualization in french](https://linux.goffinet.org/administration/virtualisation-kvm/).
+
+### Enjoy with Libvirt
 
 [https://github.com/goffinet/virt-scripts](https://github.com/goffinet/virt-scripts)
 
@@ -201,7 +231,7 @@ download-images.sh
   ssh $(dig @192.168.122.1 +short u1)
   ```
 
-## Enjoy with Terraform (with libvirt)
+### Enjoy with Terraform (with libvirt)
 
 [https://github.com/goffinet/terraform-libvirt](https://github.com/goffinet/terraform-libvirt)
 
@@ -234,7 +264,8 @@ terraform plan
 ## ToDo
 
 * Remove swap post-processing
-* docker-compose
+* docker-compose for automation
+* add versions of post-processing and images meta-datas
 
 ## Initials credits
 
@@ -246,11 +277,28 @@ terraform plan
 * [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
 * [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
 
-## Notes
+## Customization
 
-### SSH keys
+### To customize post-processing
 
-To generate ssh keys :
+The `scripts/push-image.sh` generate somme meta-data and push the generated image to a pre-defined S3 Bucket.
+
+To customize this process, you can change the content as it :
+
+```bash
+#!/bin/bash
+
+name=$IMAGE_NAME
+version=$IMAGE_VERSION
+image="${name}${version}"
+echo "artifacts/qemu/${image} post-processing ..."
+```
+
+Anyway, you can remove the post-processor in your image JSON template to avoid this script call.
+
+### Customize SSH keys
+
+To generate the ssh keys for provisionning and put it in the `sshkeys/` folder :
 
 ```bash
 ssh-keygen -q -t rsa -N '' -C 'packer-kvm-default-key' -f sshkeys/id_rsa
