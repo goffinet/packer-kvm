@@ -255,12 +255,6 @@ cd ../count
 terraform plan
 ```
 
-## ToDo
-
-* Remove swap post-processing
-* docker-compose for automation
-* add versions of post-processing and images meta-datas
-
 ## Customization
 
 ### To customize post-processing
@@ -299,6 +293,22 @@ To get the default ssh public key :
 ```bash
 curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa.pub
 ```
+
+## ToDo
+
+* unique model : for efficience, a unique template should be sufficient with a data source with these elements.
+* random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
+* Remove swap post-processing
+* docker-compose for automation
+* add versions of post-processing and images meta-datas
+
+Wath are the variants in those templates?
+
+- the `iso_urls` and the `iso_checksum` template parameters
+- the `ssh_username`, `ssh_password` and `ssh_private_key_file` tempalte parameters as well as `sshkey` in kickstart files.
+- the `boot_command` as template parameter
+- the configuration file type : kickstart, preseed or cloud-init
+
 
 ## Initials credits
 
