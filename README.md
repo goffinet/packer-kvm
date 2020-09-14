@@ -53,7 +53,7 @@ Configure your S3 credits :
 
 ```bash
 echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.profile
-echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY"> >> ~/.profile
+echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY>" >> ~/.profile
 source ~/.profile
 ```
 
