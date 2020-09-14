@@ -151,6 +151,13 @@ I build images for qemu/KVM with this project and publish them for use in these 
 - [focal.qcow2 (http://get.goffinet.org/kvm/Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
 - [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 
+You can easily download them with this script :
+
+```bash
+curl -o /usr/local/bin/download-images.sh https://raw.githubusercontent.com/goffinet/virt-scripts/master/download-images.sh
+chmod +x /usr/local/bin/download-images.sh
+download-images.sh
+```
 
 ## Enjoy with Libvirt
 
