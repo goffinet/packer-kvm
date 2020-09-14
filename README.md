@@ -249,7 +249,7 @@ Compose your libvirt infrastructure :
 
 ```bash
 git clone https://github.com/goffinet/terraform-libvirt
-cd terraform-libvirt/ubuntu_simple
+cd terraform-libvirt/ubuntu_cloudinit
 terraform plan
 cd ../count
 terraform plan
