@@ -140,6 +140,18 @@ Packer use VNC to launch a temporary VM, you can check this window with a VNC cl
 
 You can have more details from Packet with the env var `PACKER_LOG=1`.
 
+## Cloud images for qemu/KVM/Libvirt built with Packer
+
+I build images for qemu/KVM with this project and publish them for use in these other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
+
+- [bionic.qcow2 (Ubuntu 18.04)](http://get.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://get.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/bionic.qcow2.sha256sum)
+- [centos7.qcow2](http://get.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos7.qcow2.sha256sum)
+- [centos8.qcow2](http://get.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos8.qcow2.sha256sum)
+- [debian10.qcow2](http://get.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://get.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/debian10.qcow2.sha256sum)
+- [focal.qcow2 (http://get.goffinet.org/kvm/Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
+- [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
+
+
 ## Enjoy with Libvirt
 
 [https://github.com/goffinet/virt-scripts](https://github.com/goffinet/virt-scripts)
