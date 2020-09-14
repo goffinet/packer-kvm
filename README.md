@@ -112,12 +112,12 @@ pip3 install docker-compose
 
 Each JSON file is a template for a distribution :
 
-* bionic.json
-* centos7.json
-* centos8.json
-* debian10.json
-* fedora32.json
-* focal.json
+* [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
+* [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
+* [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
+* [debian10.json](https://github.com/goffinet/packer-kvm/blob/master/debian10.json)
+* [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
+* [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
 
 For example :
 
@@ -149,7 +149,7 @@ The script `build.sh` do it with the template filename as first argument.
 ./build.sh centos7.json
 ```
 
-To build the image localy with the [Dockerfile](Dockerfile) :
+To build the image localy with the [Dockerfile](https://github.com/goffinet/packer-kvm/blob/master/Dockerfile) :
 
 ```shell
 docker build -t packer-qemu .
@@ -169,8 +169,8 @@ I build images for qemu/KVM with this project and publish them for use in these 
 - [centos7.qcow2](http://get.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://get.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos8.qcow2.sha256sum)
 - [debian10.qcow2](http://get.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://get.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/debian10.qcow2.sha256sum)
-- [focal.qcow2 (http://get.goffinet.org/kvm/Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
 - [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
+- [focal.qcow2 (http://get.goffinet.org/kvm/Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
 
