@@ -6,29 +6,21 @@ Only for education and learning purposes. Do not use it in production.
 
 ## Packer Concepts
 
-Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration.[^footnote1]
+Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer))
 
-Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, etc. Packer comes with many builders by default, and can also be extended to add new builders.[^footnote2]
+Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
 
-Provisioners use builtin and third-party software to install and configure the machine image after booting.[^footnote3]
+Provisioners use builtin and third-party software to install and configure the machine image after booting. ([Provisioners](https://www.packer.io/docs/provisioners))
 
-Post-processors run after the image is built by the builder and provisioned by the provisioner(s).[^footnote4]
-
-[^footnote1]: [Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer)
-
-[^footnote2]: [Builders](https://www.packer.io/docs/builders)
-
-[^footnote3]: [Provisioners](https://www.packer.io/docs/provisioners)
-
-[^footnote4]: [Post-Processors](https://www.packer.io/docs/post-processors)
+Post-processors run after the image is built by the builder and provisioned by the provisioner(s). ([Post-Processors](https://www.packer.io/docs/post-processors))
 
 ## Proof of Concept to generate Linux qemu images
 
 This is a Packer "Proof of Concept" with :
 
-* qemu/kvm as image builder[^footnote2] (qcow2)
-* "shell" and "ansible-local" as provisionners[^footnote3]
-* "shell-local" as post-processor[^footnote4] to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
+* qemu/kvm as image _builder_ (qcow2)
+* "shell" and "ansible-local" as _provisionners_
+* "shell-local" as _post-processor_ to generate a [gns3a appliance file](https://docs.gns3.com/1MAdxz0BSEAfGM7tA-w-o3TMmf8XOx7nBf0z6d9nRz_c/index.html), checksum and upload to a server
 
 Optionnal :
 
