@@ -8,7 +8,9 @@ Only for education and learning purposes. Do not use it in production.
 
 Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer))
 
-Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
+Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, Qemu, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
+
+Packer can enable an http server to serve kickstart, preseed or cloud-init configuration files at boot.
 
 Provisioners use builtin and third-party software to install and configure the machine image after booting. ([Provisioners](https://www.packer.io/docs/provisioners))
 
