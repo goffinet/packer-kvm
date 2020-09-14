@@ -88,7 +88,7 @@ mv packer /usr/local/bin/
 
 ### Docker
 
-Get Docker et docker-compose :
+Get Docker and docker-compose :
 
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
@@ -119,7 +119,7 @@ packer build centos7.json
 
 ## Build with Docker qemu based image
 
-`goffinet/packer-qemu` is a Docker image for building qemu images with packer and is avaible on Docker Hub.
+`goffinet/packer-qemu` is a Docker image for building qemu images with packer and is available on Docker Hub.
 
 
 ```bash
@@ -151,11 +151,11 @@ docker build -t packer-qemu .
 
 Packer use VNC to launch a temporary VM, you can check this window with a VNC client like `vinagre`.
 
-You can have more details from Packet with the env var `PACKER_LOG=1`.
+You can have more details from Packet with the env var configured : `PACKER_LOG=1`.
 
 ## Cloud images for qemu/KVM/Libvirt built with Packer
 
-I build images for qemu/KVM with this project and publish them for use in these other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
+I build images for qemu/KVM with this project and I publish them for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
 - [bionic.qcow2 (Ubuntu 18.04)](http://get.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://get.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://get.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos7.qcow2.sha256sum)
