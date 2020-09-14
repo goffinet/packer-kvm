@@ -162,7 +162,7 @@ I build images for qemu/KVM with this project and publish them for use in these 
 - [centos8.qcow2](http://get.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos8.qcow2.sha256sum)
 - [debian10.qcow2](http://get.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://get.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/debian10.qcow2.sha256sum)
 - [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
-- [focal.qcow2 (Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]]((http://get.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
+- [focal.qcow2 (Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://get.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
 
