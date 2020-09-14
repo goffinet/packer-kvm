@@ -259,16 +259,6 @@ terraform plan
 * docker-compose for automation
 * add versions of post-processing and images meta-datas
 
-## Initials credits
-
-* [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
-* [https://github.com/jakobadam/packer-qemu-templates](https://github.com/jakobadam/packer-qemu-templates)
-* [https://github.com/leonkyneur/packer-qemu](https://github.com/leonkyneur/packer-qemu)
-* [https://github.com/kaorimatz/packer-templates](https://github.com/kaorimatz/packer-templates)
-* [https://github.com/bramford/packer-debian9](https://github.com/bramford/packer-debian9)
-* [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
-* [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
-
 ## Customization
 
 ### To customize post-processing
@@ -307,3 +297,13 @@ To get the default ssh public key :
 ```bash
 curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa.pub
 ```
+
+## Initials credits
+
+* [https://github.com/idi-ops/packer-kvm-centos](https://github.com/idi-ops/packer-kvm-centos)
+* [https://github.com/jakobadam/packer-qemu-templates](https://github.com/jakobadam/packer-qemu-templates)
+* [https://github.com/leonkyneur/packer-qemu](https://github.com/leonkyneur/packer-qemu)
+* [https://github.com/kaorimatz/packer-templates](https://github.com/kaorimatz/packer-templates)
+* [https://github.com/bramford/packer-debian9](https://github.com/bramford/packer-debian9)
+* [https://github.com/bpetit/packer-templates](https://github.com/bpetit/packer-templates)
+* [https://github.com/NeCTAR-RC/nectar-images/](https://github.com/NeCTAR-RC/nectar-images/)
