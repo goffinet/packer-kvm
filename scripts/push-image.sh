@@ -30,7 +30,7 @@ cat << EOF > ${image}.gns3a
     "category": "guest",
     "description": "${name} ${version} image",
     "vendor_name": "${name}",
-    "vendor_url": "https://get.goffinet.org/kvm",
+    "vendor_url": "https://download.goffinet.org/kvm",
     "product_name": "${name}",
     "registry_version": 1,
     "status": "stable",
@@ -53,8 +53,8 @@ cat << EOF > ${image}.gns3a
             "version": "${version}",
             "md5sum": "${md5sum_image}",
             "filesize": ${size_image},
-            "download_url": "https://get.goffinet.org/kvm/",
-            "direct_download_url": "https://get.goffinet.org/kvm/${name}${version}.qcow2"
+            "download_url": "https://download.goffinet.org/kvm/",
+            "direct_download_url": "https://download.goffinet.org/kvm/${name}${version}.qcow2"
         }
     ],
     "versions": [

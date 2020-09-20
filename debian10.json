@@ -13,7 +13,7 @@
       "config_file": "debian-preseed.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
-      "destination_server": "get.goffinet.org"
+      "destination_server": "download.goffinet.org"
     },
   "builders": [
     {

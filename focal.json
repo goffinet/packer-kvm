@@ -13,7 +13,7 @@
       "config_file": "focal",
       "ssh_username": "ubuntu",
       "ssh_password": "ubuntu",
-      "destination_server": "get.goffinet.org"
+      "destination_server": "download.goffinet.org"
     },
   "builders": [
     {

@@ -14,7 +14,7 @@
       "ssh_username": "user",
       "ssh_password": "testtest",
       "ssh_private_key_file" : "./sshkeys/id_rsa",
-      "destination_server": "get.goffinet.org"
+      "destination_server": "download.goffinet.org"
     },
   "builders": [
     {

@@ -159,12 +159,12 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 
 I build images for qemu/KVM with this project and I publish them for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
-- [bionic.qcow2 (Ubuntu 18.04)](http://get.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://get.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/bionic.qcow2.sha256sum)
-- [centos7.qcow2](http://get.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos7.qcow2.sha256sum)
-- [centos8.qcow2](http://get.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://get.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/centos8.qcow2.sha256sum)
-- [debian10.qcow2](http://get.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://get.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/debian10.qcow2.sha256sum)
-- [fedora32.qcow2](http://get.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://get.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/fedora32.qcow2.sha256sum)
-- [focal.qcow2 (Ubuntu 20.04)](http://get.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://get.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://get.goffinet.org/kvm/focal.qcow2.sha256sum)
+- [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
+- [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
+- [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
+- [debian10.qcow2](http://download.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian10.qcow2.sha256sum)
+- [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
+- [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
 
