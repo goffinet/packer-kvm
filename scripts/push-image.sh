@@ -1,14 +1,24 @@
 #!/bin/bash
 
+# Post-processor : doing something with the build image. Here we generate an
+# appliance template for GNS3 and we put the image and the template
+# to an S3 Bucket by the Scaleway provider for distribution.
+# Please adapt it or disable it with the `disable` valued to `true`.
+
 # set variables
 
+disable=false
+#disable=true
 name=$IMAGE_NAME
 version=$IMAGE_VERSION
 image="${name}${version}"
 path_image="artifacts/qemu/${image}"
+#BUCKET=your_bucket
 BUCKET=$DESTINATION_SERVER
 AWS_ACCESS_KEY=$AWS_ACCESS_KEY
 AWS_SECRET_KEY=$AWS_SECRET_KEY
+
+if [ $disable == "true"  ] ; then exit ; fi
 
 # go to the artifact folder
 
