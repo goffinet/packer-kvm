@@ -1,6 +1,8 @@
 #/bin/bash
 
 template="$1"
+mode="it"
+#mode="d"
 
 docker_docker-compose_installation () {
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
@@ -16,7 +18,7 @@ which docker || docker_docker-compose_installation
 docker run --rm \
   -e PACKER_LOG=1 \
   -e PACKER_LOG_PATH="packer-docker.log" \
-  -it \
+  -$mode \
   --privileged \
   --cap-add=ALL -v /lib/modules:/lib/modules \
   -v `pwd`:/opt/ \
