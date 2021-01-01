@@ -3,3 +3,4 @@
 **/artifacts
 **/packer_cache
 **/iso
+.DS_Store
