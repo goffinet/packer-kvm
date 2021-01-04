@@ -1,8 +1,8 @@
 #/bin/bash
 
 template="$1"
-mode="it"
-#mode="d"
+#mode="it"
+mode="d"
 
 docker_docker-compose_installation () {
 curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
