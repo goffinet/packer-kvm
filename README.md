@@ -54,8 +54,8 @@ Anyway, you can remove the post-processor in your image JSON template to avoid S
 Configure your S3 credits :
 
 ```bash
-echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.profile
-echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY>" >> ~/.profile
+echo "export AWS_ACCESS_KEY=<your AWS_ACCESS_KEY>" >> ~/.bashrc
+echo "export AWS_SECRET_KEY=<your AWS_SECRET_KEY>" >> ~/.bashrc
 source ~/.profile
 ```
 
