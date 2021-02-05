@@ -10,7 +10,7 @@
       "iso_urls": "http://ftp.belnet.be/mirror/fedora/Fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-netinst-x86_64-33-1.2.iso",
       "iso_checksum": "1f1f018e78f0cc23d08db0c85952344ea5c200e67b672da5b07507c066a52ccf",
       "headless": "true",
-      "config_file": "fedora32-kickstart.cfg",
+      "config_file": "fedora33-kickstart.cfg",
       "ssh_username": "user",
       "ssh_password": "testtest",
       "ssh_private_key_file" : "./sshkeys/id_rsa",
