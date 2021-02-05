@@ -16,6 +16,7 @@ pip3 install docker-compose
 
 which docker || docker_docker-compose_installation
 docker run --rm \
+  --name ${template//.json/}-builder \
   -e PACKER_LOG=1 \
   -e PACKER_LOG_PATH="packer-docker.log" \
   -$mode \
