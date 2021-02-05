@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, bionic (ubuntu 1804), focal (ubuntu 2004), debian 10 (stable) and Fedora (32).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, centos 8 Stream, bionic (ubuntu 1804), focal (ubuntu 2004), debian 10 (stable), Fedora 32 and Fedora 33.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -110,8 +110,10 @@ Each JSON file is a template for a distribution :
 * [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
 * [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
+* [centos8-stream.json](https://github.com/goffinet/packer-kvm/blob/master/centos8-stream.json)
 * [debian10.json](https://github.com/goffinet/packer-kvm/blob/master/debian10.json)
 * [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
+* [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
 * [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
 
 For example :
@@ -163,8 +165,10 @@ I build images for qemu/KVM with this project and I publish them for use in thos
 - [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
+- [centos8-stream.qcow2](http://download.goffinet.org/kvm/centos8-stream.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.sha256sum)
 - [debian10.qcow2](http://download.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian10.qcow2.sha256sum)
 - [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
+- [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
 - [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
