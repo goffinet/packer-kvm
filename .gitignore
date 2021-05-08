@@ -4,3 +4,6 @@
 **/packer_cache
 **/iso
 .DS_Store
+build.pwd
+build.pwi
+build.hwm

@@ -1,0 +1,72 @@
+{
+    "variables":
+    {
+      "cpu": "2",
+      "ram": "2048",
+      "name": "fedora",
+      "disk_size": "40000",
+      "version": "34",
+      "iso_checksum_type": "sha256",
+      "iso_urls": "https://download.fedoraproject.org/pub/fedora/linux/releases/34/Server/x86_64/iso/Fedora-Server-netinst-x86_64-34-1.2.iso",
+      "iso_checksum": "e1a38b9faa62f793ad4561b308c31f32876cfaaee94457a7a9108aaddaeec406",
+      "headless": "true",
+      "config_file": "fedora34-kickstart.cfg",
+      "ssh_username": "user",
+      "ssh_password": "testtest",
+      "ssh_private_key_file" : "./sshkeys/id_rsa",
+      "destination_server": "download.goffinet.org"
+    },
+  "builders": [
+    {
+      "name": "{{user `name`}}{{user `version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/bin/qemu-system-x86_64",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "disk_cache": "none",
+      "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
+      "ssh_wait_timeout": "30m",
+      "http_directory": ".",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+      "iso_urls": "{{user `iso_urls`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "40s",
+      "boot_command": [
+        "<tab> linux text net.ifnames=0 biosdevname=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}}<enter><wait>"
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "disk_discard": "unmap",
+      "disk_compression": true,
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "sudo /usr/sbin/shutdown -h now",
+      "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
+      "inline": [
+        "dnf -y install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/playbook.yml",
+      "playbook_dir": "ansible"
+    }
+  ],
+  "post-processors": [
+    {
+        "type": "shell-local",
+        "script": "scripts/push-image.sh",
+        "environment_vars": ["IMAGE_NAME={{user `name`}}",
+                             "IMAGE_VERSION={{user `version`}}",
+                             "DESTINATION_SERVER={{user `destination_server`}}"]
+    }
+  ]
+}
