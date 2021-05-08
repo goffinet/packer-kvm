@@ -114,6 +114,7 @@ Each JSON file is a template for a distribution :
 * [debian10.json](https://github.com/goffinet/packer-kvm/blob/master/debian10.json)
 * [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
+* [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
 * [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
 
 For example :
@@ -169,6 +170,7 @@ I build images for qemu/KVM with this project and I publish them for use in thos
 - [debian10.qcow2](http://download.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian10.qcow2.sha256sum)
 - [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
+- [fedora34.qcow2](http://download.goffinet.org/kvm/fedora34.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora34.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora34.qcow2.sha256sum)
 - [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
