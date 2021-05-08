@@ -6,15 +6,15 @@ Only for education and learning purposes. Do not use it in production.
 
 ## Packer Concepts
 
-Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer))
+Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer)). It uses different plugins as builders, provisioners or post-processors.
 
-Builders are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, Qemu, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
+_Builders_ are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, Qemu, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
 
 Packer can enable an http server to serve kickstart, preseed or cloud-init configuration files at boot.
 
-Provisioners use builtin and third-party software to install and configure the machine image after booting. ([Provisioners](https://www.packer.io/docs/provisioners))
+_Provisioners_ use builtin and third-party software to install and configure the machine image after booting. ([Provisioners](https://www.packer.io/docs/provisioners))
 
-Post-processors run after the image is built by the builder and provisioned by the provisioner(s). ([Post-Processors](https://www.packer.io/docs/post-processors))
+_Post-processors_ run after the image is built by the builder and provisioned by the provisioner(s). ([Post-Processors](https://www.packer.io/docs/post-processors))
 
 ## Proof of Concept to generate Linux qemu images
 
