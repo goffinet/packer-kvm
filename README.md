@@ -161,7 +161,7 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 
 ## Cloud images for qemu/KVM/Libvirt built with Packer
 
-I build images for qemu/KVM with this project and I publish them for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
+I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
 - [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
@@ -315,7 +315,6 @@ Wath are the variants in those templates?
 - the `ssh_username`, `ssh_password` and `ssh_private_key_file` tempalte parameters as well as `sshkey` in kickstart files.
 - the `boot_command` as template parameter
 - the configuration file type : kickstart, preseed or cloud-init
-
 
 ## Initials credits
 
