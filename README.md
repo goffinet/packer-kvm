@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, centos 8 Stream, bionic (ubuntu 1804), focal (ubuntu 2004), debian 10 (stable), Fedora 32, Fedora 33 and Fedora 34.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : centos 7, centos 8, centos 8 Stream, bionic (ubuntu 1804), focal (ubuntu 2004), debian 10 (stable), fedora 32, fedora 33, fedora 34, rockylinux 8 and almalinux 8.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -107,6 +107,7 @@ pip3 install docker-compose
 
 Each JSON file is a template for a distribution :
 
+* [almalinux8.json](https://github.com/goffinet/packer-kvm/blob/master/almalinux8.json)
 * [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
 * [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
@@ -116,6 +117,7 @@ Each JSON file is a template for a distribution :
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
 * [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
 * [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
+* [rocky8.json](https://github.com/goffinet/packer-kvm/blob/master/rocky8.json)
 
 For example :
 
@@ -163,6 +165,7 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 
 I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
+- [almalinux8.qcow2](http://download.goffinet.org/kvm/almalinux8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.sha256sum)
 - [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
@@ -172,6 +175,8 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
 - [fedora34.qcow2](http://download.goffinet.org/kvm/fedora34.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora34.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora34.qcow2.sha256sum)
 - [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
+- [rocky8.qcow2](http://download.goffinet.org/kvm/rocky8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky8.qcow2.sha256sum)
+
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
 
