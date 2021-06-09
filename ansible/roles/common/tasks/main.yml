@@ -57,7 +57,8 @@
   when: >
     ansible_distribution == 'CentOS' or
     ansible_distribution == 'Fedora' or
-    ansible_distribution == 'AlmaLinux'
+    ansible_distribution == 'AlmaLinux' or
+    ansible_distribution == 'Rocky'
 
 - name: Ubuntu latest packages update/upgrade and clean
   block:
