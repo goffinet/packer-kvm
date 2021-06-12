@@ -15,8 +15,8 @@ image="${name}${version}"
 path_image="artifacts/qemu/${image}"
 #BUCKET=your_bucket
 BUCKET=$DESTINATION_SERVER
-AWS_ACCESS_KEY=$AWS_ACCESS_KEY
-AWS_SECRET_KEY=$AWS_SECRET_KEY
+export AWS_ACCESS_KEY=$AWS_ACCESS_KEY
+export AWS_SECRET_KEY=$AWS_SECRET_KEY
 
 if [ $disable == "true"  ] ; then exit ; fi
 
@@ -84,8 +84,8 @@ EOF
 if [ -f /etc/debian_version ]; then
 apt update && apt -y install python3-pip
 fi
-pip3 install awscli
-pip3 install awscli-plugin-endpoint
+pip3 install awscli --upgrade
+pip3 install awscli-plugin-endpoint --upgrade
 # Configure parameters and credits
 mkdir ~/.aws
 cat << EOF > ~/.aws/config

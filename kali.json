@@ -5,7 +5,7 @@
       "ram": "2048",
       "name": "kali",
       "disk_size": "40000",
-      "version": "2021.1",
+      "version": "20211",
       "iso_checksum_type": "sha256",
       "iso_urls": "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso",
       "iso_checksum": "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de",
@@ -64,10 +64,18 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "execute_command": "echo 'kali' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "inline": [
+        "echo \"kali        ALL=(ALL)       NOPASSWD: ALL\" >> /etc/sudoers",
+        "sed -i \"s/^.*requiretty/#Defaults requiretty/\" /etc/sudoers"
+        ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'kali' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "inline": [
         "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main\" >> /etc/apt/sources.list",
-        "apt -y install dirmngr",
+        "sed -i \"s/^.*requiretty/#Defaults requiretty/\" /etc/sudoers",
         "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367",
         "apt-get update",
         "apt -y install ansible"
@@ -75,12 +83,13 @@
     },
     {
       "type": "ansible-local",
+      "command": "PYTHONUNBUFFERED=1 ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3 ANSIBLE_ROLES_PATH=\"/tmp/ansible-roles/roles:/home/kali/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/tmp/ansible-roles:/tmp/ansible-roles/roles/roles\" sudo ansible-playbook",
       "playbook_file": "ansible/playbook.yml",
       "playbook_dir": "ansible"
     },
     {
       "type": "shell",
-      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "execute_command": "echo 'kali' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "inline": [
         "apt -y remove ansible",
         "apt-get clean",

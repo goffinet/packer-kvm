@@ -76,18 +76,23 @@
         autoremove: yes
   when: ansible_distribution == 'Ubuntu' and ubuntu1804.fullupgrade|default(False) == True
 
-- name: Configure GRUB to enable serial console on Debian/Ubuntu
-  copy:
-    src: grub.ubuntu
-    dest: /etc/default/grub
-    mode: '0644'
-    owner: root
-    group: root
-    backup: no
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
-- name: Regenerate GRUB configuration
-  command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+- name: Configure GRUB on Debian/Ubuntu
+  block:
+    - name: Configure GRUB to enable serial console on Debian/Ubuntu
+      copy:
+        src: grub.ubuntu
+        dest: /etc/default/grub
+        mode: '0644'
+        owner: root
+        group: root
+        backup: no
+    - name: Regenerate GRUB configuration
+      command: "/usr/sbin/grub-mkconfig -o /boot/grub/grub.cfg"
+  when: >
+    ansible_distribution == 'Ubuntu' or
+    ansible_distribution == 'Debian' or
+    ansible_distribution == 'Kali'
+
 
 - name: Tweak Ubuntu netplan config
   copy:
@@ -109,12 +114,20 @@
     backup: no
   when: ansible_distribution == 'Debian'
 
-- name: Add local pub key to authorized_keys
+- name: Add local pub key to authorized_keys root
   authorized_key:
     user: root
     key: "{{ lookup('file', 'id_rsa.pub') }}"
 #    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
     state: present
+
+- name: Add local pub key to authorized_keys kali
+  authorized_key:
+    user: kali
+    key: "{{ lookup('file', 'id_rsa.pub') }}"
+    state: present
+  when: ansible_distribution == 'Kali'
+
 - name: Tweak sshd_config
   lineinfile:
     dest: /etc/ssh/sshd_config
