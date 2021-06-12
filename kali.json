@@ -1,0 +1,100 @@
+{
+  "variables":
+    {
+      "cpu": "2",
+      "ram": "2048",
+      "name": "kali",
+      "disk_size": "40000",
+      "version": "2021.1",
+      "iso_checksum_type": "sha256",
+      "iso_urls": "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso",
+      "iso_checksum": "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de",
+      "headless": "true",
+      "config_file": "kali-preseed.cfg",
+      "ssh_username": "root",
+      "ssh_password": "testtest",
+      "destination_server": "download.goffinet.org"
+    },
+  "builders": [
+    {
+      "name": "{{user `name`}}{{user `version`}}",
+      "type": "qemu",
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "qemu_binary": "/usr/bin/qemu-system-x86_64",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+      "disk_cache": "none",
+      "qemuargs": [[ "-m", "{{user `ram`}}M" ],[ "-smp", "{{user `cpu`}}" ]],
+      "ssh_wait_timeout": "30m",
+      "http_directory": ".",
+      "http_port_min": 10082,
+      "http_port_max": 10089,
+      "host_port_min": 2222,
+      "host_port_max": 2229,
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "iso_urls": "{{user `iso_urls`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "boot_wait": "15s",
+      "boot_command": [
+                "<esc><wait>",
+                "auto <wait>",
+                "console-keymaps-at/keymap=us <wait>",
+                "console-setup/ask_detect=false <wait>",
+                "debconf/frontend=noninteractive <wait>",
+                "debian-installer=en_US <wait>",
+                "fb=false <wait>",
+                "install <wait>",
+                "kbd-chooser/method=us <wait>",
+                "keyboard-configuration/xkb-keymap=us <wait>",
+                "locale=en_US <wait>",
+                "netcfg/get_hostname={{user `name`}}{{user `version`}} <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}} <wait>",
+                "<enter><wait>"
+      ],
+      "disk_size": "{{user `disk_size`}}",
+      "disk_discard": "unmap",
+      "disk_compression": true,
+      "headless": "{{user `headless`}}",
+      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S shutdown -P now",
+      "output_directory": "artifacts/qemu/{{user `name`}}{{user `version`}}"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "inline": [
+        "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main\" >> /etc/apt/sources.list",
+        "apt -y install dirmngr",
+        "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367",
+        "apt-get update",
+        "apt -y install ansible"
+        ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/playbook.yml",
+      "playbook_dir": "ansible"
+    },
+    {
+      "type": "shell",
+      "execute_command": "{{.Vars}} bash '{{.Path}}'",
+      "inline": [
+        "apt -y remove ansible",
+        "apt-get clean",
+        "apt-get -y autoremove --purge"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+        "type": "shell-local",
+        "script": "scripts/push-image.sh",
+        "environment_vars": ["IMAGE_NAME={{user `name`}}",
+                             "IMAGE_VERSION={{user `version`}}",
+                             "DESTINATION_SERVER={{user `destination_server`}}"]
+    }
+  ]
+}
