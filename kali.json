@@ -11,8 +11,8 @@
       "iso_checksum": "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de",
       "headless": "true",
       "config_file": "kali-preseed.cfg",
-      "ssh_username": "root",
-      "ssh_password": "testtest",
+      "ssh_username": "kali",
+      "ssh_password": "kali",
       "destination_server": "download.goffinet.org"
     },
   "builders": [
