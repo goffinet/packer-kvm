@@ -74,7 +74,7 @@
       "type": "shell",
       "execute_command": "echo 'kali' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "inline": [
-        "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main\" >> /etc/apt/sources.list",
+        "echo \"deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main\" >> /etc/apt/sources.list.d/ansible.list",
         "sed -i \"s/^.*requiretty/#Defaults requiretty/\" /etc/sudoers",
         "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367",
         "apt-get update",
@@ -93,7 +93,8 @@
       "inline": [
         "apt -y remove ansible",
         "apt-get clean",
-        "apt-get -y autoremove --purge"
+        "apt-get -y autoremove --purge",
+        "rm -f /etc/apt/sources.list.d/ansible.list"
       ]
     }
   ],
