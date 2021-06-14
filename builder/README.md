@@ -1,8 +1,7 @@
 # How-to
 
-How-to create a on-time cloud server to build all the images of this reposirory and push them to a block storage.
+How-to create a one-time cloud server to build all the images of this reposirory and push them to an object storage.
 
-The example is based on the Scaleway provider and can publish 12 images in 35 minutes.
 
 ```bash
 sudo apt update && sudo apt -y upgrade
@@ -20,8 +19,9 @@ echo export AWS_SECRET_KEY=$SCW_SECRET_KEY >> ~/.profile
 sudo reboot
 ```
 
-## Builder
+## all-in-one
 
+This example is based on the Scaleway provider and can publish 12 images in 35 minutes.
 
 ```bash
 #!/bin/bash
@@ -30,7 +30,7 @@ TO_EMAIL="test@test.tf"
 sudo apt update && sudo apt -y install ssmtp zip mpack
 TIMESTAMP="$(date -I)-$(date +%s)"
 git clone https://github.com/goffinet/packer-kvm /opt/packer-kvm-$TIMESTAMP
-cd /opt/packer-kvm-$TIMESTAMP/builder
+cd /opt/packer-kvm-$TIMESTAMP/builder/all-in-one
 terraform init
 mkdir -p /opt/log/packer
 source ~/.profile
