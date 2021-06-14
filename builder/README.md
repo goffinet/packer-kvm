@@ -20,12 +20,14 @@ echo export AWS_SECRET_KEY=$SCW_SECRET_KEY >> ~/.profile
 sudo reboot
 ```
 
-## Factory1
+## Builder
 
 
 ```bash
 #!/bin/bash
 
+TO_EMAIL="test@test.tf"
+sudo apt update && sudo apt -y install ssmtp zip mpack
 TIMESTAMP="$(date -I)-$(date +%s)"
 git clone https://github.com/goffinet/packer-kvm /opt/packer-kvm-$TIMESTAMP
 cd /opt/packer-kvm-$TIMESTAMP/builder
@@ -33,7 +35,15 @@ terraform init
 mkdir -p /opt/log/packer
 source ~/.profile
 TF_LOG="TRACE" TF_LOG_PATH="/opt/log/packer/builder-apply-$TIMESTAMP.log" terraform apply -var="AWS_ACCESS_KEY=$AWS_ACCESS_KEY" -var="AWS_SECRET_KEY=$AWS_SECRET_KEY" -auto-approve
+sleep 300
 TF_LOG="TRACE" TF_LOG_PATH="/opt/log/packer/builder-destroy-$TIMESTAMP.log" terraform destroy -var="AWS_ACCESS_KEY=$AWS_ACCESS_KEY" -var="AWS_SECRET_KEY=$AWS_SECRET_KEY" -auto-approve
+sleep 60
 TF_LOG="TRACE" TF_LOG_PATH="/opt/log/packer/builder-destroy-$TIMESTAMP.log" terraform destroy -var="AWS_ACCESS_KEY=$AWS_ACCESS_KEY" -var="AWS_SECRET_KEY=$AWS_SECRET_KEY" -auto-approve
+sleep 30
+TF_LOG="TRACE" TF_LOG_PATH="/opt/log/packer/builder-destroy-$TIMESTAMP.log" terraform destroy -var="AWS_ACCESS_KEY=$AWS_ACCESS_KEY" -var="AWS_SECRET_KEY=$AWS_SECRET_KEY" -auto-approve
+sleep 10
+TF_LOG="TRACE" TF_LOG_PATH="/opt/log/packer/builder-destroy-$TIMESTAMP.log" terraform destroy -var="AWS_ACCESS_KEY=$AWS_ACCESS_KEY" -var="AWS_SECRET_KEY=$AWS_SECRET_KEY" -auto-approve
+zip /opt/log/packer-kvm-build-$TIMESTAMP.zip /opt/log/packer/*-$TIMESTAMP.log
+mpack -s "[Packer KVM Factory]: Report logs" /opt/log/packer-kvm-build-$TIMESTAMP.zip $TO_EMAIL
 
 ```
