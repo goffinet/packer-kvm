@@ -7,3 +7,5 @@
 build.pwd
 build.pwi
 build.hwm
+.terraform*
+*.tfstate*
