@@ -112,7 +112,7 @@ Each JSON file is a template for a distribution :
 * [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
 * [centos8-stream.json](https://github.com/goffinet/packer-kvm/blob/master/centos8-stream.json)
-* [debian10.json](https://github.com/goffinet/packer-kvm/blob/master/debian10.json)
+* [debian11.json](https://github.com/goffinet/packer-kvm/blob/master/debian11.json)
 * [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
 * [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
@@ -171,7 +171,7 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
 - [centos8-stream.qcow2](http://download.goffinet.org/kvm/centos8-stream.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.sha256sum)
-- [debian10.qcow2](http://download.goffinet.org/kvm/debian10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian10.qcow2.sha256sum)
+- [debian11.qcow2](http://download.goffinet.org/kvm/debian11.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian11.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian11.qcow2.sha256sum)
 - [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
 - [fedora34.qcow2](http://download.goffinet.org/kvm/fedora34.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora34.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora34.qcow2.sha256sum)
@@ -219,7 +219,7 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```
   ```raw
   Please provide the image name :
-  centos7 bionic debian10
+  centos7 bionic debian11
   ```
 
 3. Launch two new machines
