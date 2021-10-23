@@ -7,7 +7,7 @@
       "disk_size": "40000",
       "version": "8",
       "iso_checksum_type": "sha256",
-      "iso_urls": "https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-x86_64-boot.iso",
+      "iso_urls": "https://download.rockylinux.org/pub/rocky/8.4-RC1/isos/x86_64/Rocky-8.4-x86_64-boot.iso",
       "iso_checksum": "846d2b6c1d61900038d0647d2f52ff86e6507fd9bcd12a546a600eb9dee1a5fb",
       "headless": "true",
       "config_file": "rocky8-kickstart.cfg",
