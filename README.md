@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8, CentOS 8 Stream, Alma Linux, Rocky Linux, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 10 (stable), Kali Linux, Fedora 32, Fedora 33 and Fedora 34.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8, CentOS 8 Stream, Alma Linux, Rocky Linux, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
 
 Only for education and learning purposes. Do not use it in production.
 
