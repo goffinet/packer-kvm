@@ -225,8 +225,8 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
 3. Launch two new machines
 
   ```bash
-  sudo ./define-guest-images.sh c1 centos7
-  sudo ./define-guest-images.sh u1 bionic
+  sudo ./define-guest-image.sh c1 centos7
+  sudo ./define-guest-image.sh u1 bionic
   ```
 
 4. Enjoy
