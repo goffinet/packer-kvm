@@ -126,13 +126,6 @@ For example :
 packer build centos7.json
 ```
 
-Centos8 Stream
-
-```bash
-iso_checksum=$(curl -s http://ftp.belnet.be/mirror/ftp.centos.org/8-stream/isos/x86_64/CHECKSUM | grep "SHA256 (CentOS-Stream-8-x86_64-latest-boot.iso) =" | sed 's/^.*= //g')
-packer build -var "iso_checksum=$iso_checksum" centos8.json
-```
-
 ## Build with Docker qemu based image
 
 `goffinet/packer-qemu` is a Docker image for building qemu images with packer and is available on Docker Hub.
