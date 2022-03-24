@@ -10,7 +10,7 @@
       "iso_urls": "http://mirror.in2p3.fr/pub/linux/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-latest-x86_64-boot.iso",
       "iso_checksum": "e3774a7d398200b6a47ef0fd0a47311d44e0b9efbbe524448c579947d74e5de8",
       "headless": "true",
-      "config_file": "centos8-kickstart.cfg",
+      "config_file": "centos9-kickstart.cfg",
       "ssh_username": "root",
       "ssh_password": "testtest",
       "destination_server": "download.goffinet.org"
