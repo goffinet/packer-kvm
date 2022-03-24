@@ -7,7 +7,7 @@
       "disk_size": "40000",
       "version": "8",
       "iso_checksum_type": "sha256",
-      "iso_urls": "https://repo.almalinux.org/almalinux/8.4/isos/x86_64/AlmaLinux-8.5-x86_64-boot.iso",
+      "iso_urls": "https://repo.almalinux.org/almalinux/8.5/isos/x86_64/AlmaLinux-8.5-x86_64-boot.iso",
       "iso_checksum": "5a0dc65d1308e47b51a49e23f1030b5ee0f0ece3702483a8a6554382e893333c",
       "headless": "true",
       "config_file": "almalinux8-kickstart.cfg",
