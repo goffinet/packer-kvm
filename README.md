@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8, CentOS 8 Stream, Alma Linux, Rocky Linux, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), Alma Linux, Rocky Linux, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -111,7 +111,6 @@ Each JSON file is a template for a distribution :
 * [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
 * [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
-* [centos8-stream.json](https://github.com/goffinet/packer-kvm/blob/master/centos8-stream.json)
 * [debian11.json](https://github.com/goffinet/packer-kvm/blob/master/debian11.json)
 * [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
