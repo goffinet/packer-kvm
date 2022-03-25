@@ -169,7 +169,6 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
-- [centos8-stream.qcow2](http://download.goffinet.org/kvm/centos8-stream.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8-stream.qcow2.sha256sum)
 - [debian11.qcow2](http://download.goffinet.org/kvm/debian11.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian11.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian11.qcow2.sha256sum)
 - [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
