@@ -114,11 +114,11 @@ Each JSON file is a template for a distribution :
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
 * [centos9.json](https://github.com/goffinet/packer-kvm/blob/master/centos9.json)
 * [debian11.json](https://github.com/goffinet/packer-kvm/blob/master/debian11.json)
-* [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
+* ~~[fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)~~
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
 * [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
 * [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
-* [kali20211.json](https://github.com/goffinet/packer-kvm/blob/master/kali20211.json)
+* [kali20211.json](https://github.com/goffinet/packer-kvm/blob/master/deprecated/kali20211.json)
 * [rocky8.json](https://github.com/goffinet/packer-kvm/blob/master/rocky8.json)
 
 For example :
