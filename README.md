@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), Alma Linux, Rocky Linux, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -108,9 +108,11 @@ pip3 install docker-compose
 Each JSON file is a template for a distribution :
 
 * [almalinux8.json](https://github.com/goffinet/packer-kvm/blob/master/almalinux8.json)
+* [almalinux9.json](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.json)
 * [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
 * [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
 * [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
+* [centos9.json](https://github.com/goffinet/packer-kvm/blob/master/centos9.json)
 * [debian11.json](https://github.com/goffinet/packer-kvm/blob/master/debian11.json)
 * [fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
@@ -166,9 +168,11 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
 - [almalinux8.qcow2](http://download.goffinet.org/kvm/almalinux8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.sha256sum)
+- [almalinux9.qcow2](http://download.goffinet.org/kvm/almalinux9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.sha256sum)
 - [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
 - [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
 - [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
+- [centos9.qcow2](http://download.goffinet.org/kvm/centos9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos9.qcow2.sha256sum)
 - [debian11.qcow2](http://download.goffinet.org/kvm/debian11.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian11.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian11.qcow2.sha256sum)
 - [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
