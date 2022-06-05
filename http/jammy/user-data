@@ -1,0 +1,41 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: ubuntu
+    username: ubuntu
+    password: $6$rounds=4096$r5PXtcmAAx$0xBbyqV5RfaSiiQd7c8gtrciKf0qhkzR5t0e.vv58w4UCIMiTk11RH82dS4IJa7e6MaGQW9FJr09wxY2zIt840
+  user-data:
+    disable_root: false
+  keyboard:
+    layout: en
+    variant: us
+  locale: en_US
+  network:
+    ethernets:
+      eth0:
+        dhcp4: true
+        dhcp-identifier: mac
+    version: 2
+  ssh:
+    allow-pw: true
+    install-server: true
+  storage:
+    layout:
+      name: lvm
+  late-commands:
+    - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
+    - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+    - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
+    - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0"/' /target/etc/default/grub
+    - curtin in-target --target /target update-grub2
+  packages:
+    - bc
+    - curl
+    - wget
+    - openssh-server
+#    - qemu-guest-agent
+  package_update: true
+  package_upgrade: true

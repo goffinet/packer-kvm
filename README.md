@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 33 and Fedora 34.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -118,6 +118,7 @@ Each JSON file is a template for a distribution :
 * [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
 * [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
 * [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
+* [jammy.json](https://github.com/goffinet/packer-kvm/blob/master/jammy.json)
 * [kali20211.json](https://github.com/goffinet/packer-kvm/blob/master/deprecated/kali20211.json)
 * [rocky8.json](https://github.com/goffinet/packer-kvm/blob/master/rocky8.json)
 
@@ -178,6 +179,7 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
 - [fedora34.qcow2](http://download.goffinet.org/kvm/fedora34.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora34.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora34.qcow2.sha256sum)
 - [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
+- [jammy.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/jammy.qcow2) [[md5sum]](http://download.goffinet.org/kvm/jammy.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/jammy.qcow2.sha256sum)
 - [kali20211.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/kali20211.qcow2) [[md5sum]](http://download.goffinet.org/kvm/kali20211.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/kali20211.qcow2.sha256sum)
 - [rocky8.qcow2](http://download.goffinet.org/kvm/rocky8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky8.qcow2.sha256sum)
 
