@@ -119,3 +119,6 @@ done
 aws s3 rm s3://$BUCKET/gns3a/${image}.gns3a
 aws s3 cp ${image}.gns3a s3://$BUCKET/gns3a/
 aws s3api put-object-acl --bucket $BUCKET --key gns3a/${image}.gns3a --acl public-read
+aws s3 rm s3://$BUCKET/kvm/imagename
+aws s3 cp ../../../imagename s3://$BUCKET/kvm/imagename
+aws s3api put-object-acl --bucket $BUCKET --key kvm/imagename --acl public-read
