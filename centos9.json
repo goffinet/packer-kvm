@@ -28,12 +28,7 @@
       "qemuargs": [
           [ "-m", "{{user `ram`}}M" ],
           [ "-smp", "{{user `cpu`}}" ],
-          [
-            "-cpu",
-            "host,x2apic=on,tsc-deadline=on,hypervisor=on,tsc-adjust=on,erms=on,vaes=on,vpclmulqdq=on,",
-            "spec-ctrl=on,stibp=on,arch-capabilities=on,ssbd=on,xsaves=on,cmp-legacy=on,ibrs=on,",
-            "amd-ssbd=on,virt-ssbd=on,rdctl-no=on,skip-l1dfl-vmentry=on,mds-no=on,pschange-mc-no=on"
-          ]],
+          [ "-cpu", "host" ]],
       "ssh_wait_timeout": "30m",
       "http_directory": ".",
       "ssh_username": "{{user `ssh_username`}}",
