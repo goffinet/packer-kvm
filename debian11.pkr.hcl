@@ -81,7 +81,7 @@ source "qemu" "debian11" {
   output_directory = "artifacts/qemu/${var.name}${var.version}"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
   qemuargs         = [["-m", "${var.ram}M"], ["-smp", "${var.cpu}"]]
-  shutdown_command = "echo '{{user `ssh_password`}}' | sudo -S shutdown -P now"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
   ssh_wait_timeout = "30m"
