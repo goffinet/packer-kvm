@@ -7,8 +7,8 @@
       "disk_size": "40000",
       "version": "8",
       "iso_checksum_type": "sha256",
-      "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/8/isos/x86_64/CentOS-8.4.2105-x86_64-boot.iso",
-      "iso_checksum": "c79921e24d472144d8f36a0d5f409b12bd016d9d7d022fd703563973ca9c375c",
+      "iso_urls": "http://ftp.belnet.be/mirror/ftp.centos.org/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-20220525-boot.iso",
+      "iso_checksum": "c95585977e667f4ed15279e087df41b721f323ca9a9bd973efa72ea7af0cfbca",
       "headless": "true",
       "config_file": "centos8-kickstart.cfg",
       "ssh_username": "root",
@@ -49,9 +49,9 @@
       "type": "shell",
       "execute_command": "{{ .Vars }} sudo -E bash '{{ .Path }}'",
       "inline": [
-        "yum -y install epel-release",
-        "yum repolist",
-        "yum -y install ansible"
+        "dnf -y install python3 python3-pip",
+        "python3 -m pip install pip --upgrade",
+        "python3 -m pip install ansible"
       ]
     },
     {

@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 33/34/35.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 35.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -107,26 +107,22 @@ pip3 install docker-compose
 
 Each JSON file is a template for a distribution :
 
-* [almalinux8.json](https://github.com/goffinet/packer-kvm/blob/master/almalinux8.json)
-* [almalinux9.json](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.json)
-* [bionic.json](https://github.com/goffinet/packer-kvm/blob/master/bionic.json)
-* [centos7.json](https://github.com/goffinet/packer-kvm/blob/master/centos7.json)
-* [centos8.json](https://github.com/goffinet/packer-kvm/blob/master/centos8.json)
-* [centos9.json](https://github.com/goffinet/packer-kvm/blob/master/centos9.json)
-* [debian11.json](https://github.com/goffinet/packer-kvm/blob/master/debian11.json)
-* ~~[fedora32.json](https://github.com/goffinet/packer-kvm/blob/master/fedora32.json)~~
-* [fedora33.json](https://github.com/goffinet/packer-kvm/blob/master/fedora33.json)
-* [fedora34.json](https://github.com/goffinet/packer-kvm/blob/master/fedora34.json)
-* [fedora35.json](https://github.com/goffinet/packer-kvm/blob/master/fedora35.json)
-* [focal.json](https://github.com/goffinet/packer-kvm/blob/master/focal.json)
-* [jammy.json](https://github.com/goffinet/packer-kvm/blob/master/jammy.json)
-* [kali20211.json](https://github.com/goffinet/packer-kvm/blob/master/deprecated/kali20211.json)
-* [rocky8.json](https://github.com/goffinet/packer-kvm/blob/master/rocky8.json)
+* [almalinux8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux8.pkr.hcl)
+* [almalinux9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.pkr.hcl)
+* [bionic.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/bionic.pkr.hcl)
+* [centos7.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos7.pkr.hcl)
+* [centos8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos8.pkr.hcl)
+* [centos9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos9.pkr.hcl)
+* [debian11.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/debian11.pkr.hcl)
+* [fedora35.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora35.pkr.hcl)
+* [focal.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/focal.pkr.hcl)
+* [jammy.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/jammy.pkr.hcl)
+* [rocky8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/rocky8.pkr.hcl)
 
 For example :
 
 ```bash
-packer build centos7.json
+packer build centos7.pkr.hcl
 ```
 
 ## Build with Docker qemu based image
@@ -144,13 +140,13 @@ docker run --rm \
   -v `pwd`:/opt/ \
   -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
   -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
-  -w /opt/ goffinet/packer-qemu build centos7.json
+  -w /opt/ goffinet/packer-qemu build centos7.pkr.hcl
 ```
 
 The script `build.sh` do it with the template filename as first argument.
 
 ```bash
-./build.sh centos7.json
+./build.sh centos7.pkr.hcl
 ```
 
 To build the image localy with the [Dockerfile](https://github.com/goffinet/packer-kvm/blob/master/Dockerfile) :

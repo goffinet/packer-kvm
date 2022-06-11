@@ -14,16 +14,16 @@ fi
 pip3 install docker-compose
 }
 
-if [ $template = "centos8.json" ] ; then
+if [ $template = "centos8.pkr.hcl" ] ; then
 iso_checksum=$(curl -s http://ftp.belnet.be/mirror/ftp.centos.org/8-stream/isos/x86_64/CHECKSUM | grep "SHA256 (CentOS-Stream-8-x86_64-latest-boot.iso) =" | sed 's/^.*= //g')
-packer_command="build -var \"iso_checksum=$iso_checksum\" centos8.json"
+packer_command="build -var \"iso_checksum=$iso_checksum\" centos8.pkr.hcl"
 else
 packer_command="build ${template}"
 fi
 
 which docker || docker_docker-compose_installation
 docker run --rm \
-  --name ${template//.json/}-builder \
+  --name ${template//.pkr.hcl/}-builder \
   -e PACKER_LOG=1 \
   -e PACKER_LOG_PATH="packer-docker.log" \
   -$mode \
