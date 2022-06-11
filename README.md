@@ -6,7 +6,9 @@ Only for education and learning purposes. Do not use it in production.
 
 ## Packer Concepts
 
-Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer)). It uses different plugins as builders, provisioners or post-processors.
+Packer is an open source tool for creating identical machine images for multiple platforms from a single source configuration called a  template. ([Introduction to Packer, What is Packer?](https://www.packer.io/intro#what-is-packer)). It uses different plugins as builders, provisioners or post-processors.
+
+While the JSON format template is still supported, certain new features in the Packer core will only be implemented for the newer HCL2 format. Therefore, this project has been updated to [HCL2](https://www.packer.io/docs/templates/hcl_templates).
 
 _Builders_ are responsible for creating machines and generating images from them for various platforms. For example, there are separate builders for EC2, VMware, VirtualBox, Qemu, etc. Packer comes with many builders by default, and can also be extended to add new builders. ([Builders](https://www.packer.io/docs/builders))
 
