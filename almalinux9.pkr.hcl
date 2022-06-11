@@ -26,15 +26,10 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f"
+  default = "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f"
 }
 
-variable "iso_checksum_type" {
-  type    = string
-  default = "sha256"
-}
-
-variable "iso_urls" {
+variable "iso_url" {
   type    = string
   default = "https://repo.almalinux.org/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso"
 }
@@ -64,34 +59,32 @@ variable "version" {
   default = "9"
 }
 
-# could not parse template for following block: "template: hcl2_upgrade:2: bad character U+0060 '`'"
-
-source "qemu" "{{user_`name`}}{{user_`version`}}" {
+source "qemu" "almalinux9" {
   accelerator      = "kvm"
-  boot_command     = ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}}<enter><wait>"]
+  boot_command     = ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}<enter><wait>"]
   boot_wait        = "40s"
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
   disk_interface   = "virtio"
-  disk_size        = "{{user `disk_size`}}"
+  disk_size        = var.disk_size
   format           = "qcow2"
-  headless         = "{{user `headless`}}"
+  headless         = var.headless
   http_directory   = "."
-  iso_checksum     = "{{user `iso_checksum`}}"
-  iso_urls         = "{{user `iso_urls`}}"
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
   net_device       = "virtio-net"
-  output_directory = "artifacts/qemu/{{user `name`}}{{user `version`}}"
+  output_directory = "artifacts/qemu/${var.name}${var.version}"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
-  qemuargs         = [["-m", "{{user `ram`}}M"], ["-smp", "{{user `cpu`}}"], ["-cpu", "host,x2apic=on,tsc-deadline=on,hypervisor=on,tsc-adjust=on,erms=on,vaes=on,vpclmulqdq=on,", "spec-ctrl=on,stibp=on,arch-capabilities=on,ssbd=on,xsaves=on,cmp-legacy=on,ibrs=on,", "amd-ssbd=on,virt-ssbd=on,rdctl-no=on,skip-l1dfl-vmentry=on,mds-no=on,pschange-mc-no=on"]]
+  qemuargs         = [["-m", "${var.ram}M"], ["-smp", "${var.cpu}"], ["-cpu", "host"]]
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
-  ssh_password     = "{{user `ssh_password`}}"
-  ssh_username     = "{{user `ssh_username`}}"
+  ssh_password     = var.ssh_password
+  ssh_username     = var.ssh_username
   ssh_wait_timeout = "30m"
 }
 
 build {
-  sources = ["source.qemu.{{user_`name`}}{{user_`version`}}"]
+  sources = ["source.qemu.almalinux9"]
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"

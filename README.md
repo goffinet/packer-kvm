@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 33/34/35.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 35.
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -114,8 +114,6 @@ Each JSON file is a template for a distribution :
 * [centos8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos8.pkr.hcl)
 * [centos9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos9.pkr.hcl)
 * [debian11.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/debian11.pkr.hcl)
-* [fedora33.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora33.pkr.hcl)
-* [fedora34.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora34.pkr.hcl)
 * [fedora35.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora35.pkr.hcl)
 * [focal.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/focal.pkr.hcl)
 * [jammy.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/jammy.pkr.hcl)
