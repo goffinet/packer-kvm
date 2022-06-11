@@ -66,7 +66,7 @@ variable "version" {
 
 # could not parse template for following block: "template: hcl2_upgrade:2: bad character U+0060 '`'"
 
-source "qemu" "{{name}}{{version}}" {
+source "qemu" "almalinux8" {
   accelerator      = "kvm"
   boot_command     = ["<up><wait><tab><wait> net.ifnames=0 biosdevname=0 text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/{{user `config_file`}}<enter><wait>"]
   boot_wait        = "40s"
@@ -74,24 +74,24 @@ source "qemu" "{{name}}{{version}}" {
   disk_compression = true
   disk_discard     = "unmap"
   disk_interface   = "virtio"
-  disk_size        = "{{disk_size}}"
+  disk_size        = "{{user `disk_size`}}"
   format           = "qcow2"
-  headless         = "{{headless}}"
+  headless         = "{{user `headless`}}"
   http_directory   = "."
-  iso_checksum     = "{{iso_checksum}}"
-  iso_urls         = "{{iso_urls}}"
+  iso_checksum     = "{{user `iso_checksum`}}"
+  iso_urls         = "{{user `iso_urls`}}"
   net_device       = "virtio-net"
-  output_directory = "artifacts/qemu/{{name}}{{version}}"
+  output_directory = "artifacts/qemu/{{user `name`}}{{user `version`}}"
   qemu_binary      = "/usr/bin/qemu-system-x86_64"
-  qemuargs         = [["-m", "{{ram}}M"], ["-smp", "{{cpu}}"]]
+  qemuargs         = [["-m", "{{user `ram`}}M"], ["-smp", "{{user `cpu`}}"]]
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
-  ssh_password     = "{{ssh_password}}"
-  ssh_username     = "{{ssh_username}}"
+  ssh_password     = "{{user `ssh_password`}}"
+  ssh_username     = "{{user `ssh_username`}}"
   ssh_wait_timeout = "30m"
 }
 
 build {
-  sources = ["source.qemu.{{name}}{{version}}"]
+  sources = ["source.qemu.almalinux8"]
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"
