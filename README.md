@@ -178,7 +178,7 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [fedora35.qcow2](http://download.goffinet.org/kvm/fedora35.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora35.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora35.qcow2.sha256sum)
 - [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
 - [jammy.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/jammy.qcow2) [[md5sum]](http://download.goffinet.org/kvm/jammy.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/jammy.qcow2.sha256sum)
-- [kali20211.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/kali20211.qcow2) [[md5sum]](http://download.goffinet.org/kvm/kali20211.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/kali20211.qcow2.sha256sum)
+- [kali20211.qcow2](http://download.goffinet.org/kvm/kali20211.qcow2) [[md5sum]](http://download.goffinet.org/kvm/kali20211.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/kali20211.qcow2.sha256sum)
 - [rocky8.qcow2](http://download.goffinet.org/kvm/rocky8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky8.qcow2.sha256sum)
 
 
