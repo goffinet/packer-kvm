@@ -26,12 +26,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:84aeaf7823c8c61baa0ae862d0a06b03409394800000b3235854a6b38eb4856f"
+  default = "sha256:10f19c5b2b8d6db711582e0e27f5116296c34fe4b313ba45f9b201a5007056cb"
 }
 
 variable "iso_url" {
   type    = string
-  default = "http://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso"
+  default = "http://releases.ubuntu.com/22.04/ubuntu-22.04.1-live-server-amd64.iso"
 }
 
 variable "name" {

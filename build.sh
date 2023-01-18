@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 template="$1"
 #mode="it"
