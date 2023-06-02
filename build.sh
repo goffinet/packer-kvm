@@ -32,4 +32,4 @@ docker run --rm \
   -v `pwd`:/opt/ \
   -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
   -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
-  -w /opt/ goffinet/packer-qemu ${packer_command}
+  -w /opt/ ghcr.io/goffinet/packer-kvm:master ${packer_command}
