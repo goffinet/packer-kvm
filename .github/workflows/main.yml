@@ -38,5 +38,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/goffinet/packer-kvm:master
+            ghcr.io/goffinet/packer-kvm:latest
           labels: ${{ steps.meta.outputs.labels }}
