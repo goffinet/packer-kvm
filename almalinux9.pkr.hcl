@@ -26,12 +26,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:c41ce7bc2f4ab27a3597b3e160fc8b01c56a6b58e1046a4a23b8518fb9e9a61f"
+  default = "sha256:1e5d7da3d84d5d9a5a1177858a5df21b868390bfccf7f0f419b1e59acc293160"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://repo.almalinux.org/almalinux/9.0/isos/x86_64/AlmaLinux-9.0-x86_64-boot.iso"
+  default = "https://repo.almalinux.org/almalinux/9.4/isos/x86_64/AlmaLinux-9.4-x86_64-boot.iso"
 }
 
 variable "name" {
