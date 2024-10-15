@@ -91,6 +91,13 @@ chmod +x packer
 mv packer /usr/local/bin/
 ```
 
+Install the plugins:
+
+```bash
+packer plugins install github.com/hashicorp/qemu
+packer plugins install github.com/hashicorp/ansible
+```
+
 ### Docker
 
 Get Docker and docker-compose :
