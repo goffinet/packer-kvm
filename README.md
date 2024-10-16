@@ -321,7 +321,7 @@ curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa
 
 ## ToDo
 
-* unique model : for efficience, a unique template should be sufficient with a data source with these elements.
+* unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
 * random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
 * Remove swap post-processing
 * docker-compose for automation
