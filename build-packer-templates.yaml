@@ -19,7 +19,7 @@
       - type: "redhat"
         flavor: "fedora"
         version: "40"
-        iso_url: "https://fedora.cu.be/linux/releases/40/Server/x86_64/iso/"
+        iso_url: "https://fedora.cu.be/linux/releases/40/Server/x86_64/iso"
         iso_name: "Fedora-Server-netinst-x86_64-40-1.14.iso"
         checksum_filename: "Fedora-Server-40-1.14-x86_64-CHECKSUM"
       - type: "debian"
