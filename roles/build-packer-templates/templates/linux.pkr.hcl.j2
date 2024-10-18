@@ -66,9 +66,9 @@ variable "version" {
 
 source "qemu" "{{ label }}" {
   accelerator      = "kvm"
-  boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ debian.ubuntu2004.boot_command }} | default(item.boot_command) }}
-  {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ debian.ubuntu2204.boot_command }} | default(item.boot_command) }}
-  {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ debian.ubuntu2404.boot_command }} | default(item.boot_command) }}
+  boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ debian.ubuntu2004.boot_command | default(item.boot_command) }}
+  {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ debian.ubuntu2204.boot_command | default(item.boot_command) }}
+  {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ debian.ubuntu2404.boot_command | default(item.boot_command) }}
   {% elif item.type == 'redhat' %}{{ redhat.boot_command | default(item.boot_command) }}
   {% endif -%}
   disk_cache       = "none"
