@@ -1,0 +1,37 @@
+- name: set Ubuntu computed variables
+  set_fact:
+    label: "{{ item.flavor }}{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
+  when: item.flavor == "ubuntu"
+
+- name: set config_file
+  set_fact:
+    config_file: "user-data"
+
+- name: Get checksum file
+  vars:
+    checksum_url: "{{ item.iso_url }}/{{ item.checksum_filename }}"
+    iso_name: "{{ item.iso_name | regex_replace('\\.','\\\\.') }}"
+  shell: curl -k -L -s {{ checksum_url }} | awk '/{{ iso_name }}/ {print $1}'
+  register: checksum_file
+
+- debug:
+    var: checksum_file
+  tags: never
+
+- set_fact:
+    checksum: "{{ checksum_file.stdout }}"
+
+- name: Create image.pkr.hcl
+  template:
+    src: "linux.pkr.hcl.j2"
+    dest: "{{ packer_templates_dir }}/{{ label }}.pkr.hcl"
+
+- name: Create packer-templates directory
+  file:
+    dest: "{{ packer_templates_dir }}/http/{{ label }}"
+    state: directory
+
+- name: Create cloud-init file
+  template:
+    src: "user-data.j2"
+    dest: "{{ packer_templates_dir }}/http/{{ label }}/{{ config_file }}"

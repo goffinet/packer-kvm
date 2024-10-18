@@ -2,7 +2,7 @@
 
 variable "config_file" {
   type    = string
-  default = "almalinux9-kickstart.cfg"
+  default = "user-data"
 }
 
 variable "cpu" {
@@ -27,17 +27,17 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:1e5d7da3d84d5d9a5a1177858a5df21b868390bfccf7f0f419b1e59acc293160"
+  default = "sha256:b8f31413336b9393ad5d8ef0282717b2ab19f007df2e9ed5196c13d8f9153c8b"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://repo.almalinux.org/almalinux/9.4/isos/x86_64/AlmaLinux-9.4-x86_64-boot.iso"
+  default = "http://releases.ubuntu.com/20.04/ubuntu-20.04.6-live-server-amd64.iso"
 }
 
 variable "name" {
   type    = string
-  default = "almalinux9"
+  default = "ubuntu2004"
 }
 
 variable "ram" {
@@ -47,22 +47,22 @@ variable "ram" {
 
 variable "ssh_password" {
   type    = string
-  default = "testtest
+  default = "ubuntu"
   }
 
 variable "ssh_username" {
   type    = string
-  default = "root
+  default = "ubuntu"
   }
 
 variable "version" {
   type    = string
-  default = "9.4"
+  default = "20.04"
 }
 
-source "qemu" "almalinux9" {
+source "qemu" "ubuntu2004" {
   accelerator      = "kvm"
-  boot_command     = ['<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}<enter><wait>']
+  boot_command     = ['<enter><enter><f6><esc><wait>', '<bs><bs><bs><bs>', 'autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}/ ', '--- <enter>'] | default(item.boot_command) }}
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
@@ -80,16 +80,18 @@ source "qemu" "almalinux9" {
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
-  ssh_wait_timeout = "30m"
-  boot_wait        = "40s"
+  boot_wait              = "3s"
+  ssh_handshake_attempts = 500
+  ssh_timeout            = "45m"
+  ssh_wait_timeout       = "45m"
 }
 
 build {
-  sources = ["source.qemu.almalinux9"]
+  sources = ["source.qemu.ubuntu2004"]
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"
-    inline          = ["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]
+    inline          = ["sudo apt-get update", "sudo apt-get -y install software-properties-common", "sudo apt-add-repository --yes --update ppa:ansible/ansible", "sudo apt update", "sudo apt -y install ansible"]
     }
 
   provisioner "ansible-local" {

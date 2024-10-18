@@ -2,7 +2,7 @@
 
 variable "config_file" {
   type    = string
-  default = "almalinux9-kickstart.cfg"
+  default = "user-data"
 }
 
 variable "cpu" {
@@ -27,17 +27,17 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:1e5d7da3d84d5d9a5a1177858a5df21b868390bfccf7f0f419b1e59acc293160"
+  default = "sha256:e240e4b801f7bb68c20d1356b60968ad0c33a41d00d828e74ceb3364a0317be9"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://repo.almalinux.org/almalinux/9.4/isos/x86_64/AlmaLinux-9.4-x86_64-boot.iso"
+  default = "http://releases.ubuntu.com/24.04/ubuntu-24.04.1-live-server-amd64.iso"
 }
 
 variable "name" {
   type    = string
-  default = "almalinux9"
+  default = "ubuntu2404"
 }
 
 variable "ram" {
@@ -47,22 +47,22 @@ variable "ram" {
 
 variable "ssh_password" {
   type    = string
-  default = "testtest
+  default = "ubuntu"
   }
 
 variable "ssh_username" {
   type    = string
-  default = "root
+  default = "ubuntu"
   }
 
 variable "version" {
   type    = string
-  default = "9.4"
+  default = "24.04"
 }
 
-source "qemu" "almalinux9" {
+source "qemu" "ubuntu2404" {
   accelerator      = "kvm"
-  boot_command     = ['<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}<enter><wait>']
+  boot_command     = ['<esc><esc><esc><esc>e<wait>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', '<del><del><del><del><del><del><del><del>', 'linux /casper/vmlinuz --- autoinstall ds="nocloud-net;seedfrom=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}/"<enter><wait>', 'initrd /casper/initrd<enter><wait>', 'boot<enter>', '<enter><f10><wait>'] | default(item.boot_command) }}
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
@@ -80,16 +80,18 @@ source "qemu" "almalinux9" {
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
-  ssh_wait_timeout = "30m"
-  boot_wait        = "40s"
+  boot_wait              = "3s"
+  ssh_handshake_attempts = 500
+  ssh_timeout            = "45m"
+  ssh_wait_timeout       = "45m"
 }
 
 build {
-  sources = ["source.qemu.almalinux9"]
+  sources = ["source.qemu.ubuntu2404"]
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"
-    inline          = ["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]
+    inline          = ["sudo apt-get update", "sudo apt-get -y install software-properties-common", "sudo apt-add-repository --yes --update ppa:ansible/ansible", "sudo apt update", "sudo apt -y install ansible"]
     }
 
   provisioner "ansible-local" {

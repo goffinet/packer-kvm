@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 7, CentOS 8 (Stream), CentOS 9 (Stream), Alma Linux 8, Alma Linux 9, Rocky Linux 8, Bionic (Ubuntu 1804), Focal (Ubuntu 2004), Jammy (Ubuntu 2204), Debian 11 (stable), Kali Linux, Fedora 35.
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), AlmaLinux 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404).
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -116,22 +116,17 @@ pip3 install docker-compose
 
 Each JSON file is a template for a distribution :
 
-* [almalinux8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux8.pkr.hcl)
 * [almalinux9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.pkr.hcl)
-* [bionic.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/bionic.pkr.hcl)
-* [centos7.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos7.pkr.hcl)
-* [centos8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos8.pkr.hcl)
 * [centos9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos9.pkr.hcl)
-* [debian11.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/debian11.pkr.hcl)
-* [fedora35.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora35.pkr.hcl)
-* [focal.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/focal.pkr.hcl)
-* [jammy.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/jammy.pkr.hcl)
-* [rocky8.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/rocky8.pkr.hcl)
+* [fedora40.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora40.pkr.hcl)
+* [ubuntu2004.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2004.pkr.hcl)
+* [ubuntu2204.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2204.pkr.hcl)
+* [ubuntu2404.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2404.pkr.hcl)
 
 For example :
 
 ```bash
-packer build centos7.pkr.hcl
+packer build almalinux9.pkr.hcl
 ```
 
 ## Build with Docker qemu based image
@@ -149,13 +144,13 @@ docker run --rm \
   -v `pwd`:/opt/ \
   -e AWS_ACCESS_KEY=$AWS_ACCESS_KEY \
   -e AWS_SECRET_KEY=$AWS_SECRET_KEY \
-  -w /opt/ goffinet/packer-qemu build centos7.pkr.hcl
+  -w /opt/ goffinet/packer-qemu build almalinux9.pkr.hcl
 ```
 
 The script `build.sh` do it with the template filename as first argument.
 
 ```bash
-./build.sh centos7.pkr.hcl
+./build.sh almalinux9.pkr.hcl
 ```
 
 To build the image localy with the [Dockerfile](https://github.com/goffinet/packer-kvm/blob/master/Dockerfile) :
@@ -174,21 +169,12 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 
 I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
-- [almalinux8.qcow2](http://download.goffinet.org/kvm/almalinux8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux8.qcow2.sha256sum)
 - [almalinux9.qcow2](http://download.goffinet.org/kvm/almalinux9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.sha256sum)
-- [bionic.qcow2 (Ubuntu 18.04)](http://download.goffinet.org/kvm/bionic.qcow2) [[md5sum]](http://download.goffinet.org/kvm/bionic.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/bionic.qcow2.sha256sum)
-- [centos7.qcow2](http://download.goffinet.org/kvm/centos7.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos7.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos7.qcow2.sha256sum)
-- [centos8.qcow2](http://download.goffinet.org/kvm/centos8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos8.qcow2.sha256sum)
 - [centos9.qcow2](http://download.goffinet.org/kvm/centos9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos9.qcow2.sha256sum)
-- [debian11.qcow2](http://download.goffinet.org/kvm/debian11.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian11.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian11.qcow2.sha256sum)
-- [fedora32.qcow2](http://download.goffinet.org/kvm/fedora32.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora32.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora32.qcow2.sha256sum)
-- [fedora33.qcow2](http://download.goffinet.org/kvm/fedora33.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora33.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora33.qcow2.sha256sum)
-- [fedora34.qcow2](http://download.goffinet.org/kvm/fedora34.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora34.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora34.qcow2.sha256sum)
-- [fedora35.qcow2](http://download.goffinet.org/kvm/fedora35.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora35.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora35.qcow2.sha256sum)
-- [focal.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/focal.qcow2) [[md5sum]](http://download.goffinet.org/kvm/focal.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/focal.qcow2.sha256sum)
-- [jammy.qcow2 (Ubuntu 20.04)](http://download.goffinet.org/kvm/jammy.qcow2) [[md5sum]](http://download.goffinet.org/kvm/jammy.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/jammy.qcow2.sha256sum)
-- [kali20211.qcow2](http://download.goffinet.org/kvm/kali20211.qcow2) [[md5sum]](http://download.goffinet.org/kvm/kali20211.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/kali20211.qcow2.sha256sum)
-- [rocky8.qcow2](http://download.goffinet.org/kvm/rocky8.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky8.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky8.qcow2.sha256sum)
+- [fedora40.qcow2](http://download.goffinet.org/kvm/fedora40.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora40.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora40.qcow2.sha256sum)
+- [ubuntu2004.qcow2 (Focal)](http://download.goffinet.org/kvm/ubuntu2004.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.sha256sum)
+- [ubuntu2204.qcow2 (Jammy)](http://download.goffinet.org/kvm/ubuntu2204.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.sha256sum)
+- [ubuntu2404.qcow2 (Noble)](http://download.goffinet.org/kvm/ubuntu2404.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.sha256sum)
 
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
@@ -230,14 +216,14 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```
   ```raw
   Please provide the image name :
-  centos7 bionic debian11
+  almalinux9 centos9 fedora40 ubuntu2004 ubuntu2204 ubuntu2404
   ```
 
 3. Launch two new machines
 
   ```bash
-  sudo ./define-guest-image.sh c1 centos7
-  sudo ./define-guest-image.sh u1 bionic
+  sudo ./define-guest-image.sh c1 almalinux9
+  sudo ./define-guest-image.sh u1 ubuntu2204
   ```
 
 4. Enjoy
@@ -249,6 +235,8 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```bash
   ssh $(dig @192.168.122.1 +short u1)
   ```
+
+> This section should be revised
 
 ### Enjoy with Terraform (with libvirt)
 
@@ -319,13 +307,19 @@ To get the default ssh public key :
 curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa.pub
 ```
 
+### How are these Packer templates produced?
+
+An `build-packer-templates.yaml` Ansible playbook generates the files for each distribution using a custom `build-packer-templates` role.
+
 ## ToDo
 
-* unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
-* random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
-* Remove swap post-processing
-* docker-compose for automation
-* add versions of post-processing and images meta-datas
+- [ ] Test the `build-packer-templates.yaml` playbook production
+- [x] unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
+- [x] random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
+- [ ] Remove swap post-processing
+- [ ] docker-compose for automation
+- [ ] add versions of post-processing and images meta-datas
+- [ ] Include Windows templates
 
 Wath are the variants in those templates?
 
