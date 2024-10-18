@@ -32,6 +32,5 @@ debian:
     ssh_wait_timeout       = "45m"
     host_port_max          = 2229
     host_port_min          = 2222
-    http_directory         = "."
     http_port_max          = 10089
     http_port_min          = 10082
