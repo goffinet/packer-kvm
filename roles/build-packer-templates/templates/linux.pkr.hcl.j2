@@ -61,7 +61,7 @@ variable "ssh_username" {
 
 variable "version" {
   type    = string
-  default = "{{ item.version }}"
+  default = "{{ version }}"
 }
 
 source "qemu" "{{ label }}" {

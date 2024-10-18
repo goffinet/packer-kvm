@@ -1,6 +1,7 @@
 - name: set Ubuntu computed variables
   set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
+    version: "{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
   when: item.flavor == "ubuntu"
 
 - name: set config_file
