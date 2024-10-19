@@ -17,7 +17,7 @@ redhat:
       "<leftCtrlOn>x<leftCtrlOff>"]
   additional_parameters: |
     ssh_wait_timeout = "30m"
-    boot_wait        = "40s"
+    boot_wait        = "10s"
 
 debian:
   ssh_password: "ubuntu"
