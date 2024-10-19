@@ -4,12 +4,11 @@ autoinstall:
   identity:
     hostname: ubuntu2004
     username: ubuntu
-    password: $6$rounds=4096$fDnzQOX8SPTV6h2U$AkV3YuUe4CdMmJ8WKU7TGD8RVs/pGj06lf0aTB/oOqP6KtREnzgz.G1yD/m5Uv3O60V5iyZw6I12of3rHCVT7.
+    password: $6$rounds=4096$dng7nOOsepfopxaV$BFtgTdYRG7HJmqSpTZnqK0OqoXJ8HqU3pP8/81ouqlrsF76QgrQKnHBrdDwC7.r99LYGjUwAbfZUYKhmyUtOz/
   user-data:
     disable_root: false
   keyboard:
-    layout: en
-    variant: us
+    layout: us
   locale: en_US
   network:
     ethernets:
@@ -37,5 +36,3 @@ autoinstall:
     - wget
     - openssh-server
 #    - qemu-guest-agent
-  package_update: true
-  package_upgrade: true

@@ -4,12 +4,11 @@ autoinstall:
   identity:
     hostname: ubuntu2204
     username: ubuntu
-    password: $6$rounds=4096$QLjDYV1AyRVlo3ul$EK5KTmG/da5Mkm80eFS7OUgNcMtDcfBP6PFsYlAGZOIuiQlS5G66BOb1R1DjmHAcmiQHtlVxTP7/M5GG1EIfz1
+    password: $6$rounds=4096$OP1aZ9CM836/Pv4h$oXL6UxOznQQwf4qI7d2X3FOTjj8Mmv5pQi9vRl/rU6ZCj5M7zOUXlIZ0X4/ShHX5ErfMEL625BT391wfOThF0/
   user-data:
     disable_root: false
   keyboard:
-    layout: en
-    variant: us
+    layout: us
   locale: en_US
   network:
     ethernets:
@@ -37,5 +36,3 @@ autoinstall:
     - wget
     - openssh-server
 #    - qemu-guest-agent
-  package_update: true
-  package_upgrade: true
