@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: ubuntu2204
     username: ubuntu
-    password: $6$rounds=4096$rtnmx2GVYNl/mDUh$jKWrYBZmjUGZg5WG2nXPcX0k..OfC0p.W9N82colsZwdT3PBap1rmj6XFeL/W30xtvLCYIPwQ82S7hqFHHGNV.
+    password: $6$rounds=4096$QLjDYV1AyRVlo3ul$EK5KTmG/da5Mkm80eFS7OUgNcMtDcfBP6PFsYlAGZOIuiQlS5G66BOb1R1DjmHAcmiQHtlVxTP7/M5GG1EIfz1
   user-data:
     disable_root: false
   keyboard:

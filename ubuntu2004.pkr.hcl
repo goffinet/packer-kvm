@@ -62,7 +62,7 @@ variable "version" {
 
 source "qemu" "ubuntu2004" {
   accelerator      = "kvm"
-  boot_command     = ["<enter><enter><f6><esc><wait>", "<bs><bs><bs><bs>", "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}/ ", "--- <enter>"]
+  boot_command     = ["<enter><enter><f6><esc><wait>", "<bs><bs><bs><bs>", "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/ ", "--- <enter>"]
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
