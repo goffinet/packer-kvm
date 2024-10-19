@@ -3,6 +3,30 @@
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
     version: "{{ item.version.split('.')[0] }}"
 
+- name: Set Fedora Boot Command
+  when: item.flavor == "fedora"
+  set_fact:
+    boot_command: >
+      ["<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "c<wait5>",
+      "set gfxpayload=keep<enter><wait5>",
+      "linux /images/pxeboot/vmlinuz <wait5>",
+      "inst.stage2=cdrom quite text <wait5>",
+      "net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=1 <wait5>",
+      "http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait5>",
+      "---<enter><wait5>",
+      "initrd /images/pxeboot/initrd.img<enter><wait5>",
+      "boot<enter>"]
+
 - name: Set config_file variable
   set_fact:
     config_file: "{{ label }}-kickstart.cfg"
@@ -10,14 +34,14 @@
 - name: Create image.pkr.hcl
   template:
     src: "linux.pkr.hcl.j2"
-    dest: "{{ packer_templates_dir }}/{{ label }}.pkr.hcl"
+    dest: "{{ playbook_dir }}/{{ label }}.pkr.hcl"
 
 - name: Create packer-templates directory
   file:
-    dest: "{{ packer_templates_dir }}/http"
+    dest: "{{ playbook_dir }}/http"
     state: directory
 
 - name: Create kickstart file
   template:
     src: "kickstart.cfg.j2"
-    dest: "{{ packer_templates_dir }}/http/{{ config_file }}"
+    dest: "{{ playbook_dir }}/http/{{ config_file }}"

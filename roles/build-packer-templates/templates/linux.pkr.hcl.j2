@@ -66,10 +66,10 @@ variable "version" {
 
 source "qemu" "{{ label }}" {
   accelerator      = "kvm"
-  boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ debian.ubuntu2004.boot_command | default(item.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ debian.ubuntu2204.boot_command | default(item.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ debian.ubuntu2404.boot_command | default(item.boot_command) | regex_replace('\'', '\"')  | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.type == 'redhat' %}{{ redhat.boot_command | default(item.boot_command) | regex_replace('\'', '\"') }}
+  boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ item.boot_command | default(debian.ubuntu2004.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
+  {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ item.boot_command | default(debian.ubuntu2204.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
+  {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ item.boot_command | default(debian.ubuntu2404.boot_command) | regex_replace('\'', '\"')  | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
+  {% elif item.type == 'redhat' %}{{ item.boot_command | default(redhat.boot_command) | regex_replace('\'', '\"') }}
   {% endif -%}
   disk_cache       = "none"
   disk_compression = true
@@ -98,8 +98,8 @@ build {
 
   provisioner "shell" {
     execute_command = "{% raw %}{{ .Vars }}{% endraw %} sudo -E bash '{% raw %}{{ .Path }}{% endraw %}'"
-    inline          = {% if item.type == 'debian' %}{{ debian.shell_provisioner| default(item.provisioner) | regex_replace('\'', '\"') }}
-    {% elif item.type == 'redhat' %}{{ redhat.shell_provisioner | default(item.provisioner) | regex_replace('\'', '\"') }}
+    inline          = {% if item.type == 'debian' %}{{ item.shell_provisioner| default(debian.shell_provisioner) | regex_replace('\'', '\"') }}
+    {% elif item.type == 'redhat' %}{{ item.shell_provisioner | default(redhat.shell_provisioner) | regex_replace('\'', '\"') }}
     {% endif -%}
   }
 

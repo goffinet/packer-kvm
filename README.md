@@ -313,8 +313,6 @@ An `build-packer-templates.yaml` Ansible playbook generates the files for each d
 
 ## ToDo
 
-- [ ] Test the `build-packer-templates.yaml` playbook production
-  - [ ] Ubuntu cloud-init not working
 - [ ] unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
 - [ ] random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
 - [ ] Remove swap post-processing

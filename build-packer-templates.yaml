@@ -1,7 +1,6 @@
 - hosts: localhost
   gather_facts: no
   vars:
-    packer_templates_dir: ./
     destination_server: download.goffinet.org
     images:
       - type: "redhat"
@@ -40,11 +39,6 @@
         iso_url: "http://releases.ubuntu.com/24.04"
         iso_name: "ubuntu-24.04.1-live-server-amd64.iso"
         checksum_filename: "SHA256SUMS"
-  pre_tasks:
-    - name: Create packer-templates directory
-      file:
-        dest: "{{ packer_templates_dir }}"
-        state: directory
   roles:
     - name: Create packer-templates
       role: build-packer-templates

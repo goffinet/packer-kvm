@@ -12,19 +12,19 @@
 - name: Create image.pkr.hcl
   template:
     src: "linux.pkr.hcl.j2"
-    dest: "{{ packer_templates_dir }}/{{ label }}.pkr.hcl"
+    dest: "{{ label }}.pkr.hcl"
 
-- name: Create packer-templates directory
+- name: Create cloud-init directory
   file:
-    dest: "{{ packer_templates_dir }}/http/{{ label }}"
+    dest: "{{ playbook_dir }}/http/{{ label }}"
     state: directory
 
 - name: Create user-data file
   template:
     src: "{{ config_file }}.j2"
-    dest: "{{ packer_templates_dir }}/http/{{ label }}/{{ config_file }}"
+    dest: "{{ playbook_dir }}/http/{{ label }}/{{ config_file }}"
 
 - name: Create meta-data file
   template:
     src: "{{ metadata_file }}.j2"
-    dest: "{{ packer_templates_dir }}/http/{{ label }}/{{ metadata_file }}"
+    dest: "{{ playbook_dir }}/http/{{ label }}/{{ metadata_file }}"
