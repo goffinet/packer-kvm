@@ -25,7 +25,7 @@ redhat:
       "c<wait5>",
       "set gfxpayload=keep<enter><wait5>",
       "linux /images/pxeboot/vmlinuz <wait5>",
-      "inst.stage2=cdrom quite text <wait5>",
+      "quite text <wait5>",
       "net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=1 <wait5>",
       "http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait5>",
       "---<enter><wait5>",
