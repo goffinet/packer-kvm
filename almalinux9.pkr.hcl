@@ -81,7 +81,7 @@ source "qemu" "almalinux9" {
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
   ssh_wait_timeout = "30m"
-  boot_wait        = "40s"
+  boot_wait        = "10s"
 }
 
 build {
