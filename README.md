@@ -324,7 +324,7 @@ Wath are the variants in those templates?
 
 - the `iso_urls` and the `iso_checksum` template parameters
 - the `ssh_username`, `ssh_password` and `ssh_private_key_file` template parameters as well as `sshkey` in kickstart files.
-- the `boot_command` as template parameter
+- the `boot_command` and provisioner commands as template parameters
 - the configuration file type : kickstart, preseed or cloud-init
 
 ## Initials credits
