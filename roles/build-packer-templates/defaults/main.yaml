@@ -12,25 +12,9 @@ redhat:
   shell_provisioner: '["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]'
   fedora:
     boot_command: >
-      ["<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
-      "c<wait5>",
-      "set gfxpayload=keep<enter><wait5>",
-      "linux /images/pxeboot/vmlinuz <wait5>",
-      "quite text <wait5>",
-      "net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=1 <wait5>",
-      "http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait5>",
-      "---<enter><wait5>",
-      "initrd /images/pxeboot/initrd.img<enter><wait5>",
-      "boot<enter>"]
+      ["<up>e", "<down><down><end>",
+      " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
+      "<leftCtrlOn>x<leftCtrlOff>"]
   additional_parameters: |
     ssh_wait_timeout = "30m"
     boot_wait        = "40s"
