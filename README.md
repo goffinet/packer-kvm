@@ -155,7 +155,7 @@ The script `build.sh` do it with the template filename as first argument.
 
 To build the image localy with the [Dockerfile](https://github.com/goffinet/packer-kvm/blob/master/Dockerfile) :
 
-```shell
+```bash
 docker build -t packer-qemu .
 ```
 
@@ -314,8 +314,9 @@ An `build-packer-templates.yaml` Ansible playbook generates the files for each d
 ## ToDo
 
 - [ ] Test the `build-packer-templates.yaml` playbook production
-- [x] unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
-- [x] random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
+  - [ ] Ubuntu cloud-init not working
+- [ ] unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
+- [ ] random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
 - [ ] Remove swap post-processing
 - [ ] docker-compose for automation
 - [ ] add versions of post-processing and images meta-datas
