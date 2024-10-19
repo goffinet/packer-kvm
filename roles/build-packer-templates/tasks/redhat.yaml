@@ -1,25 +1,11 @@
-- name: set computed variables
+- name: Set computed variables
   set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
     version: "{{ item.version.split('.')[0] }}"
 
-- name: set config_file
+- name: Set config_file variable
   set_fact:
     config_file: "{{ label }}-kickstart.cfg"
-
-- name: Get checksum file
-  vars:
-    checksum_url: "{{ item.iso_url }}/{{ item.checksum_filename }}"
-    iso_name: "{{ item.iso_name | regex_replace('\\.','\\\\.') }}"
-  shell: curl -k -L -s {{ checksum_url }} | awk '/SHA256 \({{ iso_name }}\)/ {print $NF}'
-  register: checksum_file
-
-- debug:
-    var: checksum_file
-  tags: never
-
-- set_fact:
-    checksum: "{{ checksum_file.stdout }}"
 
 - name: Create image.pkr.hcl
   template:
