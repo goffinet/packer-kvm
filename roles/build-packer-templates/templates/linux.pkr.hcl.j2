@@ -69,7 +69,8 @@ source "qemu" "{{ label }}" {
   boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ item.boot_command | default(debian.ubuntu2004.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
   {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ item.boot_command | default(debian.ubuntu2204.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
   {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ item.boot_command | default(debian.ubuntu2404.boot_command) | regex_replace('\'', '\"')  | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.type == 'redhat' %}{{ item.boot_command | default(redhat.boot_command) | regex_replace('\'', '\"') }}
+  {% elif item.type == 'redhat' and item.flavor != 'fedora' %}{{ item.boot_command | default(redhat.boot_command) | regex_replace('\'', '\"') }}
+  {% elif item.type == 'redhat' and item.flavor == 'fedora' %}{{ item.boot_command | default(redhat.fedora.boot_command) | regex_replace('\'', '\"') }}
   {% endif -%}
   disk_cache       = "none"
   disk_compression = true

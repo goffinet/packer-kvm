@@ -1,4 +1,3 @@
-packer_templates_dir: ./
 destination_server: "download.goffinet.org"
 
 vm:
@@ -11,6 +10,27 @@ redhat:
   ks_suffix: "-kickstart.cfg"
   boot_command: '["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}<enter><wait>"]'
   shell_provisioner: '["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]'
+  fedora:
+    boot_command: >
+      ["<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "<tab><tab><tab><tab><tab><tab><tab><tab><tab><tab><wait>",
+      "c<wait5>",
+      "set gfxpayload=keep<enter><wait5>",
+      "linux /images/pxeboot/vmlinuz <wait5>",
+      "inst.stage2=cdrom quite text <wait5>",
+      "net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=1 <wait5>",
+      "http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait5>",
+      "---<enter><wait5>",
+      "initrd /images/pxeboot/initrd.img<enter><wait5>",
+      "boot<enter>"]
   additional_parameters: |
     ssh_wait_timeout = "30m"
     boot_wait        = "40s"
