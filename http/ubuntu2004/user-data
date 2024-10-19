@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: ubuntu2004
     username: ubuntu
-    password: $6$rounds=4096$iR.bXMeZLBPngi83$2o9TisudOkVZ6zxc7epeTCEEra8sZiYxeXx4fpFKjwIvrwhlmbWczkGicpTTZx5V53wBlC3.Jk4y0KbSvH5rI/
+    password: $6$rounds=4096$dr7ec82za44Wm/f8$IrA5z5itrOc6U7G23LMxIlOf4z/YloTt2r6J0hpWX0oYoC1NIIkdqC5unkeYK5dde1BwK/lKg3be7ipEn0R2w/
   user-data:
     disable_root: false
   keyboard:
@@ -25,8 +25,6 @@ autoinstall:
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
-#    - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
-#    - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
     - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0"/' /target/etc/default/grub
     - curtin in-target --target /target update-grub2
