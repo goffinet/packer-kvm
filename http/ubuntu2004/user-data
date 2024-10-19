@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: ubuntu2004
     username: ubuntu
-    password: $6$rounds=4096$RB1imJT3dgIVCpj9$RbbYc72V55bkyMGAxfXAR2gQPkosRty/oFGi/VFxOFJovFXtJiPY5mHyoRY7jdcupjJFgGDjihWiiAGrVQMEM/
+    password: $6$rounds=4096$RelSduZF.K3/.Bkt$wNnn58dgEJDh/.3TLkjVV76GfqYn1U/5zFziZZ7PaKSVq.AfY36LrmsArcgEbaUPZIlK/x54EwV0rU9P3OKPa0
   user-data:
     disable_root: false
   keyboard:

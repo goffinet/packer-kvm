@@ -1,5 +1,5 @@
 - hosts: localhost
-  gather_facts: yes
+  gather_facts: no
   vars:
     packer_templates_dir: ./
     destination_server: download.goffinet.org

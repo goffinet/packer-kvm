@@ -7,6 +7,7 @@
 - name: Set config_file
   set_fact:
     config_file: "user-data"
+    metadata_file: "meta-data"
 
 - name: Create image.pkr.hcl
   template:
@@ -18,7 +19,12 @@
     dest: "{{ packer_templates_dir }}/http/{{ label }}"
     state: directory
 
-- name: Create cloud-init file
+- name: Create user-data file
   template:
-    src: "user-data.j2"
+    src: "{{ config_file }}.j2"
     dest: "{{ packer_templates_dir }}/http/{{ label }}/{{ config_file }}"
+
+- name: Create meta-data file
+  template:
+    src: "{{ metadata_file }}.j2"
+    dest: "{{ packer_templates_dir }}/http/{{ label }}/{{ metadata_file }}"
