@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: ubuntu2204
     username: ubuntu
-    password: $6$rounds=4096$OP1aZ9CM836/Pv4h$oXL6UxOznQQwf4qI7d2X3FOTjj8Mmv5pQi9vRl/rU6ZCj5M7zOUXlIZ0X4/ShHX5ErfMEL625BT391wfOThF0/
+    password: $6$rounds=4096$lCU70ygC1ZqxCj4L$lXqG88D6BW4SDwmOwXM.RkHRQX7H/HbqMQZIDL4XbufuOQqOZ72rm/AuCiyfD.8mWykyZUFuHCbOYEOTTBtbS/
   user-data:
     disable_root: false
   keyboard:
@@ -25,8 +25,8 @@ autoinstall:
   late-commands:
     - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
     - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
-    - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
-    - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
+#    - sed -i 's/^#*\(send dhcp-client-identifier\).*$/\1 = hardware;/' /target/etc/dhcp/dhclient.conf
+#    - 'sed -i "s/dhcp4: true/&\n      dhcp-identifier: mac/" /target/etc/netplan/00-installer-config.yaml'
     - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
     - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0"/' /target/etc/default/grub
     - curtin in-target --target /target update-grub2
