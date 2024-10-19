@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: ubuntu2404
     username: ubuntu
-    password: $6$rounds=4096$ub1vp2/A7kOPf7ub$GcgYAg6XbWTsKtMGBYGd8g0fyLYeb1SMX.1dwPotqeGS6yaMQ/4EwdvmLpQ0lLZkZ8yyIoZtNdRp9Cw8zVW0o1
+    password: $6$rounds=4096$pH3YSv.I3qGrZvhG$HhFuWXAWroBS6ZsUfGABYwKuTp5UkToVtVoRK85Xq5Ll6kb8EdO/H.wDJjIOQZ9OX/3i3ePogPiK6Wszv.Oza.
   user-data:
     disable_root: false
   keyboard:

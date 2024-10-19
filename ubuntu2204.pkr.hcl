@@ -62,7 +62,7 @@ variable "version" {
 
 source "qemu" "ubuntu2204" {
   accelerator      = "kvm"
-  boot_command     = ["c<wait>linux /casper/vmlinuz --- autoinstall ds=\"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/${var.config_file}\"<enter><wait>", "initrd /casper/initrd<enter><wait>", "boot<enter><wait>"]
+  boot_command     = ["c<wait>linux /casper/vmlinuz --- autoinstall ds=\"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.name}${var.version}/${var.config_file}\"<enter><wait>", "initrd /casper/initrd<enter><wait>", "boot<enter><wait>"]
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
