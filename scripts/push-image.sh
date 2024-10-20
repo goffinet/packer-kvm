@@ -24,9 +24,9 @@ if [ $disable == "true"  ] ; then exit ; fi
 
 cd ${path_image}
 
-# rename the image, check the size, compute md5 and sha1 sum
+# rename the image by sparsify, check the size, compute md5 sha256 sum
 
-mv packer-${image} ${image}.qcow2
+virt-sparsify --check-tmpdir ignore --compress --convert qcow2 --format packer-${image} ${image}.qcow2
 md5sum_image=$(md5sum ${image}.qcow2 | cut -d' ' -f1)
 size_image=$(stat -c %s ${image}.qcow2)
 md5sum ${image}.qcow2 > ${image}.qcow2.md5sum
