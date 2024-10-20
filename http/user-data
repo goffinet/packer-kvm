@@ -1,0 +1,50 @@
+d-i pkgsel/install-language-support boolean false
+
+# locale
+d-i debian-installer/locale string en_US.UTF-8
+
+# keyboard
+d-i keyboard-configuration/xkb-keymap   select  us
+
+# timezone
+d-i time/zone string Europe/Paris
+
+# Controls whether to use NTP to set the clock during the install
+d-i clock-setup/ntp boolean true
+
+# apt
+d-i mirror/country string manual
+d-i mirror/http/hostname string ftp.debian.org
+d-i mirror/http/directory string /debian
+d-i mirror/http/proxy string
+d-i apt-setup/use_mirror boolean true
+
+# users
+d-i passwd/root-password password testtest
+d-i passwd/root-password-again password testtest
+d-i passwd/make-user boolean false
+
+# partitioning
+d-i partman-auto/method string regular
+d-i partman-auto/choose_recipe select atomic
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+
+apt-cdrom-setup apt-setup/cdrom/set-first boolean false
+
+# software
+tasksel tasksel/first multiselect standard
+d-i pkgsel/include string qemu-guest-agent wget openssh-server vim sudo cloud-init
+popularity-contest popularity-contest/participate boolean false
+
+# grub
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/bootdev  string /dev/vda
+
+# script
+d-i preseed/late_command string in-target sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# finish
+d-i finish-install/reboot_in_progress note

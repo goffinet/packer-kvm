@@ -1,0 +1,36 @@
+#cloud-config
+autoinstall:
+  version: 1
+  identity:
+    hostname: debian12
+    username: ubuntu
+    password: $6$rounds=4096$mB3ZauOM8/HIycgS$iaaXsE86il1SLeotstYVkkQXG9md.tG0QMyWvszGlc4zye9SxK3W3lnyYT5K9vkgZWZa7QFwIOIqPE8umY7zg1
+  user-data:
+    disable_root: false
+  keyboard:
+    layout: us
+  locale: en_US
+  network:
+    ethernets:
+      eth0:
+        dhcp4: true
+        dhcp-identifier: mac
+    version: 2
+  ssh:
+    allow-pw: true
+    install-server: true
+  storage:
+    layout:
+      name: lvm
+  late-commands:
+    - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
+    - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0"/' /target/etc/default/grub
+    - curtin in-target --target /target update-grub2
+  packages:
+    - bc
+    - curl
+    - wget
+    - openssh-server
+#    - qemu-guest-agent

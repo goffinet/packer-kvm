@@ -3,6 +3,13 @@
     type: "{{ item.type }}"
     flavor: "{{ item.flavor }}"
 
+- name: Set debian flavor computed variables
+  ansible.legacy.set_fact:
+    label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
+    version: "{{ item.version.split('.')[0] }}"
+    preseed_suffix: "-preseed.cfg"
+  when: item.flavor == "debian"
+
 - name: Set ubuntu computed variables
   ansible.legacy.set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
@@ -33,3 +40,14 @@
   ansible.legacy.template:
     src: "{{ metadata_file }}.j2"
     dest: "{{ playbook_dir }}/http/{{ label }}/{{ metadata_file }}"
+
+- name: Create debian flavor http directory
+  ansible.legacy.file:
+    dest: "{{ playbook_dir }}/http"
+    state: directory
+
+- name: Create debian flavor preseed file
+  ansible.legacy.template:
+    src: "preseed.cfg.j2"
+    dest: "{{ playbook_dir }}/http/{{ config_file }}"
+

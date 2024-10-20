@@ -25,22 +25,37 @@ boot_command: >-
   "initrd /casper/initrd<enter><wait>",
   "boot<enter><wait>"]
   {%- endif -%}
+  {%- if flavor == 'debian' -%}
+  ["<esc><wait>", "auto <wait>",
+  "console-keymaps-at/keymap=us <wait>",
+  "console-setup/ask_detect=false <wait>",
+  "debconf/frontend=noninteractive <wait>",
+  "debian-installer=en_US <wait>",
+  "fb=false <wait>",
+  "install <wait>",
+  "kbd-chooser/method=us <wait>",
+  "keyboard-configuration/xkb-keymap=us <wait>",
+  "locale=en_US <wait>",
+  "netcfg/get_hostname=${var.name}${var.version} <wait>",
+  "preseed/url=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait>", 
+  "<enter><wait>"]
+  {%- endif -%}
   {%- endif -%}
 
 ssh_password_salt: >-
   mB3ZauOM8/HIycgS
 
 ssh_password: >-
-  {%- if type == 'redhat' -%}
+  {%- if type == 'redhat' or flavor == 'debian' -%}
   testtest
-  {%- elif type == 'debian' -%}
+  {%- elif flavor == 'ubuntu' -%}
   ubuntu
   {%- endif -%}
 
 ssh_username: >-
-  {%- if type == 'redhat' -%}
+  {%- if type == 'redhat' or flavor == 'debian' -%}
   root
-  {%- elif type == 'debian' -%}
+  {%- elif flavor == 'ubuntu' -%}
   ubuntu
   {%- endif -%}
 
@@ -63,10 +78,14 @@ shell_provisioner: >-
   {%- if type == 'redhat' -%}
   ["dnf -y install python3 python3-pip",
   "pip3 install ansible"]
-  {%- elif type == 'debian' -%}
+  {%- elif flavor == 'ubuntu' -%}
   ["sudo apt-get update",
   "sudo apt-get -y install software-properties-common",
   "sudo apt-add-repository --yes --update ppa:ansible/ansible",
   "sudo apt update",
   "sudo apt -y install ansible"]
+  {% elif flavor == 'debian' %}
+  ["apt-get update",
+  "apt -y install python3 python3-pip",
+  "pip3 install ansible"]
   {%- endif -%}
