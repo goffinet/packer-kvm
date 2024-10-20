@@ -40,12 +40,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "file:https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.4-x86_64-boot.iso.CHECKSUM"
+  default = "file:https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-minimal.iso.CHECKSUM"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.4-x86_64-boot.iso "
+  default = "https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9-latest-x86_64-minimal.iso"
 }
 
 variable "name" {
