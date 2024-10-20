@@ -108,7 +108,7 @@ build {
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"
-    inline          =  ["apt-get update", "apt -y install python3 python3-pip", "pip3 install ansible"]
+    inline          =  ["apt-get update", "apt -y install ansible"]
   }
 
   provisioner "ansible-local" {

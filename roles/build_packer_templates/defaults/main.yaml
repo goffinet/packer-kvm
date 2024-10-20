@@ -86,6 +86,5 @@ shell_provisioner: >-
   "sudo apt -y install ansible"]
   {% elif flavor == 'debian' %}
   ["apt-get update",
-  "apt -y install python3 python3-pip",
-  "pip3 install ansible"]
+  "apt -y install ansible"]
   {%- endif -%}
