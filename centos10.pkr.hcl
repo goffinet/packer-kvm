@@ -75,7 +75,7 @@ variable "version" {
 
 source "qemu" "centos10" {
   accelerator      = "kvm"
-  boot_command     = ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}<enter><wait>"]
+  boot_command     = ["<up>e", "<down><down><end>", " inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}", "<leftCtrlOn>x<leftCtrlOff>"]
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
