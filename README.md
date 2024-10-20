@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404), Debian 12 (Bookworm).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Rocky 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404), Debian 12 (Bookworm).
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -117,6 +117,7 @@ pip3 install docker-compose
 Each JSON file is a template for a distribution :
 
 * [almalinux9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.pkr.hcl)
+* [rocky9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/rocky9.pkr.hcl)
 * [centos9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos9.pkr.hcl)
 * [centos10.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos10.pkr.hcl)
 * [fedora40.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora40.pkr.hcl)
@@ -172,6 +173,7 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
 - [almalinux9.qcow2](http://download.goffinet.org/kvm/almalinux9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.sha256sum)
+- [rocky9.qcow2](http://download.goffinet.org/kvm/rocky9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky9.qcow2.sha256sum)
 - [centos9.qcow2](http://download.goffinet.org/kvm/centos9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos9.qcow2.sha256sum)
 - [centos10.qcow2](http://download.goffinet.org/kvm/centos10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos10.qcow2.sha256sum)
 - [fedora40.qcow2](http://download.goffinet.org/kvm/fedora40.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora40.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora40.qcow2.sha256sum)

@@ -22,17 +22,17 @@ variable "config_file" {
 
 variable "cpu" {
   type    = string
-  default = "{{ item.cpu |default(vm.cpu) }}"
+  default = "{{ item.cpu | default(vm.cpu) }}"
 }
 
 variable "destination_server" {
   type    = string
-  default = "{{ item.destination_server |default(destination_server) }}"
+  default = "{{ item.destination_server | default(destination_server) }}"
 }
 
 variable "disk_size" {
   type    = string
-  default = "{{ item.disk_size |default(vm.disk_size) }}"
+  default = "{{ item.disk_size | default(vm.disk_size) }}"
 }
 
 variable "headless" {
@@ -57,17 +57,17 @@ variable "name" {
 
 variable "ram" {
   type    = string
-  default = "{{ item.ram |default(vm.ram) }}"
+  default = "{{ item.ram | default(vm.ram) }}"
 }
 
 variable "ssh_password" {
   type    = string
-  default = "{{ item.ssh_password |default(ssh_password) }}"
+  default = "{{ item.ssh_password | default(ssh_password) }}"
 }
 
 variable "ssh_username" {
   type    = string
-  default = "{{ item.ssh_username |default(ssh_username) }}"
+  default = "{{ item.ssh_username | default(ssh_username) }}"
 }
 
 variable "version" {

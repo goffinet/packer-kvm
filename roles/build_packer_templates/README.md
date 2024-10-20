@@ -62,7 +62,8 @@ To use this role, include it in your Ansible playbook and provide the necessary 
 This role supports the following operating system versions for building Packer templates:
 
 - **Red Hat-based Systems:**
-  - AlmaLinux: 9.4
+  - AlmaLinux: 9
+  - Rocky: 9
   - CentOS Stream: 9, 10
   - Fedora: 40
 
