@@ -63,7 +63,7 @@ This role supports the following operating system versions for building Packer t
 
 - **Red Hat-based Systems:**
   - AlmaLinux: 9.4
-  - CentOS: 9
+  - CentOS Stream: 9, 10
   - Fedora: 40
 
 - **Debian-based Systems:**
@@ -88,6 +88,12 @@ This role supports the following operating system versions for building Packer t
         version: "9"
         iso_url: "https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso"
         iso_name: "CentOS-Stream-9-20241016.0-x86_64-boot.iso"
+        checksum_filename: "SHA256SUM"
+      - type: "redhat"
+        flavor: "centos"
+        version: "10"
+        iso_url: "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso"
+        iso_name: "CentOS-Stream-10-20241018.0-x86_64-boot.iso"
         checksum_filename: "SHA256SUM"
       - type: "redhat"
         flavor: "fedora"
