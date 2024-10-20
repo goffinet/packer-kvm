@@ -1,8 +1,18 @@
 # Ansible Role: Build Packer Templates
 
+## Overview
+
+This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation. The role simplifies the process of creating consistent and reproducible images for various environments.
+
 ## Variables
 
 The following variables are used in the Packer templates:
+
+- **type**:
+
+- **flavor**:
+  
+- **version**: 
 
 - **iso_url**: The URL from which the ISO image can be downloaded. This is essential for the installation process as it points to the installation media.
   
@@ -10,9 +20,6 @@ The following variables are used in the Packer templates:
 
 - **checksum_filename**: The name of the file that contains the checksum for the ISO image. This is used to verify the integrity of the downloaded ISO file to ensure it has not been corrupted or tampered with.
 
-## Overview
-
-This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation. The role simplifies the process of creating consistent and reproducible images for various environments.
 
 ## Role Structure
 
