@@ -1,5 +1,17 @@
 # Ansible Role: Build Packer Templates
 
+## Table of Contents
+- [Overview](#overview)
+- [Role Structure](#role-structure)
+- [Default Values](#default-values)
+- [Usage](#usage)
+- [Examples](#examples)
+- [License](#license)
+- [Author Information](#author-information)
+
+## Overview
+This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation.
+
 This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation.
 
 ## Role Structure
