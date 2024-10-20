@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404) Debian 12 (Bookworm).
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -123,6 +123,7 @@ Each JSON file is a template for a distribution :
 * [ubuntu2004.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2004.pkr.hcl)
 * [ubuntu2204.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2204.pkr.hcl)
 * [ubuntu2404.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2404.pkr.hcl)
+* [debian12.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/debian12.pkr.hcl)
 
 For example :
 
@@ -177,7 +178,7 @@ I build images for qemu/KVM with this project and I [publish them](http://downlo
 - [ubuntu2004.qcow2 (Focal)](http://download.goffinet.org/kvm/ubuntu2004.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.sha256sum)
 - [ubuntu2204.qcow2 (Jammy)](http://download.goffinet.org/kvm/ubuntu2204.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.sha256sum)
 - [ubuntu2404.qcow2 (Noble)](http://download.goffinet.org/kvm/ubuntu2404.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.sha256sum)
-
+- [debian12.qcow2 (Bookworm)](http://download.goffinet.org/kvm/debian12.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian12.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian12.qcow2.sha256sum)
 
 You can easily download them to `/var/lib/libvirt/images` with this script :
 
@@ -218,7 +219,7 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```
   ```raw
   Please provide the image name :
-  almalinux9 centos9 centos10 fedora40 ubuntu2004 ubuntu2204 ubuntu2404
+  almalinux9 centos9 centos10 debian12 fedora40 ubuntu2004 ubuntu2204 ubuntu2404
   ```
 
 3. Launch two new machines

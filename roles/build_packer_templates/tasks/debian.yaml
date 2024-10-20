@@ -1,4 +1,4 @@
-- name: Set debian computed variables
+- name: Set debian type computed variables
   ansible.legacy.set_fact:
     type: "{{ item.type }}"
     flavor: "{{ item.flavor }}"
@@ -20,6 +20,12 @@
   ansible.legacy.set_fact:
     config_file: "user-data"
     metadata_file: "meta-data"
+  when: item.flavor == "ubuntu"
+
+- name: Set debian flavor config_file
+  ansible.legacy.set_fact:
+    config_file: "{{ label }}{{ preseed_suffix }}"
+  when: item.flavor == "debian"
 
 - name: Create image.pkr.hcl
   ansible.legacy.template:
@@ -30,24 +36,29 @@
   ansible.legacy.file:
     dest: "{{ playbook_dir }}/http/{{ label }}"
     state: directory
+  when: item.flavor == "ubuntu"
 
 - name: Create debian user-data file
   ansible.legacy.template:
     src: "{{ config_file }}.j2"
     dest: "{{ playbook_dir }}/http/{{ label }}/{{ config_file }}"
+  when: item.flavor == "ubuntu"
 
 - name: Create debian meta-data file
   ansible.legacy.template:
     src: "{{ metadata_file }}.j2"
     dest: "{{ playbook_dir }}/http/{{ label }}/{{ metadata_file }}"
+  when: item.flavor == "ubuntu"
 
 - name: Create debian flavor http directory
   ansible.legacy.file:
     dest: "{{ playbook_dir }}/http"
     state: directory
+  when: item.flavor == "debian"
 
 - name: Create debian flavor preseed file
   ansible.legacy.template:
     src: "preseed.cfg.j2"
     dest: "{{ playbook_dir }}/http/{{ config_file }}"
+  when: item.flavor == "debian"
 

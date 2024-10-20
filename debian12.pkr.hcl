@@ -15,7 +15,7 @@ packer {
 
 variable "config_file" {
   type    = string
-  default = "user-data"
+  default = "debian12-preseed.cfg"
 }
 
 variable "cpu" {
