@@ -7,6 +7,17 @@
 - [Usage](#usage)
 - [Examples](#examples)
 - [License](#license)
+- [Variables](#variables)
+
+## Variables
+
+The following variables are used in the Packer templates:
+
+- **iso_url**: The URL from which the ISO image can be downloaded. This is essential for the installation process as it points to the installation media.
+  
+- **iso_name**: The name of the ISO file that will be downloaded. This is used to reference the specific image file in the build process.
+
+- **checksum_filename**: The name of the file that contains the checksum for the ISO image. This is used to verify the integrity of the downloaded ISO file to ensure it has not been corrupted or tampered with.
 - [Author Information](#author-information)
 
 ## Overview
