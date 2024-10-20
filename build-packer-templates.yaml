@@ -14,7 +14,7 @@
         version: "9.4"
         iso_url: "https://download.rockylinux.org/pub/rocky/9/isos/x86_64"
         iso_name: "Rocky-9.4-x86_64-boot.iso "
-        checksum_filename: "Rocky-9.4-x86_64-boot.iso.CHECKSUM "
+        checksum_filename: "Rocky-9.4-x86_64-boot.iso.CHECKSUM"
       - type: "redhat"
         flavor: "centos"
         version: "9"
