@@ -7,7 +7,7 @@ vm:
 
 boot_command: >-
   {%- if type == 'redhat' -%}
-  {%- if flavor == 'fedora' -%}
+  {%- if flavor == 'fedora' or label == 'centos10' -%}
   ["<up>e", "<down><down><end>",
   " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
   "<leftCtrlOn>x<leftCtrlOff>"]
