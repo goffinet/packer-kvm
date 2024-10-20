@@ -27,6 +27,9 @@ boot_command: >-
   {%- endif -%}
   {%- endif -%}
 
+ssh_password_salt: >-
+  mB3ZauOM8/HIycgS
+
 ssh_password: >-
   {%- if type == 'redhat' -%}
   testtest
