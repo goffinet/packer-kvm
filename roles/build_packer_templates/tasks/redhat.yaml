@@ -1,14 +1,14 @@
 - name: Set redhat computed variables
   ansible.legacy.set_fact:
-    build_packer_templates_label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
-    build_packer_templates_version: "{{ item.version.split('.')[0] }}"
-    build_packer_templates_ks_suffix: "-kickstart.cfg"
-    build_packer_templates_type: "{{ item.type }}"
-    build_packer_templates_flavor: "{{ item.flavor }}"
+    label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
+    version: "{{ item.version.split('.')[0] }}"
+    ks_suffix: "-kickstart.cfg"
+    type: "{{ item.type }}"
+    flavor: "{{ item.flavor }}"
 
 - name: Set redhat config_file variable
   ansible.legacy.set_fact:
-    build_packer_templates_config_file: "{{ build_packer_templates_label }}{{ build_packer_templates_ks_suffix }}"
+    config_file: "{{ label }}{{ ks_suffix }}"
 
 - name: Create image.pkr.hcl
   ansible.legacy.template:

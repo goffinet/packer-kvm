@@ -1,9 +1,9 @@
-build_packer_templates_destination_server: "download.goffinet.org"
+destination_server: "download.goffinet.org"
 
-build_packer_templates_vm:
-  build_packer_templates_cpu: "2"
-  build_packer_templates_disk_size: "40000"
-  build_packer_templates_ram: "2048"
+vm:
+  cpu: "2"
+  disk_size: "40000"
+  ram: "2048"
 
 boot_command: >-
   {%- if type == 'redhat' -%}
