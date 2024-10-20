@@ -121,5 +121,5 @@ This role supports the following operating system versions for building Packer t
         checksum_filename: "SHA256SUMS"
   roles:
     - name: Create packer-templates
-      role: build-packer-templates
+      role: build_packer_templates
 ```
