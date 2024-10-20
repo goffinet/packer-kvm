@@ -25,7 +25,7 @@
         state: stopped
       when:
         - ansible_distribution == 'CentOS'
-        - ansible_facts['distribution_major_version'] != '9'
+        - ansible_facts['distribution_major_version'] != '9' or ansible_facts['distribution_major_version'] != '10'
     - name: Configure GRUB to enable serial console
       copy:
         src: grub.centos

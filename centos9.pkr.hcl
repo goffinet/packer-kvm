@@ -102,7 +102,7 @@ build {
 
   provisioner "shell" {
     execute_command = "{{ .Vars }} sudo -E bash '{{ .Path }}'"
-    inline          = ["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]
+    inline          = ["dnf -y install python3 python3-pip", "pip3 install ansible"]
   }
 
   provisioner "ansible-local" {

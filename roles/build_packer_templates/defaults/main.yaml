@@ -58,9 +58,8 @@ additional_parameters: |
 
 shell_provisioner: >-
   {%- if type == 'redhat' -%}
-  ["dnf -y install epel-release",
-  "dnf repolist",
-  "dnf -y install ansible"]
+  ["dnf -y install python3 python3-pip",
+  "pip3 install ansible"]
   {%- elif type == 'debian' -%}
   ["sudo apt-get update",
   "sudo apt-get -y install software-properties-common",
