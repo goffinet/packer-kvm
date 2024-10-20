@@ -311,7 +311,7 @@ curl https://raw.githubusercontent.com/goffinet/packer-kvm/master/sshkeys/id_rsa
 
 ### How are these Packer templates produced?
 
-An `build-packer-templates.yaml` Ansible playbook generates the files for each distribution using a custom `build-packer-templates` role.
+An `build-packer-templates.yaml` Ansible playbook generates the files for each distribution using a custom [`build-packer-templates`](https://github.com/goffinet/packer-kvm/tree/master/roles/build_packer_templates) role.
 
 ## ToDo
 
