@@ -33,6 +33,8 @@ wget https://releases.hashicorp.com/packer/${latest}/packer_${latest}_linux_amd6
 unzip packer*.zip
 chmod +x packer
 mv packer /usr/local/bin/
+/usr/local/bin/packer plugins install github.com/hashicorp/qemu
+/usr/local/bin/packer plugins install github.com/hashicorp/ansible
 cd $currentd
 }
 
