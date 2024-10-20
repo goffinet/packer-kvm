@@ -21,9 +21,8 @@ The following variables are used in the Packer templates:
 - [Author Information](#author-information)
 
 ## Overview
-This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation.
 
-This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation.
+This Ansible role automates the creation of Packer templates for building virtual machine images. It supports both Debian-based and Red Hat-based systems, generating the necessary configuration files and templates for automated image creation. The role simplifies the process of creating consistent and reproducible images for various environments.
 
 ## Role Structure
 
@@ -79,10 +78,7 @@ To use this role, include it in your Ansible playbook and provide the necessary 
     - role: build-packer-templates
 ```
 
-## License
-
-This project is licensed under the MIT License.
 
 ## Author Information
 
-This role was created by [Your Name].
+This role was created by [Your Name]. Feel free to contribute or reach out for any questions or suggestions.
