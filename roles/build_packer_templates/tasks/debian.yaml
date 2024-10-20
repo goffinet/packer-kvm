@@ -1,35 +1,35 @@
 - name: Set debian computed variables
-  set_fact:
+  ansible.legacy.set_fact:
     type: "{{ item.type }}"
     flavor: "{{ item.flavor }}"
-    
+
 - name: Set ubuntu computed variables
-  set_fact:
+  ansible.legacy.set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
     version: "{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
   when: item.flavor == "ubuntu"
 
 - name: Set ubuntu config_file
-  set_fact:
+  ansible.legacy.set_fact:
     config_file: "user-data"
     metadata_file: "meta-data"
 
 - name: Create image.pkr.hcl
-  template:
+  ansible.legacy.template:
     src: "linux.pkr.hcl.j2"
     dest: "{{ label }}.pkr.hcl"
 
 - name: Create debian cloud-init directory
-  file:
+  ansible.legacy.file:
     dest: "{{ playbook_dir }}/http/{{ label }}"
     state: directory
 
 - name: Create debian user-data file
-  template:
+  ansible.legacy.template:
     src: "{{ config_file }}.j2"
     dest: "{{ playbook_dir }}/http/{{ label }}/{{ config_file }}"
 
 - name: Create debian meta-data file
-  template:
+  ansible.legacy.template:
     src: "{{ metadata_file }}.j2"
     dest: "{{ playbook_dir }}/http/{{ label }}/{{ metadata_file }}"

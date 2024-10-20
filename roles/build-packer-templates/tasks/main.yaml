@@ -1,3 +1,0 @@
-- name: Create packer-templates
-  include_tasks: "{{ item.type }}.yaml"
-  loop: "{{ images }}"

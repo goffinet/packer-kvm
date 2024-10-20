@@ -1,14 +1,5 @@
 # Ansible Role: Build Packer Templates
 
-## Table of Contents
-- [Overview](#overview)
-- [Role Structure](#role-structure)
-- [Default Values](#default-values)
-- [Usage](#usage)
-- [Examples](#examples)
-- [License](#license)
-- [Variables](#variables)
-
 ## Variables
 
 The following variables are used in the Packer templates:
@@ -18,7 +9,6 @@ The following variables are used in the Packer templates:
 - **iso_name**: The name of the ISO file that will be downloaded. This is used to reference the specific image file in the build process.
 
 - **checksum_filename**: The name of the file that contains the checksum for the ISO image. This is used to verify the integrity of the downloaded ISO file to ensure it has not been corrupted or tampered with.
-- [Author Information](#author-information)
 
 ## Overview
 
@@ -67,18 +57,45 @@ To use this role, include it in your Ansible playbook and provide the necessary 
 - hosts: localhost
   gather_facts: no
   vars:
+    destination_server: download.goffinet.org
     images:
       - type: "redhat"
         flavor: "almalinux"
         version: "9.4"
+        iso_url: "https://repo.almalinux.org/almalinux/9.4/isos/x86_64"
+        iso_name: "AlmaLinux-9.4-x86_64-boot.iso"
+        checksum_filename: "CHECKSUM"
+      - type: "redhat"
+        flavor: "centos"
+        version: "9"
+        iso_url: "https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso"
+        iso_name: "CentOS-Stream-9-20241016.0-x86_64-boot.iso"
+        checksum_filename: "SHA256SUM"
+      - type: "redhat"
+        flavor: "fedora"
+        version: "40"
+        iso_url: "https://fedora.cu.be/linux/releases/40/Server/x86_64/iso"
+        iso_name: "Fedora-Server-netinst-x86_64-40-1.14.iso"
+        checksum_filename: "Fedora-Server-40-1.14-x86_64-CHECKSUM"
       - type: "debian"
         flavor: "ubuntu"
         version: "20.04"
+        iso_url: "http://releases.ubuntu.com/20.04"
+        iso_name: "ubuntu-20.04.6-live-server-amd64.iso"
+        checksum_filename: "SHA256SUMS"
+      - type: "debian"
+        flavor: "ubuntu"
+        version: "22.04"
+        iso_url: "http://releases.ubuntu.com/22.04"
+        iso_name: "ubuntu-22.04.5-live-server-amd64.iso"
+        checksum_filename: "SHA256SUMS"
+      - type: "debian"
+        flavor: "ubuntu"
+        version: "24.04"
+        iso_url: "http://releases.ubuntu.com/24.04"
+        iso_name: "ubuntu-24.04.1-live-server-amd64.iso"
+        checksum_filename: "SHA256SUMS"
   roles:
-    - role: build-packer-templates
+    - name: Create packer-templates
+      role: build-packer-templates
 ```
-
-
-## Author Information
-
-This role was created by [Your Name]. Feel free to contribute or reach out for any questions or suggestions.

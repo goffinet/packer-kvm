@@ -1,0 +1,3 @@
+- name: Create packer-templates
+  ansible.legacy.include_tasks: "{{ item.type }}.yaml"
+  loop: "{{ images }}"

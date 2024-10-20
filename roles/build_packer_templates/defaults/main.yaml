@@ -16,8 +16,8 @@ boot_command: >-
   {%- endif -%}
   {%- elif type == 'debian' -%}
   {%- if flavor == 'ubuntu' and version == '2004' -%}
-  ["<enter><enter><f6><esc><wait>", 
-  "<bs><bs><bs><bs>", 
+  ["<enter><enter><f6><esc><wait>",
+  "<bs><bs><bs><bs>",
   "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/{% endraw %} ",
   "--- <enter>"]
   {%- elif flavor == 'ubuntu' and (version == '2204' or version == '2404') -%}
@@ -58,13 +58,13 @@ additional_parameters: |
 
 shell_provisioner: >-
   {%- if type == 'redhat' -%}
-  ["dnf -y install epel-release", 
-  "dnf repolist", 
+  ["dnf -y install epel-release",
+  "dnf repolist",
   "dnf -y install ansible"]
   {%- elif type == 'debian' -%}
-  ["sudo apt-get update", 
-  "sudo apt-get -y install software-properties-common", 
-  "sudo apt-add-repository --yes --update ppa:ansible/ansible", 
-  "sudo apt update", 
+  ["sudo apt-get update",
+  "sudo apt-get -y install software-properties-common",
+  "sudo apt-add-repository --yes --update ppa:ansible/ansible",
+  "sudo apt update",
   "sudo apt -y install ansible"]
   {%- endif -%}
