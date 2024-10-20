@@ -88,7 +88,7 @@ source "qemu" "ubuntu2204" {
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
-  boot_wait              = "3s"
+  boot_wait              = "10s"
   ssh_handshake_attempts = 500
   ssh_timeout            = "45m"
   ssh_wait_timeout       = "45m"

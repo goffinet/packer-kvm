@@ -64,7 +64,7 @@ additional_parameters: |
   ssh_wait_timeout = "30m"
   boot_wait        = "10s"
   {%- elif type == 'debian' -%}
-  boot_wait              = "3s"
+  boot_wait              = "10s"
   ssh_handshake_attempts = 500
   ssh_timeout            = "45m"
   ssh_wait_timeout       = "45m"
