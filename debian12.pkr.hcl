@@ -13,6 +13,11 @@ packer {
   }
 }
 
+variable "config_file" {
+  type    = string
+  default = "user-data"
+}
+
 variable "cpu" {
   type    = string
   default = "2"
