@@ -57,6 +57,18 @@ The following default values are defined in `defaults/main.yaml`:
 
 To use this role, include it in your Ansible playbook and provide the necessary variables. The role will generate the required Packer templates and configuration files based on the input variables and system types.
 
+## Supported Versions
+
+This role supports the following operating system versions for building Packer templates:
+
+- **Red Hat-based Systems:**
+  - AlmaLinux: 9.4
+  - CentOS: 9
+  - Fedora: 40
+
+- **Debian-based Systems:**
+  - Ubuntu: 20.04, 22.04, 24.04
+
 ## Example Playbook
 
 ```yaml
