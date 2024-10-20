@@ -31,7 +31,7 @@
         flavor: "debian"
         version: "12"
         iso_url: "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd"
-        iso_name: "debian-11.3.0-amd64-netinst.iso"
+        iso_name: "debian-12.7.0-amd64-netinst.iso"
         checksum_filename: "SHA256SUMS"
       - type: "debian"
         flavor: "ubuntu"
