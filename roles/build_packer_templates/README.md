@@ -8,18 +8,17 @@ This Ansible role automates the creation of Packer templates for building virtua
 
 The following variables are used in the Packer templates:
 
-- **type**:
+- **type**: Specifies the type of the operating system, such as "debian" or "redhat".
 
-- **flavor**:
+- **flavor**: Indicates the specific distribution flavor, like "ubuntu", "centos", or "fedora".
   
-- **version**: 
+- **version**: The version of the operating system to be installed.
 
 - **iso_url**: The URL from which the ISO image can be downloaded. This is essential for the installation process as it points to the installation media.
   
 - **iso_name**: The name of the ISO file that will be downloaded. This is used to reference the specific image file in the build process.
 
 - **checksum_filename**: The name of the file that contains the checksum for the ISO image. This is used to verify the integrity of the downloaded ISO file to ensure it has not been corrupted or tampered with.
-
 
 ## Role Structure
 
