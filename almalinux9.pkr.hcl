@@ -40,12 +40,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "file:https://repo.almalinux.org/almalinux/9.4/isos/x86_64/CHECKSUM"
+  default = "file:https://repo.almalinux.org/almalinux/9/isos/x86_64/CHECKSUM"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://repo.almalinux.org/almalinux/9.4/isos/x86_64/AlmaLinux-9.4-x86_64-boot.iso"
+  default = "https://repo.almalinux.org/almalinux/9/isos/x86_64/AlmaLinux-9-latest-x86_64-boot.iso"
 }
 
 variable "name" {

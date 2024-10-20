@@ -40,12 +40,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "file:https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/SHA256SUM"
+  default = "file:https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso.SHA256SUM"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-20241018.0-x86_64-boot.iso"
+  default = "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-latest-x86_64-boot.iso"
 }
 
 variable "name" {
