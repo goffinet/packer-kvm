@@ -236,9 +236,9 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ssh $(dig @192.168.122.1 +short u1)
   ```
 
-> This section should be revised
-
 ### Enjoy with Terraform (with libvirt)
+
+> This section should be revised
 
 [https://github.com/goffinet/terraform-libvirt](https://github.com/goffinet/terraform-libvirt)
 
@@ -315,10 +315,10 @@ An `build-packer-templates.yaml` Ansible playbook generates the files for each d
 
 - [ ] unique model : for efficience, a unique template should be sufficient with a data source with these elements (https://devops.stackexchange.com/q/4312).
 - [ ] random secret for provisonning (https://www.packer.io/docs/templates/engine#template-variables)
-- [ ] Remove swap post-processing
+- [ ] remove swap post-processing
 - [ ] docker-compose for automation
 - [ ] add versions of post-processing and images meta-datas
-- [ ] Include Windows templates
+- [ ] include Windows templates
 
 Wath are the variants in those templates?
 

@@ -12,12 +12,13 @@ packer {
     }
   }
 }
-
+{% if type == 'redhat' %}
 
 variable "config_file" {
   type    = string
   default = "{{ config_file }}"
 }
+{% endif %}
 
 variable "cpu" {
   type    = string
@@ -61,16 +62,12 @@ variable "ram" {
 
 variable "ssh_password" {
   type    = string
-  default = {% if item.type == 'debian' %}"{{ item.ssh_password |default(debian.ssh_password) }}"
-  {% elif item.type == 'redhat' %}"{{ item.ssh_password |default(redhat.ssh_password) }}"
-  {% endif -%}
+  default = "{{ item.ssh_password |default(ssh_password) }}"
 }
 
 variable "ssh_username" {
   type    = string
-  default = {% if item.type == 'debian' %}"{{ item.ssh_username |default('ubuntu') }}"
-  {% elif item.type == 'redhat' %}"{{ item.ssh_username |default('root') }}"
-  {% endif -%}
+  default = "{{ item.ssh_username |default(ssh_username) }}"
 }
 
 variable "version" {
@@ -80,12 +77,7 @@ variable "version" {
 
 source "qemu" "{{ label }}" {
   accelerator      = "kvm"
-  boot_command     = {% if item.flavor == "ubuntu" and item.version == "20.04" %}{{ item.boot_command | default(debian.ubuntu2004.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.flavor == "ubuntu" and item.version == "22.04" %}{{ item.boot_command | default(debian.ubuntu2204.boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.flavor == "ubuntu" and item.version == "24.04" %}{{ item.boot_command | default(debian.ubuntu2404.boot_command) | regex_replace('\'', '\"')  | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
-  {% elif item.type == 'redhat' and item.flavor != 'fedora' %}{{ item.boot_command | default(redhat.boot_command) | regex_replace('\'', '\"') }}
-  {% elif item.type == 'redhat' and item.flavor == 'fedora' %}{{ item.boot_command | default(redhat.fedora.boot_command) | regex_replace('\'', '\"') }}
-  {% endif -%}
+  boot_command     = {{ item.boot_command | default(boot_command) | regex_replace('\'', '\"') | regex_replace('ds=\"','ds=\\\"') | regex_replace('config_file}/\"','config_file}/\\\"') }}
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
@@ -103,8 +95,7 @@ source "qemu" "{{ label }}" {
   shutdown_command = "sudo /usr/sbin/shutdown -h now"
   ssh_password     = var.ssh_password
   ssh_username     = var.ssh_username
-{% if item.type == 'debian' and debian.additional_parameters is defined %}{{ debian.additional_parameters|indent('  ', True) }}
-{% elif item.type == 'redhat' and redhat.additional_parameters is defined %}{{ redhat.additional_parameters|indent('  ', True) }}
+{% if additional_parameters is defined %}{{ additional_parameters|indent('  ', True) }}
 {%- endif -%}
 }
 
@@ -113,9 +104,7 @@ build {
 
   provisioner "shell" {
     execute_command = "{% raw %}{{ .Vars }}{% endraw %} sudo -E bash '{% raw %}{{ .Path }}{% endraw %}'"
-    inline          = {% if item.type == 'debian' %}{{ item.shell_provisioner| default(debian.shell_provisioner) | regex_replace('\'', '\"') }}
-    {% elif item.type == 'redhat' %}{{ item.shell_provisioner | default(redhat.shell_provisioner) | regex_replace('\'', '\"') }}
-    {% endif -%}
+    inline          = {{ item.shell_provisioner| default(shell_provisioner) | regex_replace('\'', '\"') }}
   }
 
   provisioner "ansible-local" {

@@ -1,23 +1,26 @@
-- name: Set computed variables
+- name: Set redhat computed variables
   set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
     version: "{{ item.version.split('.')[0] }}"
-
-- name: Set config_file variable
+    ks_suffix: "-kickstart.cfg"
+    type: "{{ item.type }}"
+    flavor: "{{ item.flavor }}"
+    
+- name: Set redhat config_file variable
   set_fact:
-    config_file: "{{ label }}-kickstart.cfg"
+    config_file: "{{ label }}{{ ks_suffix }}"
 
 - name: Create image.pkr.hcl
   template:
     src: "linux.pkr.hcl.j2"
     dest: "{{ playbook_dir }}/{{ label }}.pkr.hcl"
 
-- name: Create packer-templates directory
+- name: Create redhat http directory
   file:
     dest: "{{ playbook_dir }}/http"
     state: directory
 
-- name: Create kickstart file
+- name: Create redhat kickstart file
   template:
     src: "kickstart.cfg.j2"
     dest: "{{ playbook_dir }}/http/{{ config_file }}"

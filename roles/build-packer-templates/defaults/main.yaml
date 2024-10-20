@@ -5,47 +5,66 @@ vm:
   disk_size: "40000"
   ram: "2048"
 
-redhat:
-  ssh_password: "testtest"
-  ks_suffix: "-kickstart.cfg"
-  boot_command: >
-    ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}<enter><wait>"]
-  shell_provisioner: '["dnf -y install epel-release", "dnf repolist", "dnf -y install ansible"]'
-  fedora:
-    boot_command: >
-      ["<up>e", "<down><down><end>",
-      " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
-      "<leftCtrlOn>x<leftCtrlOff>"]
-  additional_parameters: |
-    ssh_wait_timeout = "30m"
-    boot_wait        = "10s"
+boot_command: >-
+  {%- if type == 'redhat' -%}
+  {%- if flavor == 'fedora' -%}
+  ["<up>e", "<down><down><end>",
+  " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
+  "<leftCtrlOn>x<leftCtrlOff>"]
+  {%- else -%}
+  ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}<enter><wait>"]
+  {%- endif -%}
+  {%- elif type == 'debian' -%}
+  {%- if flavor == 'ubuntu' and version == '2004' -%}
+  ["<enter><enter><f6><esc><wait>", 
+  "<bs><bs><bs><bs>", 
+  "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/{% endraw %} ",
+  "--- <enter>"]
+  {%- elif flavor == 'ubuntu' and (version == '2204' or version == '2404') -%}
+  ["c<wait>linux /casper/vmlinuz --- autoinstall ds={% raw %}"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/\"{% endraw %}<enter><wait>",
+  "initrd /casper/initrd<enter><wait>",
+  "boot<enter><wait>"]
+  {%- endif -%}
+  {%- endif -%}
 
-debian:
-  ssh_password: "ubuntu"
-  ks_suffix: "-kickstart.cfg"
-  ubuntu2004:
-    boot_command: >-
-      ["<enter><enter><f6><esc><wait>", 
-      "<bs><bs><bs><bs>", 
-      "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/{% endraw %} ",
-      "--- <enter>"]
-  ubuntu2204:
-    boot_command: >-
-      ["c<wait>linux /casper/vmlinuz --- autoinstall ds={% raw %}"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/\"{% endraw %}<enter><wait>",
-      "initrd /casper/initrd<enter><wait>",
-      "boot<enter><wait>"]
-  ubuntu2404:
-    boot_command: >-
-      ["c<wait>linux /casper/vmlinuz --- autoinstall ds={% raw %}"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/\"{% endraw %}<enter><wait>",
-      "initrd /casper/initrd<enter><wait>",
-      "boot<enter><wait>"]
-  shell_provisioner: '["sudo apt-get update", "sudo apt-get -y install software-properties-common", "sudo apt-add-repository --yes --update ppa:ansible/ansible", "sudo apt update", "sudo apt -y install ansible"]'
-  additional_parameters: |
-    boot_wait              = "3s"
-    ssh_handshake_attempts = 500
-    ssh_timeout            = "45m"
-    ssh_wait_timeout       = "45m"
-    host_port_max          = 2229
-    host_port_min          = 2222
-    http_port_max          = 10089
-    http_port_min          = 10082
+ssh_password: >-
+  {%- if type == 'redhat' -%}
+  testtest
+  {%- elif type == 'debian' -%}
+  ubuntu
+  {%- endif -%}
+
+ssh_username: >-
+  {%- if type == 'redhat' -%}
+  root
+  {%- elif type == 'debian' -%}
+  ubuntu
+  {%- endif -%}
+
+additional_parameters: |
+  {%- if type == 'redhat' -%}
+  ssh_wait_timeout = "30m"
+  boot_wait        = "10s"
+  {%- elif type == 'debian' -%}
+  boot_wait              = "3s"
+  ssh_handshake_attempts = 500
+  ssh_timeout            = "45m"
+  ssh_wait_timeout       = "45m"
+  host_port_max          = 2229
+  host_port_min          = 2222
+  http_port_max          = 10089
+  http_port_min          = 10082
+  {%- endif -%}
+
+shell_provisioner: >-
+  {%- if type == 'redhat' -%}
+  ["dnf -y install epel-release", 
+  "dnf repolist", 
+  "dnf -y install ansible"]
+  {%- elif type == 'debian' -%}
+  ["sudo apt-get update", 
+  "sudo apt-get -y install software-properties-common", 
+  "sudo apt-add-repository --yes --update ppa:ansible/ansible", 
+  "sudo apt update", 
+  "sudo apt -y install ansible"]
+  {%- endif -%}

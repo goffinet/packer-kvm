@@ -4,7 +4,7 @@ autoinstall:
   identity:
     hostname: {{ label }}
     username: {{ item.ssh_username | default('ubuntu') }}
-    password: {{ item.ssh_password | default(debian.ssh_password) | password_hash('sha512', rounds=4096) }}
+    password: {{ item.ssh_password | default(ssh_password) | password_hash('sha512', rounds=4096) }}
   user-data:
     disable_root: false
   keyboard:

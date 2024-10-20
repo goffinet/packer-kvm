@@ -9,8 +9,8 @@ lang en_US.UTF-8
 network --bootproto=dhcp --device=eth0 --ipv6=auto --activate
 network --hostname={{ label }}.localdomain
 selinux --disabled
-rootpw {{ item.ssh_password |default(redhat.ssh_password) }}
-user --groups=wheel --name=user --password={{ item.ssh_password |default(redhat.ssh_password) }} --uid=1000 --gecos="user" --gid=1000
+rootpw {{ item.ssh_password |default(ssh_password) }}
+user --groups=wheel --name=user --password={{ item.ssh_password |default(ssh_password) }} --uid=1000 --gecos="user" --gid=1000
 sshkey --username=user "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUXg2vJmOBNIHd5j6gWFBs0/I4IWXp1jIHBn93FyUQsgiVOG82jhCA69G2SqCYbZHRJSJhwOFSMtMsvDno5Gz+tZMSASliiQnDD26YxiqZZUOApqCpdYKYEhwjVcokjKfm1rVdYhysk1K/qmlL6D0SVAzZxsepl7x8JksMVjvOsuGsZywsvh/Ck7JqEMt9O/NDWv0iFGkGy7J888eAnc+bMyiVV4ND+yYPqpCtL+fPU/dY7+LMR9uDoiJK8fAOmCrBvRLwmKOCh4NNRsHk58L36gl3ArUpNlqWrotpLROHhrXcuh4hSmPuTVsxQOTrzaHM2oVkw/+LBpFFqMLJrAaM8sVrfUBAhRD91cFHjazXg7RvXE1dbkPWDH6THJ71CS1FLyz2htMd7nYuJX/3J2bk533JKZVy/nOEtb0k2s1yCw4WNhT7M+RSFjsvgFsJJkvcGKPpIUwdkctzAXj4hAC1sdhiLsdh/j9E5yw2Tr6rRZ4nuBGDUOqlHABSZBm1d6k= packer-kvm-default-key"
 sshkey --username=root "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDUXg2vJmOBNIHd5j6gWFBs0/I4IWXp1jIHBn93FyUQsgiVOG82jhCA69G2SqCYbZHRJSJhwOFSMtMsvDno5Gz+tZMSASliiQnDD26YxiqZZUOApqCpdYKYEhwjVcokjKfm1rVdYhysk1K/qmlL6D0SVAzZxsepl7x8JksMVjvOsuGsZywsvh/Ck7JqEMt9O/NDWv0iFGkGy7J888eAnc+bMyiVV4ND+yYPqpCtL+fPU/dY7+LMR9uDoiJK8fAOmCrBvRLwmKOCh4NNRsHk58L36gl3ArUpNlqWrotpLROHhrXcuh4hSmPuTVsxQOTrzaHM2oVkw/+LBpFFqMLJrAaM8sVrfUBAhRD91cFHjazXg7RvXE1dbkPWDH6THJ71CS1FLyz2htMd7nYuJX/3J2bk533JKZVy/nOEtb0k2s1yCw4WNhT7M+RSFjsvgFsJJkvcGKPpIUwdkctzAXj4hAC1sdhiLsdh/j9E5yw2Tr6rRZ4nuBGDUOqlHABSZBm1d6k= packer-kvm-default-key"
 timezone Europe/Paris --utc
