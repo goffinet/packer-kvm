@@ -7,25 +7,24 @@ vm:
 
 boot_command: >-
   {%- if type == 'redhat' -%}
-  {%- if flavor == 'fedora' or label == 'centos10' -%}
+    {%- if flavor == 'fedora' or label == 'centos10' -%}
   ["<up>e", "<down><down><end>",
   " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
   "<leftCtrlOn>x<leftCtrlOff>"]
-  {%- else -%}
+    {%- else -%}
   ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}<enter><wait>"]
-  {%- endif -%}
+    {%- endif -%}
   {%- elif type == 'debian' -%}
-  {%- if flavor == 'ubuntu' and version == '2004' -%}
+    {%- if flavor == 'ubuntu' and version == '2004' -%}
   ["<enter><enter><f6><esc><wait>",
   "<bs><bs><bs><bs>",
   "autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net;s=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/{% endraw %} ",
   "--- <enter>"]
-  {%- elif flavor == 'ubuntu' and (version == '2204' or version == '2404') -%}
+    {%- elif flavor == 'ubuntu' and (version == '2204' or version == '2404') -%}
   ["c<wait>linux /casper/vmlinuz --- autoinstall ds={% raw %}"nocloud;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.name}${var.version}/\"{% endraw %}<enter><wait>",
   "initrd /casper/initrd<enter><wait>",
   "boot<enter><wait>"]
-  {%- endif -%}
-  {%- if flavor == 'debian' -%}
+    {%- elif flavor == 'debian' -%}
   ["<esc><wait>", "auto <wait>",
   "console-keymaps-at/keymap=us <wait>",
   "console-setup/ask_detect=false <wait>",
@@ -39,7 +38,7 @@ boot_command: >-
   "netcfg/get_hostname=${var.name}${var.version} <wait>",
   "preseed/url=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file} <wait>", 
   "<enter><wait>"]
-  {%- endif -%}
+    {%- endif -%}
   {%- endif -%}
 
 ssh_password_salt: >-
