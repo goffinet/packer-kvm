@@ -87,3 +87,14 @@ shell_provisioner: >-
   ["apt-get update",
   "apt -y install ansible"]
   {%- endif -%}
+
+packer_j2: "linux.pkr.hcl.j2"
+
+response_j2: >-
+  {%- if type == 'redhat' -%}
+  kickstart.cfg.j2
+  {%- elif flavor == 'ubuntu' -%}
+  user-data.j2
+  {%- elif flavor == 'debian' -%}
+  preseed.cfg.j2
+  {%- endif -%}

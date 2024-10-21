@@ -8,10 +8,17 @@
     ansible.legacy.set_fact:
       label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
       version: "{{ item.version.split('.')[0] }}"
-      preseed_suffix: "-preseed.cfg"
   - name: Set debian flavor config_file
     ansible.legacy.set_fact:
-      config_file: "{{ label }}{{ preseed_suffix }}"
+      config_file: "{{ label }}-preseed.cfg"
+  - name: Create debian flavor http directory
+    ansible.legacy.file:
+      dest: "{{ playbook_dir }}/http"
+      state: directory
+  - name: Create debian flavor preseed file
+    ansible.legacy.template:
+      src: "{{ item.response_j2 | default(response_j2) }}"
+      dest: "{{ playbook_dir }}/http/{{ config_file }}"
   when: item.flavor == "debian"
 
 - block:
@@ -19,40 +26,21 @@
     ansible.legacy.set_fact:
       label: "{{ item.flavor }}{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
       version: "{{ item.version.split('.')[0] }}{{ item.version.split('.')[1] }}"
-  - name: Set ubuntu config_file
-    ansible.legacy.set_fact:
-      config_file: "user-data"
-      metadata_file: "meta-data"
-  when: item.flavor == "ubuntu"
-
-- name: Create image.pkr.hcl
-  ansible.legacy.template:
-    src: "linux.pkr.hcl.j2"
-    dest: "{{ label }}.pkr.hcl"
-
-- block:
-  - name: Create debian cloud-init directory
+  - name: Create ubuntu cloud-init directory
     ansible.legacy.file:
       dest: "{{ playbook_dir }}/http/{{ label }}"
       state: directory
-  - name: Create debian user-data file
+  - name: Create ubuntu user-data file
     ansible.legacy.template:
-      src: "{{ config_file }}.j2"
-      dest: "{{ playbook_dir }}/http/{{ label }}/{{ config_file }}"
-  - name: Create debian meta-data file
+      src: "{{ item.response_j2 | default(response_j2) }}"
+      dest: "{{ playbook_dir }}/http/{{ label }}/user-data"
+  - name: Create ubuntu meta-data file
     ansible.legacy.template:
-      src: "{{ metadata_file }}.j2"
-      dest: "{{ playbook_dir }}/http/{{ label }}/{{ metadata_file }}"
+      src: "meta-data.j2"
+      dest: "{{ playbook_dir }}/http/{{ label }}/meta-data"
   when: item.flavor == "ubuntu"
 
-- block:
-  - name: Create debian flavor http directory
-    ansible.legacy.file:
-      dest: "{{ playbook_dir }}/http"
-      state: directory
-  - name: Create debian flavor preseed file
-    ansible.legacy.template:
-      src: "preseed.cfg.j2"
-      dest: "{{ playbook_dir }}/http/{{ config_file }}"
-  when: item.flavor == "debian"
-
+- name: Create pkr.hcl template
+  ansible.legacy.template:
+    src: "linux.pkr.hcl.j2"
+    dest: "{{ label }}.pkr.hcl"

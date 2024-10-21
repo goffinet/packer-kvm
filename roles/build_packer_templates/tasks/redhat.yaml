@@ -2,25 +2,24 @@
   ansible.legacy.set_fact:
     label: "{{ item.flavor }}{{ item.version.split('.')[0] }}"
     version: "{{ item.version.split('.')[0] }}"
-    ks_suffix: "-kickstart.cfg"
     type: "{{ item.type }}"
     flavor: "{{ item.flavor }}"
 
 - name: Set redhat config_file variable
   ansible.legacy.set_fact:
-    config_file: "{{ label }}{{ ks_suffix }}"
+    config_file: "{{ label }}-kickstart.cfg"
 
-- name: Create image.pkr.hcl
+- block:
+  - name: Create redhat http directory
+    ansible.legacy.file:
+      dest: "{{ playbook_dir }}/http"
+      state: directory
+  - name: Create redhat kickstart file
+    ansible.legacy.template:
+      src: "{{ item.response_j2 | default(response_j2) }}"
+      dest: "{{ playbook_dir }}/http/{{ config_file }}"
+
+- name: Create pkr.hcl template
   ansible.legacy.template:
     src: "linux.pkr.hcl.j2"
     dest: "{{ playbook_dir }}/{{ label }}.pkr.hcl"
-
-- name: Create redhat http directory
-  ansible.legacy.file:
-    dest: "{{ playbook_dir }}/http"
-    state: directory
-
-- name: Create redhat kickstart file
-  ansible.legacy.template:
-    src: "kickstart.cfg.j2"
-    dest: "{{ playbook_dir }}/http/{{ config_file }}"
