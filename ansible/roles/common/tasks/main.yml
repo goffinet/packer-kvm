@@ -34,6 +34,7 @@
       when: >
         ansible_facts['ansible_distribution'] != 'CentOS' or
         ansible_facts['ansible_distribution'] != 'Fedora'
+      ignore_errors: yes
     - name: Install Cloud-init
       yum:
         name: cloud-init
