@@ -104,7 +104,7 @@ build {
 
   provisioner "shell" {
     execute_command = "{% raw %}{{ .Vars }}{% endraw %} sudo -E bash '{% raw %}{{ .Path }}{% endraw %}'"
-    inline          = {{ item.shell_provisioner| default(shell_provisioner) | regex_replace('\'', '\"') }}
+    inline          = {{ item.shell_provisioner | default(shell_provisioner) | regex_replace('\'', '\"') }}
   }
 
   provisioner "ansible-local" {

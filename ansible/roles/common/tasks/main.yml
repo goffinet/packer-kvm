@@ -27,16 +27,13 @@
         backup: no
     - name: Regenerate GRUB configuration
       command: "/usr/sbin/grub2-mkconfig -o /boot/grub2/grub.cfg"
-    - name: Enable EPEL Repository on CentOS 8
+    - name: Enable EPEL Repository
       dnf:
         name: epel-release
         state: latest
-      when: ansible_facts['distribution_major_version'] == '8'
-    - name: Enable EPEL Repository on CentOS 7
-      yum:
-        name: epel-release
-        state: latest
-      when: ansible_facts['distribution_major_version'] == '7'
+      when: >
+        ansible_facts['ansible_distribution'] != 'CentOS' or
+        ansible_facts['ansible_distribution'] != 'Fedora'
     - name: Install Cloud-init
       yum:
         name: cloud-init
