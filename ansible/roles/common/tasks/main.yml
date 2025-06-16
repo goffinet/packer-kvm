@@ -31,9 +31,6 @@
       dnf:
         name: epel-release
         state: latest
-      when: >
-        ansible_facts['ansible_distribution'] != 'CentOS' or
-        ansible_facts['ansible_distribution'] != 'Fedora'
       ignore_errors: yes
     - name: Install Cloud-init
       yum:
