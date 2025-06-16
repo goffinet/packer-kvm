@@ -26,7 +26,8 @@ cd ${path_image}
 
 # sparsify and rename the image, check the size, compute checksums
 
-start_size$(du -h packer-${image} | cut -f1)
+export LIBGUESTFS_BACKEND=direct
+start_size=$(du -h packer-${image} | cut -f1)
 mv packer-${image} ${image}.qcow2.temp
 virt-sparsify --check-tmpdir ignore --compress --convert qcow2 --format qcow2 ${image}.qcow2.temp ${image}.qcow2
 final_size=$(du -h ${image}.qcow2 | cut -f1)
