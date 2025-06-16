@@ -35,12 +35,12 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = "file:http://releases.ubuntu.com/24.04/SHA256SUMS"
+  default = "file:https://releases.ubuntu.com/24.04/SHA256SUMS"
 }
 
 variable "iso_url" {
   type    = string
-  default = "http://releases.ubuntu.com/24.04/ubuntu-24.04.1-live-server-amd64.iso"
+  default = "https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso"
 }
 
 variable "name" {
