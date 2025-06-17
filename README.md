@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Rocky 9, Fedora 40, Noble (Ubuntu 2404), Debian 12 (Bookworm).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : AlmaLinux 9, Almalinux 10, Rocky 9, Rocky 10, Fedora 40, Noble (Ubuntu 2404), Debian 12 (Bookworm).
 
 Only for education and learning purposes. Do not use it in production.
 
@@ -117,12 +117,12 @@ pip3 install docker-compose
 Each JSON file is a template for a distribution :
 
 * [almalinux9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux9.pkr.hcl)
+* [almalinux10.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/almalinux10.pkr.hcl)
+* [centos10.pkr.hcl](https://github.com/goffinet/packdder-kvm/blob/master/centos10.pkr.hcl)
 * [rocky9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/rocky9.pkr.hcl)
+* [rocky10.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/rocky10.pkr.hcl)
 * [centos9.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos9.pkr.hcl)
-* [centos10.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/centos10.pkr.hcl)
 * [fedora40.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/fedora40.pkr.hcl)
-* [ubuntu2004.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2004.pkr.hcl)
-* [ubuntu2204.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2204.pkr.hcl)
 * [ubuntu2404.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/ubuntu2404.pkr.hcl)
 * [debian12.pkr.hcl](https://github.com/goffinet/packer-kvm/blob/master/debian12.pkr.hcl)
 
@@ -173,12 +173,11 @@ You can have more details from Packet with the env var configured : `PACKER_LOG=
 I build images for qemu/KVM with this project and I [publish them](http://download.goffinet.org/kvm/index.html) for use in those other IaC projects: [Virt-scripts](https://github.com/goffinet/virt-scripts) and **[Terraform with Libvirt/KVM provider](https://github.com/goffinet/terraform-libvirt)**.
 
 - [almalinux9.qcow2](http://download.goffinet.org/kvm/almalinux9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux9.qcow2.sha256sum)
-- [rocky9.qcow2](http://download.goffinet.org/kvm/rocky9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky9.qcow2.sha256sum)
-- [centos9.qcow2](http://download.goffinet.org/kvm/centos9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos9.qcow2.sha256sum)
-- [centos10.qcow2](http://download.goffinet.org/kvm/centos10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/centos10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/centos10.qcow2.sha256sum)
-- [fedora40.qcow2](http://download.goffinet.org/kvm/fedora40.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora40.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora40.qcow2.sha256sum)
-- [ubuntu2004.qcow2 (Focal)](http://download.goffinet.org/kvm/ubuntu2004.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2004.qcow2.sha256sum)
+- [almalinux10.qcow2](http://download.goffinet.org/kvm/almalinux10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/almalinux10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/almalinux10.qcow2.sha256sum)
 - [ubuntu2204.qcow2 (Jammy)](http://download.goffinet.org/kvm/ubuntu2204.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2204.qcow2.sha256sum)
+- [rocky9.qcow2](http://download.goffinet.org/kvm/rocky9.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky9.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky9.qcow2.sha256sum)
+- [rocky10.qcow2](http://download.goffinet.org/kvm/rocky10.qcow2) [[md5sum]](http://download.goffinet.org/kvm/rocky10.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/rocky10.qcow2.sha256sum)
+- [fedora40.qcow2](http://download.goffinet.org/kvm/fedora40.qcow2) [[md5sum]](http://download.goffinet.org/kvm/fedora40.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/fedora40.qcow2.sha256sum)
 - [ubuntu2404.qcow2 (Noble)](http://download.goffinet.org/kvm/ubuntu2404.qcow2) [[md5sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/ubuntu2404.qcow2.sha256sum)
 - [debian12.qcow2 (Bookworm)](http://download.goffinet.org/kvm/debian12.qcow2) [[md5sum]](http://download.goffinet.org/kvm/debian12.qcow2.md5sum) [[sha256sum]](http://download.goffinet.org/kvm/debian12.qcow2.sha256sum)
 
@@ -201,6 +200,10 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
 
 ### Enjoy with Libvirt
 
+> _Switch to kcli_
+
+<!--
+
 [https://github.com/goffinet/virt-scripts](https://github.com/goffinet/virt-scripts)
 
 1. Clone virt-scripts repo and prepare the machine
@@ -221,14 +224,14 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```
   ```raw
   Please provide the image name :
-  almalinux9 centos9 centos10 debian12 fedora40 ubuntu2004 ubuntu2204 ubuntu2404
+  almalinux9 almalinux10 centos9 debian12 fedora40 rocky9 rocky10 ubuntu2404
   ```
 
 3. Launch two new machines
 
   ```bash
   sudo ./define-guest-image.sh c1 almalinux9
-  sudo ./define-guest-image.sh u1 ubuntu2204
+  sudo ./define-guest-image.sh u1 ubuntu2404
   ```
 
 4. Enjoy
@@ -240,6 +243,7 @@ This is always beter to know how Libvirt is working. Can you read fundamentals a
   ```bash
   ssh $(dig @192.168.122.1 +short u1)
   ```
+-->
 
 ### Enjoy with Terraform (with libvirt)
 
