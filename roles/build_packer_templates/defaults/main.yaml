@@ -11,6 +11,8 @@ boot_command: >-
   ["<up>e", "<down><down><end>",
   " inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}",
   "<leftCtrlOn>x<leftCtrlOff>"]
+    {%- elif label == 'almalinux10' or label == 'rocky10' -%}
+  ["e","<down><down>","<leftCtrlOn>e<leftCtrlOff>","<spacebar>","biosdevname=0","<spacebar>","net.ifnames=0","<spacebar>","inst.text","<spacebar>","inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}","<leftCtrlOn>x<leftCtrlOff>"]
     {%- else -%}
   ["<tab><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs> inst.text inst.ks=http://{% raw %}{{ .HTTPIP }}:{{ .HTTPPort }}{% endraw %}/http/${var.config_file}<enter><wait>"]
     {%- endif -%}

@@ -75,7 +75,7 @@ variable "version" {
 
 source "qemu" "almalinux10" {
   accelerator      = "kvm"
-  boot_command     = ["e","<down><down>","<leftCtrlOn>e<leftCtrlOff>","<spacebar>","biosdevname=0","<spacebar>","net.ifnames=0","<spacebar>","inst.text","<spacebar>","inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}","<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e", "<down><down>", "<leftCtrlOn>e<leftCtrlOff>", "<spacebar>", "biosdevname=0", "<spacebar>", "net.ifnames=0", "<spacebar>", "inst.text", "<spacebar>", "inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/http/${var.config_file}", "<leftCtrlOn>x<leftCtrlOff>"]
   disk_cache       = "none"
   disk_compression = true
   disk_discard     = "unmap"
