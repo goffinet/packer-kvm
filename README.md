@@ -1,6 +1,6 @@
 # packer-kvm
 
-Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Rocky 9, Focal (Ubuntu 2004), Fedora 40, Jammy (Ubuntu 2204), Noble (Ubuntu 2404), Debian 12 (Bookworm).
+Create VM templates with Packer for usage with Libvirt/KVM virtualization : CentOS 9 (Stream), CentOS 10 (Stream), AlmaLinux 9, Rocky 9, Fedora 40, Noble (Ubuntu 2404), Debian 12 (Bookworm).
 
 Only for education and learning purposes. Do not use it in production.
 
