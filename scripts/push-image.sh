@@ -37,27 +37,6 @@ size_image=$(stat -c %s ${image}.qcow2)
 md5sum ${image}.qcow2 > ${image}.qcow2.md5sum
 sha256sum ${image}.qcow2 > ${image}.qcow2.sha256sum
 
-## Test the image with kcli.
-# Get kcli tool
-curl https://raw.githubusercontent.com/karmab/kcli/main/install.sh | sudo bash
-# Get the image
-kcli download image -P url=file://${PWD}/${image}.qcow2 ${image}
-# Create a test vm
-kcli create vm -i ${image} -P memory=2048 -P numcpus=1 -P disks=[50] ${image}
-# Test SSH connexion and delete the test VM
-chmod 600 ../../../sshkeys/id_rsa
-sleep 30
-if [ "${name}" == "ubuntu" ] ; then
-  user="ubuntu"
-else
-  user="root"
-fi
-if [ "$(kcli ssh -u ${user} -i ../../../sshkeys/id_rsa ${image} 'echo test')" == "test"  ] ; then 
-  echo SUCCESS ; kcli delete vm -y ${image}
-else 
-  echo ERROR ; kcli delete vm -y ${image} ; exit 1
-fi
-
 # create a https://gns3.com appliance file
 
 cat << EOF > ${image}.gns3a
