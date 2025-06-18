@@ -1,9 +1,12 @@
-#!/bin/absh
+#!/bin/bash
 
 
 image=$1
-# if no image, eroor. if image remove numbers and dots. AI!
-name=$image
+if [ -z "$image" ]; then
+  echo "Erreur : aucune image fournie."
+  exit 1
+fi
+name=$(echo "$image" | tr -d '0-9.')
 ## Test the image with kcli.
 # Get kcli tool
 curl https://raw.githubusercontent.com/karmab/kcli/main/install.sh | sudo bash
